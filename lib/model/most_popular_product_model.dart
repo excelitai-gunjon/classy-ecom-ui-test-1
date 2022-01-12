@@ -7,34 +7,34 @@ class MostPopularProductModel{
 
   static List<MostPopularProductModel> list=[
     MostPopularProductModel(
-      productName: "Dior Perfume",
+      productName: "Watch 2",
       productPrice: "1000.0",
-      imageUrl: "images/bike.png",
+      imageUrl: "images/ecom/men/watch/watch2.png",
     ),
     MostPopularProductModel(
       productName: "Dior Perfume",
       productPrice: "1000.0",
-      imageUrl: "images/bike.png",
+      imageUrl: "images/perfume1.png",
+    ),
+    MostPopularProductModel(
+      productName: "HeadPhone",
+      productPrice: "1000.0",
+      imageUrl: "images/headPhone.png",
+    ),
+    MostPopularProductModel(
+      productName: "Watch 2",
+      productPrice: "1000.0",
+      imageUrl: "images/ecom/men/watch/watch2.png",
     ),
     MostPopularProductModel(
       productName: "Dior Perfume",
       productPrice: "1000.0",
-      imageUrl: "images/bike.png",
+      imageUrl: "images/perfume1.png",
     ),
     MostPopularProductModel(
-      productName: "Dior Perfume",
+      productName: "HeadPhone",
       productPrice: "1000.0",
-      imageUrl: "images/bike.png",
-    ),
-    MostPopularProductModel(
-      productName: "Dior Perfume",
-      productPrice: "1000.0",
-      imageUrl: "images/bike.png",
-    ),
-    MostPopularProductModel(
-      productName: "Dior Perfume",
-      productPrice: "1000.0",
-      imageUrl: "images/bike.png",
+      imageUrl: "images/headPhone.png",
     ),
   ];
 }

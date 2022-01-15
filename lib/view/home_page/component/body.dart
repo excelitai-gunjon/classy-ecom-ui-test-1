@@ -4,21 +4,38 @@ import 'package:classy_e_com_demo_test_ui_1/model/hot_deals_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/most_popular_product_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/new_arrival_madel.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/top_categories_model.dart';
+import 'package:classy_e_com_demo_test_ui_1/model/trending_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 
 import '../../../main.dart';
 
-class Body extends StatefulWidget {
-  const Body({Key? key}) : super(key: key);
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
 
   @override
-  State<Body> createState() => _BodyState();
+  State<Home> createState() => _HomeState();
 }
 
-class _BodyState extends State<Body> {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   final CarouselController _controller = CarouselController();
   //HotDealsModel list=HotDealsModel();
+  TabController? _controllerTab;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _controllerTab = TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _controllerTab!.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -643,7 +660,7 @@ class _BodyState extends State<Body> {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               //color: Colors.grey,
-              height: 400,
+              height: 355,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -669,22 +686,21 @@ class _BodyState extends State<Body> {
                           children: [
                             Container(
                               decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey,
-                                  width: 1
+                                border:
+                                    Border.all(color: Colors.grey, width: 1),
+                                color: Colors.white,
+                                gradient: LinearGradient(
+                                  colors: [Colors.white, Colors.white],
+                                  begin: Alignment.topRight,
+                                  end: Alignment.bottomCenter,
                                 ),
-                                  color: Colors.white,
-                                  gradient: LinearGradient(
-                                      colors: [Colors.white, Colors.white],
-                                      begin: Alignment.topRight,
-                                      end: Alignment.bottomCenter,
-                                  ),
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.grey.withOpacity(0.5),
                                     spreadRadius: 4,
                                     blurRadius: 2,
-                                    offset: Offset(2, 3), // changes position of shadow
+                                    offset: Offset(
+                                        2, 3), // changes position of shadow
                                   ),
                                 ],
                               ),
@@ -693,6 +709,7 @@ class _BodyState extends State<Body> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
+                                    flex: 2,
                                     child: Container(
                                       height: 50,
                                       width: MediaQuery.of(context).size.width,
@@ -710,7 +727,7 @@ class _BodyState extends State<Body> {
                                     ),
                                   ),
                                   Expanded(
-                                    flex: 8,
+                                    flex: 10,
                                     child: CarouselSlider.builder(
                                         //items: imageSliders,
                                         itemCount: HotDealsModel.list.length,
@@ -718,8 +735,10 @@ class _BodyState extends State<Body> {
                                           enlargeCenterPage: true,
                                           reverse: false,
                                           autoPlay: true,
-                                          autoPlayInterval: Duration(seconds: 3),
-                                          autoPlayAnimationDuration: Duration(milliseconds: 800),
+                                          autoPlayInterval:
+                                              Duration(seconds: 3),
+                                          autoPlayAnimationDuration:
+                                              Duration(milliseconds: 1000),
                                           height: MediaQuery.of(context)
                                               .size
                                               .height,
@@ -730,7 +749,8 @@ class _BodyState extends State<Body> {
                                           HotDealsModel item =
                                               HotDealsModel.list[itemIndex];
                                           return Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Padding(
                                                 padding:
@@ -829,10 +849,11 @@ class _BodyState extends State<Body> {
                                                         FontWeight.bold),
                                               ),
                                               Padding(
-                                                padding: const EdgeInsets.all(8.0),
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
                                                 child: SizedBox(
-                                                  height: 100,
-                                                  width: MediaQuery.of(context).size.width,
+                                                  height: 70,
+                                                  width: 70,
                                                   child: Image.asset(
                                                     item.type2Image.toString(),
                                                     fit: BoxFit.fill,
@@ -858,8 +879,7 @@ class _BodyState extends State<Body> {
                                                     Container(
                                                       height: 20,
                                                       width: 20,
-                                                      decoration:
-                                                          BoxDecoration(
+                                                      decoration: BoxDecoration(
                                                         color: Colors.white,
                                                         borderRadius:
                                                             BorderRadius
@@ -887,8 +907,7 @@ class _BodyState extends State<Body> {
                                                     Container(
                                                       height: 20,
                                                       width: 20,
-                                                      decoration:
-                                                          BoxDecoration(
+                                                      decoration: BoxDecoration(
                                                         color: Colors.white,
                                                         borderRadius:
                                                             BorderRadius
@@ -916,8 +935,7 @@ class _BodyState extends State<Body> {
                                                     Container(
                                                       height: 20,
                                                       width: 20,
-                                                      decoration:
-                                                          BoxDecoration(
+                                                      decoration: BoxDecoration(
                                                         color: Colors.white,
                                                         borderRadius:
                                                             BorderRadius
@@ -945,8 +963,7 @@ class _BodyState extends State<Body> {
                                                     Container(
                                                       height: 20,
                                                       width: 20,
-                                                      decoration:
-                                                          BoxDecoration(
+                                                      decoration: BoxDecoration(
                                                         color: Colors.white,
                                                         borderRadius:
                                                             BorderRadius
@@ -976,26 +993,25 @@ class _BodyState extends State<Body> {
                                               ),
                                               Padding(
                                                 padding:
-                                                const EdgeInsets.all(8.0),
+                                                    const EdgeInsets.all(8.0),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     Container(
                                                       height: 20,
                                                       width: 20,
-                                                      decoration:
-                                                      BoxDecoration(
+                                                      decoration: BoxDecoration(
                                                         color: Colors.white,
                                                         borderRadius:
-                                                        BorderRadius
-                                                            .circular(5),
+                                                            BorderRadius
+                                                                .circular(5),
                                                         boxShadow: [
                                                           BoxShadow(
                                                             color: Colors.grey
                                                                 .withOpacity(
-                                                                0.5),
+                                                                    0.5),
                                                             spreadRadius: 1,
                                                             blurRadius: 3,
                                                             offset: Offset(0,
@@ -1014,17 +1030,16 @@ class _BodyState extends State<Body> {
                                                     Container(
                                                       height: 20,
                                                       width: 20,
-                                                      decoration:
-                                                      BoxDecoration(
+                                                      decoration: BoxDecoration(
                                                         color: Colors.white,
                                                         borderRadius:
-                                                        BorderRadius
-                                                            .circular(5),
+                                                            BorderRadius
+                                                                .circular(5),
                                                         boxShadow: [
                                                           BoxShadow(
                                                             color: Colors.grey
                                                                 .withOpacity(
-                                                                0.5),
+                                                                    0.5),
                                                             spreadRadius: 1,
                                                             blurRadius: 3,
                                                             offset: Offset(0,
@@ -1043,17 +1058,16 @@ class _BodyState extends State<Body> {
                                                     Container(
                                                       height: 20,
                                                       width: 20,
-                                                      decoration:
-                                                      BoxDecoration(
+                                                      decoration: BoxDecoration(
                                                         color: Colors.white,
                                                         borderRadius:
-                                                        BorderRadius
-                                                            .circular(5),
+                                                            BorderRadius
+                                                                .circular(5),
                                                         boxShadow: [
                                                           BoxShadow(
                                                             color: Colors.grey
                                                                 .withOpacity(
-                                                                0.5),
+                                                                    0.5),
                                                             spreadRadius: 1,
                                                             blurRadius: 3,
                                                             offset: Offset(0,
@@ -1072,17 +1086,16 @@ class _BodyState extends State<Body> {
                                                     Container(
                                                       height: 20,
                                                       width: 20,
-                                                      decoration:
-                                                      BoxDecoration(
+                                                      decoration: BoxDecoration(
                                                         color: Colors.white,
                                                         borderRadius:
-                                                        BorderRadius
-                                                            .circular(5),
+                                                            BorderRadius
+                                                                .circular(5),
                                                         boxShadow: [
                                                           BoxShadow(
                                                             color: Colors.grey
                                                                 .withOpacity(
-                                                                0.5),
+                                                                    0.5),
                                                             spreadRadius: 1,
                                                             blurRadius: 3,
                                                             offset: Offset(0,
@@ -1174,17 +1187,30 @@ class _BodyState extends State<Body> {
                         width: MediaQuery.of(context).size.width,
                         child: Column(
                           children: [
-                            SizedBox(
-                              height: 50,
+                            Expanded(
+                              flex: 2,
                               child: AppBar(
+                                backgroundColor: Colors.white,
                                 bottom: TabBar(
+                                  labelColor: Colors.red,
+                                  unselectedLabelColor: Colors.grey,
+                                  indicatorColor: Colors.red,
+                                  controller: _controllerTab,
                                   tabs: [
                                     Tab(
-                                      icon: Icon(Icons.directions_bike),
+                                      //icon: Icon(Icons.directions_bike),
+                                      child: Text(
+                                        "Latest Products",
+                                        style: TextStyle(fontSize: 10),
+                                      ),
                                     ),
                                     Tab(
-                                      icon: Icon(
-                                        Icons.directions_car,
+                                      // icon: Icon(
+                                      //   Icons.directions_car,
+                                      // ),
+                                      child: Text(
+                                        "Top Rated",
+                                        style: TextStyle(fontSize: 10),
                                       ),
                                     ),
                                   ],
@@ -1194,26 +1220,268 @@ class _BodyState extends State<Body> {
 
                             // create widgets for each tab bar here
                             Expanded(
+                              flex: 11,
                               child: TabBarView(
+                                controller: _controllerTab,
                                 children: [
                                   // first tab bar view widget
-                                  Container(
-                                    color: Colors.red,
-                                    child: Center(
-                                      child: Text(
-                                        'Bike',
-                                      ),
+                                  GridView.builder(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 8),
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: false,
+                                    itemCount:
+                                        BestSellingProductModel.list.length,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 5,
+                                      childAspectRatio: 3 / 2,
+                                      mainAxisSpacing: 5,
+                                      mainAxisExtent:
+                                          MediaQuery.of(context).size.height *
+                                              .15,
                                     ),
+                                    itemBuilder: (BuildContext context, i) {
+                                      BestSellingProductModel product =
+                                          BestSellingProductModel.list[i];
+                                      return Container(
+                                        //margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                .5,
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Colors.grey.withOpacity(0.5),
+                                              spreadRadius: 1,
+                                              blurRadius: 3,
+                                              offset: Offset(0,
+                                                  1), // changes position of shadow
+                                            ),
+                                          ],
+                                          color: Colors.white,
+                                          //borderRadius: BorderRadius.circular(15),
+                                          // image: DecorationImage(
+                                          //   image: AssetImage(product.imageUrl.toString()),
+                                          //   fit: BoxFit.fill
+                                          // )
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              width: double.infinity,
+                                              height: 70,
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: AssetImage(product
+                                                        .imageUrl
+                                                        .toString()),
+                                                    fit: BoxFit.contain),
+                                                color: Colors.transparent,
+                                                //borderRadius: BorderRadius.circular(15),
+                                              ),
+                                            ),
+                                            //Divider(),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(product.productName
+                                                      .toString()),
+                                                  //Text(product.productDetail.toString()),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            "\$" +
+                                                                product
+                                                                    .productPrice
+                                                                    .toString(),
+                                                            style: TextStyle(
+                                                                color: Color(
+                                                                    0xffFF6000),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 12),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Icon(
+                                                            Icons.star,
+                                                            color: Color(
+                                                                0xffFF6000),
+                                                            size: 20,
+                                                          ),
+                                                          Text(
+                                                            " " +
+                                                                product
+                                                                    .productRating
+                                                                    .toString(),
+                                                            style: TextStyle(
+                                                                //color: Color(0xffFF6000),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
                                   ),
 
                                   // second tab bar viiew widget
-                                  Container(
-                                    color: Colors.pink,
-                                    child: Center(
-                                      child: Text(
-                                        'Car',
-                                      ),
+                                  GridView.builder(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 0, vertical: 8),
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: false,
+                                    itemCount: NewArrivalModel.list.length,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 10,
+                                      childAspectRatio: 3 / 2,
+                                      mainAxisSpacing: 10,
+                                      mainAxisExtent:
+                                          MediaQuery.of(context).size.height *
+                                              .15,
                                     ),
+                                    itemBuilder: (BuildContext context, i) {
+                                      NewArrivalModel product =
+                                          NewArrivalModel.list[i];
+                                      return Container(
+                                        //margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                .5,
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Colors.grey.withOpacity(0.5),
+                                              spreadRadius: 1,
+                                              blurRadius: 3,
+                                              offset: Offset(0,
+                                                  1), // changes position of shadow
+                                            ),
+                                          ],
+                                          color: Colors.white,
+                                          //borderRadius: BorderRadius.circular(15),
+                                          // image: DecorationImage(
+                                          //   image: AssetImage(product.imageUrl.toString()),
+                                          //   fit: BoxFit.fill
+                                          // )
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              width: double.infinity,
+                                              height: 70,
+                                              decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: AssetImage(product
+                                                        .imageUrl
+                                                        .toString()),
+                                                    fit: BoxFit.contain),
+                                                color: Colors.transparent,
+                                                //borderRadius: BorderRadius.circular(15),
+                                              ),
+                                            ),
+                                            //Divider(),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Text(product.productName
+                                                      .toString()),
+                                                  //Text(product.productDetail.toString()),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            "\$" +
+                                                                product
+                                                                    .productPrice
+                                                                    .toString(),
+                                                            style: TextStyle(
+                                                                color: Color(
+                                                                    0xffFF6000),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontSize: 12),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Icon(
+                                                            Icons.star,
+                                                            color: Color(
+                                                                0xffFF6000),
+                                                            size: 20,
+                                                          ),
+                                                          // Text(
+                                                          //   " " + product..toString(),
+                                                          //   style: TextStyle(
+                                                          //     //color: Color(0xffFF6000),
+                                                          //       fontWeight: FontWeight.bold),
+                                                          // ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ],
                               ),
@@ -1227,6 +1495,149 @@ class _BodyState extends State<Body> {
               ),
             ),
           ),
+
+          ///
+          ///
+          /// Trending
+          ///
+          ///
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Trending",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "View All",
+                        style: TextStyle(
+                          color: Color(0xffFF6000),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 300,
+                  width: MediaQuery.of(context).size.width,
+                  child: ListView.separated(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: false,
+                    separatorBuilder: (context, index) {
+                      return SizedBox(
+                        height: 10,
+                      );
+                    },
+                    itemCount: TrendingModel.list.length,
+                    itemBuilder: (context, index) {
+                      TrendingModel item = TrendingModel.list[index];
+                      return Container(
+                        margin: EdgeInsets.only(right: 8),
+                        height: 140,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadiusDirectional.circular(15),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.9),
+                              spreadRadius: 1,
+                              blurRadius: 3,
+                              offset:
+                                  Offset(2, 5), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 3,
+                                child: Container(
+                                  height: MediaQuery.of(context).size.height,
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    image: DecorationImage(
+                                        image:
+                                            AssetImage(item.imageUrl.toString()),
+                                        fit: BoxFit.fill),
+                                    borderRadius:
+                                        BorderRadiusDirectional.circular(15),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.9),
+                                        spreadRadius: 1,
+                                        blurRadius: 3,
+                                        offset: Offset(
+                                            2, 5), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 4,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(item.productName.toString()),
+                                      Text(item.productDetail.toString()),
+                                      Row(
+                                        children: [
+                                          Text("\$ ",style: TextStyle(color: Color(0xffFF6000)),),
+                                          Text(item.productPrice.toString(),style: TextStyle(color: Color(0xffFF6000)),)
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Container(
+                                      height: 30,
+                                      width: 30,
+                                      decoration: BoxDecoration(
+                                          color: Color(0xffFF6000),
+                                          borderRadius: BorderRadius.circular(7)),
+                                      child: Icon(
+                                        Icons.arrow_forward,
+                                        color: Colors.white,
+                                        size: 15,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
+          Divider(),
         ],
       ),
     );

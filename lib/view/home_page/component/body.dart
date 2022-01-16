@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/best_selling_product.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/hot_deals_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/most_popular_product_model.dart';
@@ -7,6 +8,7 @@ import 'package:classy_e_com_demo_test_ui_1/model/top_categories_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/trending_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+import 'package:provider/provider.dart';
 
 import '../../../main.dart';
 
@@ -240,93 +242,99 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         SizedBox(
                           width: 7,
                         ),
-                        Container(
-                          height: 160,
-                          width: 160,
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 3,
-                                offset:
-                                    Offset(0, 1), // changes position of shadow
-                              ),
-                            ],
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15),
-                            // image: DecorationImage(
-                            //   image: AssetImage(product.imageUrl.toString()),
-                            //   fit: BoxFit.fill
-                            // )
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  width: double.infinity,
-                                  height: 90,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            product.imageUrl.toString()),
-                                        fit: BoxFit.cover),
-                                    color: Colors.transparent,
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5, vertical: 5),
-                                    child: Stack(
-                                      children: [
-                                        Align(
-                                          alignment: Alignment.topRight,
-                                          child: Container(
-                                            height: 25,
-                                            width: 25,
-                                            decoration: BoxDecoration(
-                                                color: Colors.white,
-                                                shape: BoxShape.circle,
-                                                border: Border.all(
-                                                    color: Colors.redAccent,
-                                                    width: 1)),
-                                            child: Icon(
-                                              Icons.favorite_border_outlined,
-                                              color: Colors.deepOrange,
-                                              size: 15,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Text(product.productName.toString()),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                        "\$" + product.productPrice.toString()),
-                                    Container(
-                                      height: 20,
-                                      width: 20,
-                                      decoration: BoxDecoration(
-                                          color: Color(0xffFF6000),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Icon(
-                                        Icons.arrow_forward,
-                                        color: Colors.white,
-                                        size: 15,
-                                      ),
-                                    ),
-                                  ],
+                        GestureDetector(
+                          onTap: (){
+                            final appBar=Provider.of<AppBarController>(context,listen: false);
+                            appBar.setAppBar(false);
+                          },
+                          child: Container(
+                            height: 160,
+                            width: 160,
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 3,
+                                  offset:
+                                      Offset(0, 1), // changes position of shadow
                                 ),
                               ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                              // image: DecorationImage(
+                              //   image: AssetImage(product.imageUrl.toString()),
+                              //   fit: BoxFit.fill
+                              // )
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    width: double.infinity,
+                                    height: 90,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              product.imageUrl.toString()),
+                                          fit: BoxFit.cover),
+                                      color: Colors.transparent,
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 5, vertical: 5),
+                                      child: Stack(
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.topRight,
+                                            child: Container(
+                                              height: 25,
+                                              width: 25,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(
+                                                      color: Colors.redAccent,
+                                                      width: 1)),
+                                              child: Icon(
+                                                Icons.favorite_border_outlined,
+                                                color: Colors.deepOrange,
+                                                size: 15,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Text(product.productName.toString()),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                          "\$" + product.productPrice.toString()),
+                                      Container(
+                                        height: 20,
+                                        width: 20,
+                                        decoration: BoxDecoration(
+                                            color: Color(0xffFF6000),
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        child: Icon(
+                                          Icons.arrow_forward,
+                                          color: Colors.white,
+                                          size: 15,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

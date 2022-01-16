@@ -1,8 +1,11 @@
+import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/test/country%20code%20search.dart';
 import 'package:classy_e_com_demo_test_ui_1/timer.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 final List<String> imgList = [
   'images/bike.png',
@@ -21,23 +24,27 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      builder:()=> MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // Try running your application with "flutter run". You'll see the
-          // application has a blue toolbar. Then, without quitting the app, try
-          // changing the primarySwatch below to Colors.green and then invoke
-          // "hot reload" (press "r" in the console where you ran "flutter run",
-          // or simply save your changes to "hot reload" in a Flutter IDE).
-          // Notice that the counter didn't reset back to zero; the application
-          // is not restarted.
-          primarySwatch: Colors.blue,
-        ),
-        home: HomePage(),//AttendanceScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: AppBarController()),
+        ChangeNotifierProvider.value(value: ProductDetailController()),
+      ],
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            // This is the theme of your application.
+            //
+            // Try running your application with "flutter run". You'll see the
+            // application has a blue toolbar. Then, without quitting the app, try
+            // changing the primarySwatch below to Colors.green and then invoke
+            // "hot reload" (press "r" in the console where you ran "flutter run",
+            // or simply save your changes to "hot reload" in a Flutter IDE).
+            // Notice that the counter didn't reset back to zero; the application
+            // is not restarted.
+            primarySwatch: Colors.blue,
+          ),
+          home: HomePage(),//AttendanceScreen(),
       ),
     );
   }

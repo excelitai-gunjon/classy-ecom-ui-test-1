@@ -91,7 +91,7 @@ class _CartListState extends State<CartList> {
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      item.count = (item.count! + 1)!;
+                                      //item.count = (item.count! + 1)!;
                                     },
                                     child: Container(
                                       height: 20,
@@ -117,7 +117,7 @@ class _CartListState extends State<CartList> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      item.count = (item.count! - 1)!;
+                                      //item.count = (item.count! - 1)!;
                                     },
                                     child: Container(
                                       height: 20,

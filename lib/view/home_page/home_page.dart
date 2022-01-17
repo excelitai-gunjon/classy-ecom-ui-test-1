@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> {
       case 0:
         return Home();
       case 1:
-        return ProductDetail();//Wishlist();
+        return Wishlist();//ProductDetail();//Wishlist();
       case 2:
         return CartList();
       case 3:

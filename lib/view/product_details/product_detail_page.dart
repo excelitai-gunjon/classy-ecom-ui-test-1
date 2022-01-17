@@ -9,8 +9,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetail extends StatelessWidget {
-  const ProductDetail({Key? key}) : super(key: key);
+  ProductDetail({
+    Key? key,
+    this.productImageUrl,
+    this.productName,
+    this.productPrice,
+  }) : super(key: key);
 
+  String? productImageUrl;
+  String? productName;
+  String? productPrice;
   @override
   Widget build(BuildContext context) {
     final selected = Provider.of<ProductDetailController>(context);
@@ -35,7 +43,7 @@ class ProductDetail extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: Colors.green,
                             image: DecorationImage(
-                                image: AssetImage("images/perfume.jpeg"),
+                                image: AssetImage(selected.productImageUrl.toString()),
                                 fit: BoxFit.cover),
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(20),
@@ -163,11 +171,11 @@ class ProductDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Product Name",
+                        selected.productName.toString(),
                         style: TextStyle(fontSize: 15),
                       ),
                       Text(
-                        "Product Name",
+                        "\$ "+selected.productPrice.toString(),
                         style: TextStyle(fontSize: 20),
                       ),
                     ],
@@ -391,7 +399,7 @@ class ProductDetail extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.center,
-                child:AddToCardButton(),
+                child: AddToCardButton(),
               ),
               SizedBox(
                 height: 20,

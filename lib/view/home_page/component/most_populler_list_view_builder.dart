@@ -1,4 +1,5 @@
 import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/most_popular_product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,8 +22,7 @@ class MostPopullerListViewBuilder extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: MostPopularProductModel.list.length,
         itemBuilder: (BuildContext context, i) {
-          MostPopularProductModel product =
-          MostPopularProductModel.list[i];
+          MostPopularProductModel product = MostPopularProductModel.list[i];
           return Column(
             children: [
               SizedBox(
@@ -34,9 +34,17 @@ class MostPopullerListViewBuilder extends StatelessWidget {
                     width: 7,
                   ),
                   GestureDetector(
-                    onTap: (){
-                      final appBar=Provider.of<AppBarController>(context,listen: false);
+                    onTap: () {
+                      final appBar =
+                          Provider.of<AppBarController>(context, listen: false);
                       appBar.setAppBar(false);
+                      final view = Provider.of<ProductDetailController>(context,
+                          listen: false);
+                      view.setProductData(
+                        product.imageUrl.toString(),
+                        product.productName.toString(),
+                        product.productPrice.toString(),
+                      );
                     },
                     child: Container(
                       height: 160,
@@ -47,8 +55,7 @@ class MostPopullerListViewBuilder extends StatelessWidget {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 1,
                             blurRadius: 3,
-                            offset:
-                            Offset(0, 1), // changes position of shadow
+                            offset: Offset(0, 1), // changes position of shadow
                           ),
                         ],
                         color: Colors.white,
@@ -69,8 +76,8 @@ class MostPopullerListViewBuilder extends StatelessWidget {
                               height: 90,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
-                                    image: AssetImage(
-                                        product.imageUrl.toString()),
+                                    image:
+                                        AssetImage(product.imageUrl.toString()),
                                     fit: BoxFit.cover),
                                 color: Colors.transparent,
                                 borderRadius: BorderRadius.circular(15),
@@ -104,18 +111,15 @@ class MostPopullerListViewBuilder extends StatelessWidget {
                             ),
                             Text(product.productName.toString()),
                             Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                    "\$" + product.productPrice.toString()),
+                                Text("\$" + product.productPrice.toString()),
                                 Container(
                                   height: 20,
                                   width: 20,
                                   decoration: BoxDecoration(
                                       color: Color(0xffFF6000),
-                                      borderRadius:
-                                      BorderRadius.circular(5)),
+                                      borderRadius: BorderRadius.circular(5)),
                                   child: Icon(
                                     Icons.arrow_forward,
                                     color: Colors.white,

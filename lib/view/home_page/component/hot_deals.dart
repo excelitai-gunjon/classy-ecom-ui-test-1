@@ -1,11 +1,14 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/best_selling_product.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/hot_deals_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/new_arrival_madel.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/hot_deal_diagonal_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 class HotDeals extends StatefulWidget {
   const HotDeals({Key? key}) : super(key: key);
@@ -623,113 +626,127 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                               itemBuilder: (BuildContext context, i) {
                                 BestSellingProductModel product =
                                 BestSellingProductModel.list[i];
-                                return Container(
-                                  //margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
-                                  height:
-                                  MediaQuery.of(context).size.height *
-                                      .5,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color:
-                                        Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 1,
-                                        blurRadius: 3,
-                                        offset: Offset(0,
-                                            1), // changes position of shadow
-                                      ),
-                                    ],
-                                    color: Colors.white,
-                                    //borderRadius: BorderRadius.circular(15),
-                                    // image: DecorationImage(
-                                    //   image: AssetImage(product.imageUrl.toString()),
-                                    //   fit: BoxFit.fill
-                                    // )
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        width: double.infinity,
-                                        height: 70,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage(product
-                                                  .imageUrl
+                                return GestureDetector(
+                                  onTap: () {
+                                    final appBar =
+                                    Provider.of<AppBarController>(context, listen: false);
+                                    appBar.setAppBar(false);
+                                    final view = Provider.of<ProductDetailController>(context,
+                                        listen: false);
+                                    view.setProductData(
+                                      product.imageUrl.toString(),
+                                      product.productName.toString(),
+                                      product.productPrice.toString(),
+                                    );
+                                  },
+                                  child: Container(
+                                    //margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
+                                    height:
+                                    MediaQuery.of(context).size.height *
+                                        .5,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color:
+                                          Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 1,
+                                          blurRadius: 3,
+                                          offset: Offset(0,
+                                              1), // changes position of shadow
+                                        ),
+                                      ],
+                                      color: Colors.white,
+                                      //borderRadius: BorderRadius.circular(15),
+                                      // image: DecorationImage(
+                                      //   image: AssetImage(product.imageUrl.toString()),
+                                      //   fit: BoxFit.fill
+                                      // )
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          width: double.infinity,
+                                          height: 70,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: AssetImage(product
+                                                    .imageUrl
+                                                    .toString()),
+                                                fit: BoxFit.contain),
+                                            color: Colors.transparent,
+                                            //borderRadius: BorderRadius.circular(15),
+                                          ),
+                                        ),
+                                        //Divider(),
+                                        Padding(
+                                          padding:
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 8.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                            MainAxisAlignment
+                                                .spaceBetween,
+                                            children: [
+                                              Text(product.productName
                                                   .toString()),
-                                              fit: BoxFit.contain),
-                                          color: Colors.transparent,
-                                          //borderRadius: BorderRadius.circular(15),
+                                              //Text(product.productDetail.toString()),
+                                              Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .spaceBetween,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        "\$" +
+                                                            product
+                                                                .productPrice
+                                                                .toString(),
+                                                        style: TextStyle(
+                                                            color: Color(
+                                                                0xffFF6000),
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .bold,
+                                                            fontSize: 12),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Icon(
+                                                        Icons.star,
+                                                        color: Color(
+                                                            0xffFF6000),
+                                                        size: 20,
+                                                      ),
+                                                      Text(
+                                                        " " +
+                                                            product
+                                                                .productRating
+                                                                .toString(),
+                                                        style: TextStyle(
+                                                          //color: Color(0xffFF6000),
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .bold),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      //Divider(),
-                                      Padding(
-                                        padding:
-                                        const EdgeInsets.symmetric(
-                                            horizontal: 8.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .spaceBetween,
-                                          children: [
-                                            Text(product.productName
-                                                .toString()),
-                                            //Text(product.productDetail.toString()),
-                                            Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceBetween,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      "\$" +
-                                                          product
-                                                              .productPrice
-                                                              .toString(),
-                                                      style: TextStyle(
-                                                          color: Color(
-                                                              0xffFF6000),
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .bold,
-                                                          fontSize: 12),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons.star,
-                                                      color: Color(
-                                                          0xffFF6000),
-                                                      size: 20,
-                                                    ),
-                                                    Text(
-                                                      " " +
-                                                          product
-                                                              .productRating
-                                                              .toString(),
-                                                      style: TextStyle(
-                                                        //color: Color(0xffFF6000),
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .bold),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 );
                               },
@@ -755,108 +772,122 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                               itemBuilder: (BuildContext context, i) {
                                 NewArrivalModel product =
                                 NewArrivalModel.list[i];
-                                return Container(
-                                  //margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
-                                  height:
-                                  MediaQuery.of(context).size.height *
-                                      .5,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color:
-                                        Colors.grey.withOpacity(0.5),
-                                        spreadRadius: 1,
-                                        blurRadius: 3,
-                                        offset: Offset(0,
-                                            1), // changes position of shadow
-                                      ),
-                                    ],
-                                    color: Colors.white,
-                                    //borderRadius: BorderRadius.circular(15),
-                                    // image: DecorationImage(
-                                    //   image: AssetImage(product.imageUrl.toString()),
-                                    //   fit: BoxFit.fill
-                                    // )
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        width: double.infinity,
-                                        height: 70,
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage(product
-                                                  .imageUrl
+                                return GestureDetector(
+                                  onTap: () {
+                                    final appBar =
+                                    Provider.of<AppBarController>(context, listen: false);
+                                    appBar.setAppBar(false);
+                                    final view = Provider.of<ProductDetailController>(context,
+                                        listen: false);
+                                    view.setProductData(
+                                      product.imageUrl.toString(),
+                                      product.productName.toString(),
+                                      product.productPrice.toString(),
+                                    );
+                                  },
+                                  child: Container(
+                                    //margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
+                                    height:
+                                    MediaQuery.of(context).size.height *
+                                        .5,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color:
+                                          Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 1,
+                                          blurRadius: 3,
+                                          offset: Offset(0,
+                                              1), // changes position of shadow
+                                        ),
+                                      ],
+                                      color: Colors.white,
+                                      //borderRadius: BorderRadius.circular(15),
+                                      // image: DecorationImage(
+                                      //   image: AssetImage(product.imageUrl.toString()),
+                                      //   fit: BoxFit.fill
+                                      // )
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          width: double.infinity,
+                                          height: 70,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: AssetImage(product
+                                                    .imageUrl
+                                                    .toString()),
+                                                fit: BoxFit.contain),
+                                            color: Colors.transparent,
+                                            //borderRadius: BorderRadius.circular(15),
+                                          ),
+                                        ),
+                                        //Divider(),
+                                        Padding(
+                                          padding:
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 8.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                            MainAxisAlignment
+                                                .spaceBetween,
+                                            children: [
+                                              Text(product.productName
                                                   .toString()),
-                                              fit: BoxFit.contain),
-                                          color: Colors.transparent,
-                                          //borderRadius: BorderRadius.circular(15),
+                                              //Text(product.productDetail.toString()),
+                                              Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .spaceBetween,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        "\$" +
+                                                            product
+                                                                .productPrice
+                                                                .toString(),
+                                                        style: TextStyle(
+                                                            color: Color(
+                                                                0xffFF6000),
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .bold,
+                                                            fontSize: 12),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Icon(
+                                                        Icons.star,
+                                                        color: Color(
+                                                            0xffFF6000),
+                                                        size: 20,
+                                                      ),
+                                                      // Text(
+                                                      //   " " + product..toString(),
+                                                      //   style: TextStyle(
+                                                      //     //color: Color(0xffFF6000),
+                                                      //       fontWeight: FontWeight.bold),
+                                                      // ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      //Divider(),
-                                      Padding(
-                                        padding:
-                                        const EdgeInsets.symmetric(
-                                            horizontal: 8.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                          MainAxisAlignment
-                                              .spaceBetween,
-                                          children: [
-                                            Text(product.productName
-                                                .toString()),
-                                            //Text(product.productDetail.toString()),
-                                            Row(
-                                              mainAxisAlignment:
-                                              MainAxisAlignment
-                                                  .spaceBetween,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Text(
-                                                      "\$" +
-                                                          product
-                                                              .productPrice
-                                                              .toString(),
-                                                      style: TextStyle(
-                                                          color: Color(
-                                                              0xffFF6000),
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .bold,
-                                                          fontSize: 12),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Icon(
-                                                      Icons.star,
-                                                      color: Color(
-                                                          0xffFF6000),
-                                                      size: 20,
-                                                    ),
-                                                    // Text(
-                                                    //   " " + product..toString(),
-                                                    //   style: TextStyle(
-                                                    //     //color: Color(0xffFF6000),
-                                                    //       fontWeight: FontWeight.bold),
-                                                    // ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 );
                               },

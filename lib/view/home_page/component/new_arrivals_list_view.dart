@@ -1,0 +1,133 @@
+import 'package:classy_e_com_demo_test_ui_1/model/new_arrival_madel.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+
+class NewArrivalsListView extends StatelessWidget {
+  const NewArrivalsListView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 300,
+      child: ListView.separated(
+        separatorBuilder: (context, index) {
+          return SizedBox(
+            width: 3,
+          );
+        },
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: NewArrivalModel.list.length,
+        itemBuilder: (BuildContext context, i) {
+          NewArrivalModel product = NewArrivalModel.list[i];
+          return Column(
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 7,
+                  ),
+                  Container(
+                    height: 280,
+                    width: 280,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 1,
+                          blurRadius: 3,
+                          offset:
+                          Offset(0, 1), // changes position of shadow
+                        ),
+                      ],
+                      color: Colors.white,
+                      //borderRadius: BorderRadius.circular(15),
+                      // image: DecorationImage(
+                      //   image: AssetImage(product.imageUrl.toString()),
+                      //   fit: BoxFit.fill
+                      // )
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            height: 180,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      product.imageUrl.toString()),
+                                  fit: BoxFit.cover),
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                          Text(product.productName.toString()),
+                          Text(product.productDetail.toString()),
+                          Row(
+                            mainAxisAlignment:
+                            MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "\$" +
+                                        product.productPrice.toString(),
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                      Text(
+                                        "\$" +
+                                            product.productPrice
+                                                .toString(),
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            color: Colors.black,
+                                            decoration:
+                                            TextDecoration.lineThrough
+                                          //fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                "\$" + product.productOffers.toString(),
+                                style: TextStyle(
+                                    color: Color(0xffFF6000),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+}

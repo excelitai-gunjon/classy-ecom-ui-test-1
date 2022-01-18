@@ -6,11 +6,13 @@ class SizeButton extends StatelessWidget {
     this.buttonHeight,
     this.buttonWidth,
     this.title,
+    this.color,
   }) : super(key: key);
 
   double? buttonWidth;
   double? buttonHeight;
   String? title;
+  Color? color;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,7 +21,7 @@ class SizeButton extends StatelessWidget {
       width: buttonWidth,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Colors.white,
+        color: color,
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),

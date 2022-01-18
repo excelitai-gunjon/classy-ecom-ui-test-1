@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/best_selling_product.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/hot_deals_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/most_popular_product_model.dart';
@@ -63,7 +64,17 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("Top Categories"),
-                Text("View All"),
+                GestureDetector(
+                  onTap: (){
+                    final appBar =
+                    Provider.of<AppBarController>(context, listen: false);
+                    appBar.setAppBar(false);
+                    final view = Provider.of<SecondaryPage>(context,
+                        listen: false);
+                    view.setSecondaryPage(1);
+                  },
+                  child: Text("View All"),
+                ),
               ],
             ),
           ),
@@ -72,6 +83,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ),
           TopCategoryListviewBuilder(),
           ImageSlideShowCustom(),
+
           ///
           ///
           /// Most populler
@@ -79,6 +91,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ///
           MostPopullerHeadLine(),
           MostPopullerListViewBuilder(),
+
           ///
           ///
           /// Most populler
@@ -87,6 +100,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           SizedBox(
             height: 20,
           ),
+
           ///
           ///
           /// New Arrivals
@@ -94,6 +108,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ///
           NewArrivalsHeadLineButton(),
           NewArrivalsListView(),
+
           ///
           ///
           /// New Arrivals
@@ -141,6 +156,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ///
           ///
           BestSellingProduct(),
+
           ///
           ///
           ///
@@ -151,6 +167,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             height: 20,
           ),
           HotDeals(),
+
           ///
           ///
           /// Trending
@@ -231,4 +248,3 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   //         ))
   //     .toList();
 }
-

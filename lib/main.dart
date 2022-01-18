@@ -1,5 +1,6 @@
 import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/test/country%20code%20search.dart';
 import 'package:classy_e_com_demo_test_ui_1/timer.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/home_page/home_page.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider.value(value: AppBarController()),
         ChangeNotifierProvider.value(value: ProductDetailController()),
+        ChangeNotifierProvider.value(value: SecondaryPage()),
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,

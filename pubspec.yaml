@@ -76,6 +76,7 @@ flutter:
     - images/ecom/woman/Sharee/
     - images/ecom/woman/salwar/
     - images/ecom/men/jeans/
+    - images/ecom/men/shoe/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,6 +1,8 @@
 import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/best_selling_product.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/product_details/pop_up_product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -27,15 +29,17 @@ class BestSellingProduct extends StatelessWidget {
           mainAxisExtent: 220,
         ),
         itemBuilder: (BuildContext context, i) {
-          BestSellingProductModel product =
-          BestSellingProductModel.list[i];
+          BestSellingProductModel product = BestSellingProductModel.list[i];
           return GestureDetector(
             onTap: () {
               final appBar =
-              Provider.of<AppBarController>(context, listen: false);
+                  Provider.of<AppBarController>(context, listen: false);
               appBar.setAppBar(false);
-              final view = Provider.of<ProductDetailController>(context,
-                  listen: false);
+              final pageState =
+                  Provider.of<SecondaryPage>(context, listen: false);
+              pageState.setSecondaryPage(2);
+              final view =
+                  Provider.of<ProductDetailController>(context, listen: false);
               view.setProductData(
                 product.imageUrl.toString(),
                 product.productName.toString(),
@@ -62,61 +66,225 @@ class BestSellingProduct extends StatelessWidget {
                 //   fit: BoxFit.fill
                 // )
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Stack(
+                fit: StackFit.expand,
                 children: [
-                  Container(
-                    width: double.infinity,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(product.imageUrl.toString()),
-                          fit: BoxFit.contain),
-                      color: Colors.transparent,
-                      //borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                  Divider(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(product.productName.toString()),
-                        Text(product.productDetail.toString()),
-                        Row(
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        width: double.infinity,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(product.imageUrl.toString()),
+                              fit: BoxFit.contain),
+                          color: Colors.transparent,
+                          //borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            // Align(
+                            //   alignment: Alignment.centerRight,
+                            //   child: SizedBox(
+                            //     width: double.infinity,
+                            //     height: 100,
+                            //     child: Row(
+                            //       crossAxisAlignment: CrossAxisAlignment.center,
+                            //       mainAxisAlignment: MainAxisAlignment.center,
+                            //       children: [
+                            //         GestureDetector(
+                            //           onTap: () {
+                            //
+                            //           },
+                            //           child: Container(
+                            //             margin: EdgeInsets.symmetric(horizontal: 1),
+                            //             height: 25,
+                            //             width: 25,
+                            //             decoration: BoxDecoration(
+                            //                 color: Colors.white,
+                            //                 shape: BoxShape.circle,
+                            //                 border: Border.all(
+                            //                     color: Colors.grey, width: 1)),
+                            //             child: Icon(
+                            //               Icons.favorite_border_outlined,
+                            //               color: Colors.grey,
+                            //               size: 15,
+                            //             ),
+                            //           ),
+                            //         ),
+                            //         GestureDetector(
+                            //           onTap: () {
+                            //             showDialog(
+                            //               context: context,
+                            //               builder: (context) => PopUpProductDetail(currentImage: product.imageUrl.toString(),),
+                            //             );
+                            //           },
+                            //           child: Container(
+                            //             margin: EdgeInsets.symmetric(horizontal: 1),
+                            //             height: 25,
+                            //             width: 25,
+                            //             decoration: BoxDecoration(
+                            //               color: Colors.white,
+                            //               shape: BoxShape.circle,
+                            //               border: Border.all(
+                            //                   color: Colors.grey, width: 1),
+                            //             ),
+                            //             child: Icon(
+                            //               Icons.search,
+                            //               color: Colors.grey,
+                            //               size: 15,
+                            //             ),
+                            //           ),
+                            //         ),
+                            //         GestureDetector(
+                            //           onTap: () {
+                            //
+                            //           },
+                            //           child: Container(
+                            //             margin: EdgeInsets.symmetric(horizontal: 1),
+                            //             height: 25,
+                            //             width: 25,
+                            //             decoration: BoxDecoration(
+                            //                 color: Colors.white,
+                            //                 shape: BoxShape.circle,
+                            //                 border: Border.all(
+                            //                     color: Colors.grey, width: 1)),
+                            //             child: Icon(
+                            //               Icons.shopping_bag_outlined,
+                            //               color: Colors.grey,
+                            //               size: 15,
+                            //             ),
+                            //           ),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // )
+                          ],
+                        ),
+                      ),
+                      //Divider(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            Text(product.productName.toString()),
+                            Text(product.productDetail.toString()),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  "\$" + product.productPrice.toString(),
-                                  style: TextStyle(
+                                Row(
+                                  children: [
+                                    Text(
+                                      "\$" + product.productPrice.toString(),
+                                      style: TextStyle(
+                                          color: Color(0xffFF6000),
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.star,
                                       color: Color(0xffFF6000),
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.star,
-                                  color: Color(0xffFF6000),
-                                  size: 20,
-                                ),
-                                Text(
-                                  " " + product.productRating.toString(),
-                                  style: TextStyle(
-                                    //color: Color(0xffFF6000),
-                                      fontWeight: FontWeight.bold),
+                                      size: 20,
+                                    ),
+                                    Text(
+                                      " " + product.productRating.toString(),
+                                      style: TextStyle(
+                                          //color: Color(0xffFF6000),
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
                           ],
                         ),
-                      ],
+                      ),
+                    ],
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 100,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+
+                            },
+                            child: Container(
+                              margin: EdgeInsets.symmetric(horizontal: 5),
+                              height: 25,
+                              width: 25,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      color: Colors.grey, width: 1)),
+                              child: Icon(
+                                Icons.favorite_border_outlined,
+                                color: Colors.grey,
+                                size: 15,
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => PopUpProductDetail(currentImage: product.imageUrl.toString(),),
+                              );
+                            },
+                            child: Container(
+                              margin: EdgeInsets.symmetric(horizontal: 5),
+                              height: 25,
+                              width: 25,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                    color: Colors.grey, width: 1),
+                              ),
+                              child: Icon(
+                                Icons.search,
+                                color: Colors.grey,
+                                size: 15,
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+
+                            },
+                            child: Container(
+                              margin: EdgeInsets.symmetric(horizontal: 5),
+                              height: 25,
+                              width: 25,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                      color: Colors.grey, width: 1)),
+                              child: Icon(
+                                Icons.shopping_bag_outlined,
+                                color: Colors.grey,
+                                size: 15,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

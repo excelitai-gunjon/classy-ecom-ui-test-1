@@ -25,13 +25,20 @@ class AddToCardButton extends StatelessWidget {
         onPressed: () {
 
         },
-        child: Text(
-          "Add To Cart",
-          style: TextStyle(
-            fontSize: 15,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.shopping_cart_rounded,color: Colors.white,),
+            Text(
+              "Add To Cart",
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
       ),
     );

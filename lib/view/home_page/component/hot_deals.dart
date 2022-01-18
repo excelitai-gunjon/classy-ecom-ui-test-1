@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/best_selling_product.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/hot_deals_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/new_arrival_madel.dart';
@@ -631,6 +632,9 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                     final appBar =
                                     Provider.of<AppBarController>(context, listen: false);
                                     appBar.setAppBar(false);
+                                    final pageState = Provider.of<SecondaryPage>(context,
+                                        listen: false);
+                                    pageState.setSecondaryPage(2);
                                     final view = Provider.of<ProductDetailController>(context,
                                         listen: false);
                                     view.setProductData(
@@ -777,6 +781,9 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                     final appBar =
                                     Provider.of<AppBarController>(context, listen: false);
                                     appBar.setAppBar(false);
+                                    final pageState = Provider.of<SecondaryPage>(context,
+                                        listen: false);
+                                    pageState.setSecondaryPage(2);
                                     final view = Provider.of<ProductDetailController>(context,
                                         listen: false);
                                     view.setProductData(

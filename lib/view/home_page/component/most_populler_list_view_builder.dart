@@ -1,5 +1,6 @@
 import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/most_popular_product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -38,6 +39,9 @@ class MostPopullerListViewBuilder extends StatelessWidget {
                       final appBar =
                           Provider.of<AppBarController>(context, listen: false);
                       appBar.setAppBar(false);
+                      final pageState = Provider.of<SecondaryPage>(context,
+                          listen: false);
+                      pageState.setSecondaryPage(2);
                       final view = Provider.of<ProductDetailController>(context,
                           listen: false);
                       view.setProductData(

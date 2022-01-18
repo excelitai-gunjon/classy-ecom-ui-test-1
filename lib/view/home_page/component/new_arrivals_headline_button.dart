@@ -1,5 +1,8 @@
+import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 class NewArrivalsHeadLineButton extends StatelessWidget {
   const NewArrivalsHeadLineButton({Key? key}) : super(key: key);
@@ -26,7 +29,16 @@ class NewArrivalsHeadLineButton extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 primary: Color(0xffFF6000),
               ),
-              onPressed: () {},
+              onPressed: () {
+
+                final appBar =
+                Provider.of<AppBarController>(context, listen: false);
+                appBar.setAppBar(false);
+                final view = Provider.of<SecondaryPage>(context,
+                    listen: false);
+                view.setSecondaryPage(1);
+
+              },
               child: Text("More"),
             ),
           ),

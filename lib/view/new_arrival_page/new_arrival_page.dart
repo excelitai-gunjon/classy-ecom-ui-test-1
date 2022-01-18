@@ -1,12 +1,13 @@
 import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/model/new_arrival_madel.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/top_categories_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
-class TopCategoriesPage extends StatelessWidget {
-  const TopCategoriesPage({Key? key}) : super(key: key);
+class NewArrivalPage extends StatelessWidget {
+  const NewArrivalPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class TopCategoriesPage extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    "Top Categories",
+                    "New Arrivals",
                     style: TextStyle(fontSize: 20),
                   ),
                 ),
@@ -45,14 +46,14 @@ class TopCategoriesPage extends StatelessWidget {
               height: MediaQuery.of(context).size.height,
               margin: EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
-                color: Color(0xffCACACA),
-                borderRadius: BorderRadius.circular(15)
+                  color: Color(0xffCACACA),
+                  borderRadius: BorderRadius.circular(15)
               ),
               child: GridView.builder(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 physics: NeverScrollableScrollPhysics(),
                 shrinkWrap: false,
-                itemCount: TopCategoriModel.list.length,
+                itemCount: NewArrivalModel.list.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
@@ -61,8 +62,8 @@ class TopCategoriesPage extends StatelessWidget {
                   mainAxisExtent: 220,
                 ),
                 itemBuilder: (BuildContext context, i) {
-                  TopCategoriModel product =
-                  TopCategoriModel.list[i];
+                  NewArrivalModel product =
+                  NewArrivalModel.list[i];
                   return GestureDetector(
                     onTap: () {
                       // final appBar =
@@ -101,7 +102,7 @@ class TopCategoriesPage extends StatelessWidget {
                             height: 100,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage(product.imagePath.toString()),
+                                  image: AssetImage(product.imageUrl.toString()),
                                   fit: BoxFit.contain),
                               color: Colors.transparent,
                               //borderRadius: BorderRadius.circular(15),
@@ -114,8 +115,8 @@ class TopCategoriesPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(product.categoriName.toString()),
-                                Text(product.items.toString()),
+                                Text(product.productName.toString()),
+                                //Text(product.items.toString()),
                                 // Row(
                                 //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 //   children: [

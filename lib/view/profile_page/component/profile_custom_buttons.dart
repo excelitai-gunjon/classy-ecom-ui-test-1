@@ -41,6 +41,27 @@ class CustomButtonByGunjon extends StatelessWidget {
           ),
           onPressed: () {
             //code to execute when this button is pressed.
+            switch (title) {
+              case "My Order":
+                print("My Order");
+                return null;
+              case "My Wishlist":
+                print("My Wishlist");
+                return null;
+                //return Wishlist();//TopCategoriesPage();//ProductDetail();//Wishlist();
+              case "Check Out":
+                // CartList();
+              case "Order Status":
+                //return Profile();
+              case "Shipping Address":
+                //return Profile();
+              case "Payment Method":
+                //return Profile();
+              case "Log Out":
+                //return Profile();
+              default:
+                //return Home();
+            }
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

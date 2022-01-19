@@ -43,6 +43,7 @@ class _PopUpProductDetailState extends State<PopUpProductDetail> {
                       // final appBar = Provider.of<AppBarController>(context,
                       //     listen: false);
                       // appBar.setAppBar(true);
+                      Navigator.pop(context);
                     },
                     child: Container(
                       height: 35,

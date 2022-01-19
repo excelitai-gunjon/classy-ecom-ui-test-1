@@ -50,8 +50,8 @@ class TopCategoriesPage extends StatelessWidget {
               ),
               child: GridView.builder(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: false,
+                //physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
                 itemCount: TopCategoriModel.list.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,

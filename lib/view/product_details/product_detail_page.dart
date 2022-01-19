@@ -133,6 +133,7 @@ class ProductDetail extends StatelessWidget {
                           final appBar = Provider.of<AppBarController>(context,
                               listen: false);
                           appBar.setAppBar(true);
+                          //Navigator.pop(context);
                         },
                         child: Container(
                           height: 40,

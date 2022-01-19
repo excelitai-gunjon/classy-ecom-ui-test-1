@@ -1,4 +1,5 @@
 import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/peimary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/test/country%20code%20search.dart';
@@ -7,6 +8,7 @@ import 'package:classy_e_com_demo_test_ui_1/view/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:dcdg/dcdg.dart';
 
 final List<String> imgList = [
   'images/bike.png',
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: AppBarController()),
         ChangeNotifierProvider.value(value: ProductDetailController()),
         ChangeNotifierProvider.value(value: SecondaryPage()),
+        ChangeNotifierProvider.value(value: PrimaryPageController()),
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,

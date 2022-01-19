@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/peimary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/main_home_bottom_app_bar_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/cart_page/cart_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/drawer_page/drawer_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/appBar.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/body.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/new_arrival_page/new_arrival_page.dart';
@@ -27,60 +29,69 @@ class _HomePageState extends State<HomePage> {
   //final appBar=Provider.of<AppBarController>(context);
   int currentIndex = 0;
   //var productDetail=false;
-  AppBarController appBar=AppBarController();
-@override
+  AppBarController appBar = AppBarController();
+  @override
   void initState() {
     // TODO: implement initState
     appBar.setAppBar(true);
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
     appBar.dispose();
     //super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    final productAppBar=Provider.of<AppBarController>(context);
+    final productAppBar = Provider.of<AppBarController>(context);
+    final primaryPageState = Provider.of<PrimaryPageController>(context);
     return WillPopScope(
-      onWillPop: ()async{
+      onWillPop: () async {
         //final appBar = Provider.of<AppBarController>(context,listen: false);
-        if(productAppBar.appBar){
+        if (productAppBar.appBar) {
           if (Platform.isAndroid) {
             SystemNavigator.pop();
           } else if (Platform.isIOS) {
             exit(0);
           }
-        }else{
+        } else {
           productAppBar.setAppBar(true);
         }
         return false;
       },
       child: Scaffold(
-        appBar: productAppBar.appBar?AppBar(
-          backgroundColor: Colors.deepOrangeAccent,
-          leading: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.menu_open),
-          ),
-          title: Text("Classy E-com"),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.search,
-              ),
-            ),
-          ],
-        ):null,
-        body: productAppBar.appBar?_getBodyPrimary():_getBodySecondary(),//ProductDetail(),
+        appBar: productAppBar.appBar
+            ? AppBar(
+                backgroundColor: Colors.deepOrangeAccent,
+                leading: IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.menu_open),
+                ),
+                title: Center(child: Text("Fashion")),
+                actions: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.search,
+                    ),
+                  ),
+                ],
+              )
+            : null,
+        drawer: ComplexDrawer(),
+        body: productAppBar.appBar
+            ? _getBodyPrimary()
+            : _getBodySecondary(), //ProductDetail(),
         bottomNavigationBar: BottomAppBar(
           shape: CircularNotchedRectangle(),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ...MainHomePageBottomAppBarModel.list.map((MainHomePageBottomAppBarModel data) {
+              ...MainHomePageBottomAppBarModel.list
+                  .map((MainHomePageBottomAppBarModel data) {
                 return data.isBlank
                     ? SizedBox(
                         width: 10,
@@ -88,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                     : InkWell(
                         onTap: () {
                           setState(() {
-                            currentIndex = data.index;
+                            primaryPageState.setPrimaryPage(data.index);
                             productAppBar.setAppBar(true);
                           });
                           print(data.index.toString());
@@ -102,7 +113,8 @@ class _HomePageState extends State<HomePage> {
                               //SizedBox(height: 10,),
                               Icon(
                                 data.icon,
-                                color: currentIndex == data.index
+                                color: primaryPageState.currentIndex ==
+                                        data.index //currentIndex == data.index
                                     ? Color(0xffFF6000)
                                     : Colors.grey,
                               ),
@@ -115,9 +127,11 @@ class _HomePageState extends State<HomePage> {
                                     .textTheme
                                     .bodyText1!
                                     .copyWith(
-                                        color: currentIndex == data.index
-                                            ? Color(0xffFF6000)
-                                            : Colors.grey),
+                                      color: primaryPageState.currentIndex ==
+                                              data.index //currentIndex == data.index
+                                          ? Color(0xffFF6000)
+                                          : Colors.grey,
+                                    ),
                               )
                             ],
                           ),
@@ -132,11 +146,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   _getBodyPrimary() {
-    switch (currentIndex) {
+    final primaryPageState = Provider.of<PrimaryPageController>(context);
+    switch (primaryPageState.currentIndex) {
       case 0:
         return Home();
       case 1:
-        return TopCategoriesPage();//ProductDetail();//Wishlist();
+        return Wishlist(); //TopCategoriesPage();//ProductDetail();//Wishlist();
       case 2:
         return CartList();
       case 3:
@@ -146,19 +161,18 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  _getBodySecondary(){
-  final page=Provider.of<SecondaryPage>(context);
+  _getBodySecondary() {
+    final page = Provider.of<SecondaryPage>(context);
 
-  switch (page.secondaryPageNo) {
-    case 1:
-      return TopCategoriesPage();
-    case 2:
-      return ProductDetail();//Wishlist();
-    case 2:
-      return NewArrivalPage();
-    default:
-      return ProductDetail();
+    switch (page.secondaryPageNo) {
+      case 1:
+        return TopCategoriesPage();
+      case 2:
+        return ProductDetail(); //Wishlist();
+      case 2:
+        return NewArrivalPage();
+      default:
+        return ProductDetail();
+    }
   }
-  }
-
 }

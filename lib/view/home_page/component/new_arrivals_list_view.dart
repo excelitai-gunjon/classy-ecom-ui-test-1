@@ -37,8 +37,8 @@ class NewArrivalsListView extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       final appBar =
-                      Provider.of<AppBarController>(context, listen: false);
-                      appBar.setAppBar(false);
+                      Provider.of<PrimaryScreenState>(context, listen: false);
+                      appBar.setPrimaryState(false);
                       final pageState = Provider.of<SecondaryPage>(context,
                           listen: false);
                       pageState.setSecondaryPage(2);

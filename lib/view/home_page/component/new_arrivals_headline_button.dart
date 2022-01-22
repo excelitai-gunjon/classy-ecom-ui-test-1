@@ -32,8 +32,8 @@ class NewArrivalsHeadLineButton extends StatelessWidget {
               onPressed: () {
 
                 final appBar =
-                Provider.of<AppBarController>(context, listen: false);
-                appBar.setAppBar(false);
+                Provider.of<PrimaryScreenState>(context, listen: false);
+                appBar.setPrimaryState(false);
                 final view = Provider.of<SecondaryPage>(context,
                     listen: false);
                 view.setSecondaryPage(1);

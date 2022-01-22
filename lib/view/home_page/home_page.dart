@@ -6,18 +6,22 @@ import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller
 import 'package:classy_e_com_demo_test_ui_1/model/main_home_bottom_app_bar_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/cart_page/cart_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/drawer_page/drawer_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/filter_page/filter_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/appBar.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/body.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/new_arrival_page/new_arrival_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/product_details/product_detail_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/profile_page/profile_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/sub_category_item/sub_category_item_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/sub_sub_categories_page/sub_sub_categories_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/top_categories_page/top_categories_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/wishList_page/wishlist_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/women_categori_Page/woman_categories_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
+var scaffoldKey = GlobalKey<ScaffoldState>();
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -29,11 +33,11 @@ class _HomePageState extends State<HomePage> {
   //final appBar=Provider.of<AppBarController>(context);
   int currentIndex = 0;
   //var productDetail=false;
-  AppBarController appBar = AppBarController();
+  PrimaryScreenState appBar = PrimaryScreenState();
   @override
   void initState() {
     // TODO: implement initState
-    appBar.setAppBar(true);
+    appBar.setPrimaryState(true);
   }
 
   @override
@@ -45,34 +49,50 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final productAppBar = Provider.of<AppBarController>(context);
+    final productAppBar = Provider.of<PrimaryScreenState>(context);
     final primaryPageState = Provider.of<PrimaryPageController>(context);
     return WillPopScope(
       onWillPop: () async {
         //final appBar = Provider.of<AppBarController>(context,listen: false);
+        final appBar =
+        Provider.of<PrimaryScreenState>(context, listen: false);
+        //appBar.setPrimaryState(false);
+
+        final pageState =
+        Provider.of<SecondaryPage>(context, listen: false);
+        //pageState.setSecondaryPage(5);
         if (productAppBar.appBar) {
           if (Platform.isAndroid) {
             SystemNavigator.pop();
           } else if (Platform.isIOS) {
             exit(0);
           }
-        } else {
-          productAppBar.setAppBar(true);
+        }if(pageState.secondaryPageNo==6){
+          appBar.setPrimaryState(false);
+          pageState.setSecondaryPage(5);
+        }else {
+          productAppBar.setPrimaryState(true);
         }
         return false;
       },
       child: Scaffold(
+        key: scaffoldKey,
         appBar: productAppBar.appBar
             ? AppBar(
                 backgroundColor: Colors.deepOrangeAccent,
                 leading: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Scaffold.of(context).openDrawer();
+                    scaffoldKey.currentState?.openDrawer();
+                  },
                   icon: Icon(Icons.menu_open),
                 ),
                 title: Center(child: Text("Fashion")),
                 actions: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+
+                    },
                     icon: Icon(
                       Icons.search,
                     ),
@@ -100,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                         onTap: () {
                           setState(() {
                             primaryPageState.setPrimaryPage(data.index);
-                            productAppBar.setAppBar(true);
+                            productAppBar.setPrimaryState(true);
                           });
                           print(data.index.toString());
                         },
@@ -169,8 +189,14 @@ class _HomePageState extends State<HomePage> {
         return TopCategoriesPage();
       case 2:
         return ProductDetail(); //Wishlist();
-      case 2:
-        return NewArrivalPage();
+      case 3:
+        return CategoryScreen();
+      case 4:
+        return SubCatScreen();//FilterScreen
+      case 5:
+        return SubSubProductScreen();
+      case 6:
+        return FilterScreen();
       default:
         return ProductDetail();
     }

@@ -22,9 +22,9 @@ class NewArrivalPage extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: IconButton(
                     onPressed: () {
-                      final appBar = Provider.of<AppBarController>(context,
+                      final appBar = Provider.of<PrimaryScreenState>(context,
                           listen: false);
-                      appBar.setAppBar(true);
+                      appBar.setPrimaryState(true);
                     },
                     icon: Icon(Icons.arrow_back_ios_outlined),
                   ),

@@ -1,7 +1,11 @@
+import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/sub_category_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/drawer_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import 'component/colors.dart';
 import 'component/txt.dart';
@@ -22,10 +26,12 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width*.7;
-    return Container(
-      width: width,
-      child: blackIconTiles(), //row(),
-      //color: Colors.transparent,
+    return Drawer(
+      child: Container(
+        width: width,
+        child: blackIconTiles(), //row(),
+        //color: Colors.transparent,
+      ),
     );
   }
 
@@ -61,8 +67,22 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
                       expandedCrossAxisAlignment: CrossAxisAlignment.start,
                       expandedAlignment: Alignment.centerLeft,
                       onExpansionChanged: (z) {
-                        setState(() {
+                        setState((){
                           selectedIndex = z ? index : -1;
+                          if(cdm.title=="Women"){
+                            print(cdm.title);
+                            final appBar =
+                            Provider.of<PrimaryScreenState>(context, listen: false);
+                            appBar.setPrimaryState(false);
+                            final pageState =
+                            Provider.of<SecondaryPage>(context, listen: false);
+                            pageState.setSecondaryPage(3);
+                            //Navigator.pop(context);
+                          }else{
+                            final appBar =
+                            Provider.of<PrimaryScreenState>(context, listen: false);
+                            appBar.setPrimaryState(true);
+                          }
                         });
                       },
                       leading: Icon(cdm.icon, color: Colors.black),
@@ -79,7 +99,7 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
                               color: Colors.black,
                             ),
                       children: cdm.submenus!.map((subMenu) {
-                        return sMenuButton(subMenu, false);
+                        return sMenuButton(subMenu, false,);
                       }).toList(),
                     );
                   },
@@ -287,6 +307,33 @@ Widget subMenuButton(String subMenu,bool isTitle){
       onTap: () {
         //handle the function
         //if index==0? donothing: doyourlogic here
+        if(subMenu=="Long Kameez"){
+          final catName=Provider.of<SubCategoriesController>(context,listen: false,);
+          catName.setSubSubCategory(subMenu.toString(),);
+
+          final appBar =
+          Provider.of<PrimaryScreenState>(context, listen: false);
+          appBar.setPrimaryState(false);
+
+          final pageState =
+          Provider.of<SecondaryPage>(context, listen: false);
+          pageState.setSecondaryPage(5);
+          Navigator.pop(context);
+        }
+        if(subMenu=="katan Sharee"){
+          final catName=Provider.of<SubCategoriesController>(context,listen: false,);
+          catName.setSubSubCategory(subMenu.toString(),);
+
+          final appBar =
+          Provider.of<PrimaryScreenState>(context, listen: false);
+          appBar.setPrimaryState(false);
+
+          final pageState =
+          Provider.of<SecondaryPage>(context, listen: false);
+          pageState.setSecondaryPage(5);
+          Navigator.pop(context);
+        }
+        print(subMenu);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -326,6 +373,33 @@ Widget subMenuButton(String subMenu,bool isTitle){
                       onExpansionChanged: (z) {
                         setState(() {
                           selectedIndex2 = z ? index : -1;
+                          if(cdm.title=="Salwar Kameez"){
+                            print(cdm.title);
+                            final catName=Provider.of<SubCategoriesController>(context,listen: false,);
+                            catName.setSubCategory(cdm.title.toString(),);
+                            final appBar =
+                            Provider.of<PrimaryScreenState>(context, listen: false);
+                            appBar.setPrimaryState(false);
+                            final pageState =
+                            Provider.of<SecondaryPage>(context, listen: false);
+                            pageState.setSecondaryPage(4);
+                            //Navigator.pop(context);
+                          }
+                          if(cdm.title=="Sharee"){
+                            print(cdm.title);
+
+                            final catName=Provider.of<SubCategoriesController>(context,listen: false,);
+                            catName.setSubCategory(cdm.title.toString(),);
+
+                            final appBar =
+                            Provider.of<PrimaryScreenState>(context, listen: false);
+                            appBar.setPrimaryState(false);
+
+                            final pageState =
+                            Provider.of<SecondaryPage>(context, listen: false);
+                            pageState.setSecondaryPage(4);
+                            //Navigator.pop(context);
+                          }
                         });
                       },
                       //leading: Icon(cdm.icon, color: Colors.black),
@@ -341,9 +415,10 @@ Widget subMenuButton(String subMenu,bool isTitle){
                             : Icons.keyboard_arrow_down,
                         color: Colors.black,
                       ),
-                      children: cdm.submenus!.map((subMenu) {
-                        return subMenuButton(subMenu, false);
-                      }).toList(),
+                      children: cdm.submenus!.map((subMenu){
+                        return subMenuButton(subMenu,false);
+                      }
+                      ).toList(),
                     );
                   },
                 ),

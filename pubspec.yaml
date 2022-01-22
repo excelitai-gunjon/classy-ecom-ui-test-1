@@ -43,6 +43,9 @@ dependencies:
   font_awesome_flutter: ^9.2.0
   provider: ^6.0.2
   dcdg: ^4.0.1
+  google_maps_flutter: ^2.1.1
+  location: ^4.3.0
+  google_fonts: ^2.2.0
 
 dependency_overrides:
   intl: ^0.17.0
@@ -78,6 +81,8 @@ flutter:
     - images/ecom/woman/salwar/
     - images/ecom/men/jeans/
     - images/ecom/men/shoe/
+    - assets/icons/
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -91,6 +96,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+    - family: Roboto-Regular.ttf
+      fonts:
+        - asset: assets/Roboto-Regular.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

@@ -2,6 +2,9 @@ import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/peimary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/sub_category_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/model/sub_category_model.dart';
+import 'package:classy_e_com_demo_test_ui_1/model/sub_sub_categories_product_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/test/country%20code%20search.dart';
 import 'package:classy_e_com_demo_test_ui_1/timer.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/home_page/home_page.dart';
@@ -9,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:dcdg/dcdg.dart';
+
+import 'model/woman_category_model.dart';
 
 final List<String> imgList = [
   'images/bike.png',
@@ -29,10 +34,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(value: AppBarController()),
+        ChangeNotifierProvider.value(value: PrimaryScreenState()),
         ChangeNotifierProvider.value(value: ProductDetailController()),
         ChangeNotifierProvider.value(value: SecondaryPage()),
         ChangeNotifierProvider.value(value: PrimaryPageController()),
+        ChangeNotifierProvider.value(value: ProdCategoryModel()),
+        ChangeNotifierProvider.value(value: SubCategoriesController()),
+        ChangeNotifierProvider.value(value: ProdSubCatModel()),
+        ChangeNotifierProvider.value(value: SubSubProductsModel()),
+        //SubSubProductsModel
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,

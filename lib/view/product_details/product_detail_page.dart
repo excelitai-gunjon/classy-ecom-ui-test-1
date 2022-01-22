@@ -130,9 +130,9 @@ class ProductDetail extends StatelessWidget {
                       top: 20,
                       child: GestureDetector(
                         onTap: () {
-                          final appBar = Provider.of<AppBarController>(context,
+                          final appBar = Provider.of<PrimaryScreenState>(context,
                               listen: false);
-                          appBar.setAppBar(true);
+                          appBar.setPrimaryState(true);
                           //Navigator.pop(context);
                         },
                         child: Container(

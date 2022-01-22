@@ -214,9 +214,11 @@ class _CartListState extends State<CartList> {
                 style: ElevatedButton.styleFrom(
                   primary: Color(0xffFF6000),
                 ),
-                onPressed: () {},
+                onPressed: () {
+
+                },
                 child: Text(
-                  "Add all to my cart",
+                  "Check Out",
                   style: TextStyle(
                     color: Colors.white,
                   ),

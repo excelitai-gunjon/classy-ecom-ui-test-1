@@ -1,5 +1,6 @@
 import 'package:classy_e_com_demo_test_ui_1/model/cart_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/wishlist_model.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/signin_and_registration_module_pages/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -214,8 +215,9 @@ class _CartListState extends State<CartList> {
                 style: ElevatedButton.styleFrom(
                   primary: Color(0xffFF6000),
                 ),
-                onPressed: () {
-
+                onPressed: () {//SplashScreen
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (Context) => SplashScreen()));
                 },
                 child: Text(
                   "Check Out",

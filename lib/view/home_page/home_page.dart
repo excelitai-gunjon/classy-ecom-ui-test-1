@@ -12,8 +12,12 @@ import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/body.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/new_arrival_page/new_arrival_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/product_details/product_detail_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/profile_page/profile_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/edit_address/edit_address_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/help_page/help_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/my_order/my_ordar_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/order_status_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/payment_method_page/payment_methods_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/shipping_address_page/shipping_address_pages.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/sub_category_item/sub_category_item_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/sub_sub_categories_page/sub_sub_categories_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/top_categories_page/top_categories_page.dart';
@@ -202,7 +206,15 @@ class _HomePageState extends State<HomePage> {
       case 7:
         return OrderStatus();//MyOrder
       case 8:
-        return MyOrder();
+        return MyOrder();//EditAddress
+      case 9:
+        return EditAddress();//ShippingAddress
+      case 10:
+        return ShippingAddress();//PaymentMethod
+      case 11:
+        return PaymentMethod();//HelpPage
+      case 12:
+        return HelpPage();
       default:
         return ProductDetail();
     }

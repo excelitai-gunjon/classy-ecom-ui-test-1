@@ -1,3 +1,4 @@
+import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/shipping_address_page/shipping_address_pages.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/signin_and_registration_module_pages/registation.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/signin_and_registration_module_pages/reset.pass.dart';
 import 'package:flutter/material.dart';
@@ -159,8 +160,8 @@ class SignInScreen2 extends StatelessWidget {
                 onPressed: () {
                   // Navigator.push(context,
                   //     MaterialPageRoute(builder: (Context) => RegistationScreen()));
-
                   // Respond to button press
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  ShippingAddress()));
                 },
                 style: ElevatedButton.styleFrom(primary: Color(0xffFF6000),
                   shape: new

@@ -1,5 +1,7 @@
 import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/peimary_page_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/home_page/home_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/order_module_page/order_track_page/order_track_page.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:provider/provider.dart';
@@ -132,7 +134,10 @@ class OrderStatus extends StatelessWidget {
                             height: 20,
                             width: 105,
                             child: ElevatedButton(
-                              onPressed: (){},
+                              onPressed: (){
+                                //OrderTrackPage
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => OrderTrackPage()));
+                              },
                               child: Row(
                                 children: const [
                                   Text('Tracking', style: TextStyle(color: Colors.white70),),
@@ -170,7 +175,11 @@ class OrderStatus extends StatelessWidget {
               height: 25,
               width: 170,
               child: ElevatedButton(
-                onPressed: (){},
+                onPressed: (){
+                  //Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                      HomePage()), (Route<dynamic> route) => false);
+                },
                 child: const Text('Back to Shopping', style: TextStyle(color: Colors.white70),),
                 style: ElevatedButton.styleFrom(
                     primary: const Color(0xFFFF6000),

@@ -1,4 +1,5 @@
 import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/peimary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -55,6 +56,11 @@ class CustomButtonByGunjon extends StatelessWidget {
                 return null;
               case "My Wishlist":
                 print("My Wishlist");
+                final status =
+                Provider.of<PrimaryScreenState>(context, listen: false);
+                status.setPrimaryState(true);
+                final primaryPageState = Provider.of<PrimaryPageController>(context,listen: false);
+                primaryPageState.setPrimaryPage(1);
                 return null;
               //return Wishlist();//TopCategoriesPage();//ProductDetail();//Wishlist();
               case "Check Out":
@@ -64,12 +70,20 @@ class CustomButtonByGunjon extends StatelessWidget {
                 pageState.setSecondaryPage(7);
                 return null;
               case "Shipping Address":
-              //return Profile();
+                appBar.setPrimaryState(false);
+                pageState.setSecondaryPage(10);
+                return null;
               case "Payment Method":
+                appBar.setPrimaryState(false);
+                pageState.setSecondaryPage(11);
                 return null;
               case "Help":
+                appBar.setPrimaryState(false);
+                pageState.setSecondaryPage(12);
                 return null;
               case "Edit Address":
+                appBar.setPrimaryState(false);
+                pageState.setSecondaryPage(9);
                 return null;
               case "Log Out":
                 return null;

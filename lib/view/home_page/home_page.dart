@@ -12,6 +12,8 @@ import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/body.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/new_arrival_page/new_arrival_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/product_details/product_detail_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/profile_page/profile_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/my_order/my_ordar_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/order_status_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/sub_category_item/sub_category_item_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/sub_sub_categories_page/sub_sub_categories_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/top_categories_page/top_categories_page.dart';
@@ -54,21 +56,21 @@ class _HomePageState extends State<HomePage> {
     return WillPopScope(
       onWillPop: () async {
         //final appBar = Provider.of<AppBarController>(context,listen: false);
-        final appBar =
+        final status =
         Provider.of<PrimaryScreenState>(context, listen: false);
         //appBar.setPrimaryState(false);
 
         final pageState =
         Provider.of<SecondaryPage>(context, listen: false);
         //pageState.setSecondaryPage(5);
-        if (productAppBar.appBar) {
+        if (productAppBar.status) {
           if (Platform.isAndroid) {
             SystemNavigator.pop();
           } else if (Platform.isIOS) {
             exit(0);
           }
         }if(pageState.secondaryPageNo==6){
-          appBar.setPrimaryState(false);
+          status.setPrimaryState(false);
           pageState.setSecondaryPage(5);
         }else {
           productAppBar.setPrimaryState(true);
@@ -77,7 +79,7 @@ class _HomePageState extends State<HomePage> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        appBar: productAppBar.appBar
+        appBar: productAppBar.status
             ? AppBar(
                 backgroundColor: Colors.deepOrangeAccent,
                 leading: IconButton(
@@ -101,7 +103,7 @@ class _HomePageState extends State<HomePage> {
               )
             : null,
         drawer: ComplexDrawer(),
-        body: productAppBar.appBar
+        body: productAppBar.status
             ? _getBodyPrimary()
             : _getBodySecondary(), //ProductDetail(),
         bottomNavigationBar: BottomAppBar(
@@ -196,7 +198,11 @@ class _HomePageState extends State<HomePage> {
       case 5:
         return SubSubProductScreen();
       case 6:
-        return FilterScreen();
+        return FilterScreen();//OrderStatus
+      case 7:
+        return OrderStatus();//MyOrder
+      case 8:
+        return MyOrder();
       default:
         return ProductDetail();
     }

@@ -8,6 +8,7 @@ import 'package:classy_e_com_demo_test_ui_1/model/sub_sub_categories_product_mod
 import 'package:classy_e_com_demo_test_ui_1/test/country%20code%20search.dart';
 import 'package:classy_e_com_demo_test_ui_1/timer.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/home_page/home_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/signin_and_registration_module_pages/signin2.dart';
 import 'package:country_code_picker/country_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -138,7 +139,7 @@ class MyApp extends StatelessWidget {
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
-          home: HomePage(),//AttendanceScreen(),
+          home: SignInScreen2(),//AttendanceScreen(),
       ),
     );
   }

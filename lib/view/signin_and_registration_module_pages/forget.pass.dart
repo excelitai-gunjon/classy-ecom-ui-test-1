@@ -66,42 +66,30 @@ class ForgetPassScreen extends StatelessWidget {
 
             SizedBox(height: 60,),
 
-            SizedBox(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Respond to button press
-                },
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.white70,
-                    padding: EdgeInsets.symmetric(vertical: 10)
+            Container(
+              width: MediaQuery.of(context).size.width/1.2,
+              height: 45.0,
+              padding: EdgeInsets.only(
+                top: 0.0,
+                bottom: 0.0,
+                left: 16.0,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: new BorderRadius.circular(10.0),
+                color: Colors.grey[400],
+              ),
+              child: TextField(
+                cursorColor: Colors.grey,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.local_phone_outlined, color: Colors.grey[600]),
+                  border: InputBorder.none,
+                  hintText: "Phone Number",
+                  hintStyle: TextStyle(
 
-                  // backgroundColor: MaterialStateProperty.all(Colors.white70),
-                  // padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 20,horizontal: 80)),
-                ),
-
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.local_phone_outlined,
-                        color: Colors.grey,
-
-                      ),
-                      SizedBox(width: 10),
-                      Expanded(child: Text("Phone Number",
-                        style: TextStyle(color: Colors.grey,fontSize: 20),
-
-                      ),
-                      ),
-
-
-                      SizedBox(width: 10),
-
-
-                    ],
                   ),
+
                 ),
               ),
             ),

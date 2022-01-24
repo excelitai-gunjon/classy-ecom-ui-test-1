@@ -45,7 +45,6 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     appBar.setPrimaryState(true);
   }
-
   @override
   void dispose() {
     // TODO: implement dispose
@@ -85,7 +84,7 @@ class _HomePageState extends State<HomePage> {
         key: scaffoldKey,
         appBar: productAppBar.status
             ? AppBar(
-                backgroundColor: Colors.deepOrangeAccent,
+                backgroundColor: Color(0xffFFA800),
                 leading: IconButton(
                   onPressed: () {
                     // Scaffold.of(context).openDrawer();

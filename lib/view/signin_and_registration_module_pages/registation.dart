@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 //import 'package:classy_ui_e_commerce/signin_and_registration_module_pages/signin2.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/signin_and_registration_module_pages/signin2.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +19,7 @@ class RegistationScreen extends StatelessWidget {
             leading: IconButton(
               icon: Icon(Icons.arrow_back_ios),
               color: Colors.black,
-              onPressed: () {
-
-              },
+              onPressed: () {  },
 
             ),
             title: Image.asset(
@@ -50,74 +49,59 @@ class RegistationScreen extends StatelessWidget {
               ),),
               SizedBox(height: 10,),
 
-              SizedBox(
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Respond to button press
-                  },
-                  style: ElevatedButton.styleFrom(
+              Container(
+                width: MediaQuery.of(context).size.width/1.2,
+                height: 45.0,
+                padding: EdgeInsets.only(
+                  top: 0.0,
+                  bottom: 0.0,
+                  left: 16.0,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: new BorderRadius.circular(10.0),
+                  color: Colors.grey[400],
+                ),
+                child: TextField(
+                  cursorColor: Colors.grey,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.person,color: Colors.grey[600]),
+                    border: InputBorder.none,
+                    hintText: "Name",
+                    hintStyle: TextStyle(
 
-                      primary: Colors.white70,
-                      padding: EdgeInsets.symmetric(vertical: 10)
-
-                    // backgroundColor: MaterialStateProperty.all(Colors.white70),
-                    // padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 20,horizontal: 80)),
-                  ),
-
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.person_outline_outlined,
-                          color: Colors.grey,
-
-                        ),
-                        SizedBox(width: 10),
-                        Expanded(child: Text("Name",
-                          style: TextStyle(color: Colors.grey,fontSize: 18),
-
-                        ),)
-
-                      ],
                     ),
                   ),
                 ),
               ),
+
+
+
               SizedBox(height: 20,),
 
-              SizedBox(
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Respond to button press
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white70,
-                      padding: EdgeInsets.symmetric(vertical: 10)
+              Container(
+                width: MediaQuery.of(context).size.width/1.2,
+                height: 45.0,
+                padding: EdgeInsets.only(
+                  top: 0.0,
+                  bottom: 0.0,
+                  left: 16.0,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: new BorderRadius.circular(10.0),
+                  color: Colors.grey[400],
+                ),
+                child: TextField(
+                  cursorColor: Colors.grey,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.email,color: Colors.grey[600]),
+                    border: InputBorder.none,
+                    hintText: "Email",
+                    hintStyle: TextStyle(
 
-                    // backgroundColor: MaterialStateProperty.all(Colors.white70),
-                    // padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 20,horizontal: 80)),
-                  ),
-
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.mail_outlined,
-                          color: Colors.grey,
-
-                        ),
-                        SizedBox(width: 10),
-                        Expanded(child: Text("Email",
-                          style: TextStyle(color: Colors.grey,fontSize: 18),
-
-                        ),
-
-                        ),
-                      ],
                     ),
                   ),
                 ),
@@ -127,83 +111,57 @@ class RegistationScreen extends StatelessWidget {
               SizedBox(height: 20),
 
 
-              SizedBox(
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Respond to button press
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white70,
-                      padding: EdgeInsets.symmetric(vertical: 10)
+              Container(
+                width: MediaQuery.of(context).size.width/1.2,
+                height: 45.0,
+                padding: EdgeInsets.only(
+                  top: 0.0,
+                  bottom: 0.0,
+                  left: 16.0,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: new BorderRadius.circular(10.0),
+                  color: Colors.grey[400],
+                ),
+                child: TextField(
+                  cursorColor: Colors.grey,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.local_phone_outlined,color: Colors.grey[600]),
+                    border: InputBorder.none,
+                    hintText: "Phone",
+                    hintStyle: TextStyle(
 
-                    // backgroundColor: MaterialStateProperty.all(Colors.white70),
-                    // padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 20,horizontal: 80)),
-                  ),
-
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.local_phone_outlined,
-                          color: Colors.grey,
-
-                        ),
-                        SizedBox(width: 10),
-                        Expanded(child: Text("Phone Number",
-                          style: TextStyle(color: Colors.grey,fontSize: 18),
-
-                        ),
-
-                        ),
-                      ],
                     ),
                   ),
                 ),
               ),
 
-
               SizedBox(height: 20),
 
-              SizedBox(
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Respond to button press
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white70,
-                      padding: EdgeInsets.symmetric(vertical: 10)
+              Container(
+                width: MediaQuery.of(context).size.width/1.2,
+                height: 45.0,
+                padding: EdgeInsets.only(
+                  top: 0.0,
+                  bottom: 0.0,
+                  left: 16.0,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: new BorderRadius.circular(10.0),
+                  color: Colors.grey[400],
+                ),
+                child: TextField(
+                  cursorColor: Colors.grey,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.lock,color: Colors.grey[600]),
+                    border: InputBorder.none,
+                    hintText: "Password",
+                   suffixIcon: Icon(Icons.visibility_outlined,color: Colors.grey[600],),
 
-                    // backgroundColor: MaterialStateProperty.all(Colors.white70),
-                    // padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 20,horizontal: 80)),
-                  ),
-
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.lock_outlined,
-                          color: Colors.grey,
-
-                        ),
-                        SizedBox(width: 20),
-                        Expanded(child: Text("Password",
-                          style: TextStyle(color: Colors.grey,fontSize: 18),
-
-                        ),
-
-                        ),
-                        SizedBox(width: 10),
-
-                        Icon(
-                          Icons.visibility_outlined,
-                          color: Colors.grey,
-                        ),
-                      ],
-                    ),
                   ),
                 ),
               ),
@@ -213,46 +171,28 @@ class RegistationScreen extends StatelessWidget {
               SizedBox(height: 20),
 
 
+              Container(
+                width: MediaQuery.of(context).size.width/1.2,
+                height: 45.0,
+                padding: EdgeInsets.only(
+                  top: 0.0,
+                  bottom: 0.0,
+                  left: 16.0,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: new BorderRadius.circular(10.0),
+                  color: Colors.grey[400],
+                ),
+                child: TextField(
+                  cursorColor: Colors.grey,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.lock,color: Colors.grey[600]),
+                    border: InputBorder.none,
+                    hintText: "Confirm Password",
+                    suffixIcon: Icon(Icons.visibility_outlined,color: Colors.grey[600],),
 
-
-              SizedBox(
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Respond to button press
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white70,
-                      padding: EdgeInsets.symmetric(vertical: 10)
-
-                    // backgroundColor: MaterialStateProperty.all(Colors.white70),
-                    // padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 20,horizontal: 80)),
-                  ),
-
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.lock_outlined,
-                          color: Colors.grey,
-
-                        ),
-                        SizedBox(width: 10),
-                        Expanded(child: Text("Confirm password",
-                          style: TextStyle(color: Colors.grey,fontSize: 18),
-
-                        ),
-
-                        ),
-                        SizedBox(width: 10),
-
-                        Icon(
-                          Icons.visibility_outlined,
-                          color: Colors.grey,
-                        ),
-                      ],
-                    ),
                   ),
                 ),
               ),
@@ -271,7 +211,7 @@ class RegistationScreen extends StatelessWidget {
                     ), //Row
 
 
-              SizedBox(height: 80),
+              SizedBox(height: 60),
 
               SizedBox(
                 child: ElevatedButton(
@@ -309,7 +249,7 @@ class RegistationScreen extends StatelessWidget {
               ),
 
 
-              SizedBox(height: 100),
+              SizedBox(height: 70),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Row(

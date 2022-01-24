@@ -3,15 +3,17 @@ import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/my_order
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 class Body extends StatefulWidget {
-  const Body({Key? key,}) : super(key: key);
 
+  const Body({Key? key,}) : super(key: key);
   @override
   _BodyState createState() => _BodyState();
+
 }
 
 class _BodyState extends State<Body> {
   List<String> category = ["Delivered", "Processing", "Cancelled"];
   var selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -176,70 +178,77 @@ class _BodyState extends State<Body> {
           padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 20),
           child: Column(
             children: [
-              Row(
-                children: [
-                  SizedBox(
-                    width: 100,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.orange,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 100,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.orange,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
                         ),
-                      ),
-                      onPressed: (){},
-                      child: Text("Today",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontFamily: 'Roboto-Regular.ttf'
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 10,),
-                  SizedBox(
-                    width: 120,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          side: BorderSide(color: Colors.deepOrange),
-                        ),
-                        primary: Colors.white,
-                      ),
-                      onPressed: (){},
-                      child: Text("Tomorrow",
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 15,
-                            fontFamily: 'Roboto-Regular.ttf'
+                        onPressed: (){
+
+                        },
+                        child: Text("Today",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontFamily: 'Roboto-Regular.ttf'
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(width: 10,),
-                  SizedBox(
-                    width: 110,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                          side: BorderSide(color: Colors.deepOrange),
+                    SizedBox(width: 10,),
+                    SizedBox(
+                      width: 120,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                            side: BorderSide(color: Colors.deepOrange),
+                          ),
+                          primary: Colors.white,
                         ),
-                        primary: Colors.white,
-                      ),
-                      onPressed: (){},
-                      child: Text("Sat 17",
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 15,
-                            fontFamily: 'Roboto-Regular.ttf'
+                        onPressed: (){
+
+                        },
+                        child: Text("Tomorrow",
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 15,
+                              fontFamily: 'Roboto-Regular.ttf'
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(width: 10,),
+                    SizedBox(
+                      width: 110,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0),
+                            side: BorderSide(color: Colors.deepOrange),
+                          ),
+                          primary: Colors.white,
+                        ),
+                        onPressed: (){},
+                        child: Text("Sat 17",
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 15,
+                              fontFamily: 'Roboto-Regular.ttf'
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 20,),
               Column(

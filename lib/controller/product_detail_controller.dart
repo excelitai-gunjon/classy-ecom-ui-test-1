@@ -1,14 +1,39 @@
 import 'package:flutter/cupertino.dart';
 
 class ProductDetailController with ChangeNotifier {
-  int selection = 1;
+  int colorSelection = 0;
+  int sizeSelection =0;
 
   String? productImageUrl;
   String? productName;
   String? productPrice;
 
-  void selected(int value) {
-    selection = value;
+
+
+
+  final List<String?> prodErrors = [];
+  void addError({String? error}) {
+    if (!prodErrors.contains(error))
+      prodErrors.add(error);
+    notifyListeners();
+  }
+  void removeError({String? error}) {
+    if (prodErrors.contains(error))
+      prodErrors.remove(error);
+    notifyListeners();
+  }
+
+
+
+
+
+  void colorSelected(int value) {
+    colorSelection = value;
+    notifyListeners();
+  }
+
+  void sizeSelected(int value) {
+    sizeSelection = value;
     notifyListeners();
   }
 

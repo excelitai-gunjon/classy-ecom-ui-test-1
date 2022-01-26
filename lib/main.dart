@@ -15,6 +15,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:dcdg/dcdg.dart';
 
+import 'model/cart_model.dart';
 import 'model/woman_category_model.dart';
 
 final List<String> imgList = [
@@ -43,7 +44,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: ProdCategoryModel()),
         ChangeNotifierProvider.value(value: SubCategoriesController()),
         ChangeNotifierProvider.value(value: ProdSubCatModel()),
-        ChangeNotifierProvider.value(value: SubSubProductsModel()),
+        ChangeNotifierProvider.value(value: SubSubProductsModel()),//CartModel
+        ChangeNotifierProvider.value(value: CartModel()),
         //SubSubProductsModel
       ],
       child: MaterialApp(

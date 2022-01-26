@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/peimary_page_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/main_home_bottom_app_bar_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/cart_page/cart_page.dart';
@@ -77,6 +78,10 @@ class _HomePageState extends State<HomePage> {
           pageState.setSecondaryPage(5);
         }else {
           productAppBar.setPrimaryState(true);
+          final selection = Provider.of<ProductDetailController>(context,
+              listen: false);
+          selection.sizeSelected(0);
+          selection.colorSelected(0);
         }
         return false;
       },

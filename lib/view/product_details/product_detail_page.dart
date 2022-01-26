@@ -27,6 +27,7 @@ class ProductDetail extends StatefulWidget {
 
 class _ProductDetailState extends State<ProductDetail> with SingleTickerProviderStateMixin{
   TabController? _controllerTab;
+  var item=1;
 
   @override
   void initState() {
@@ -89,7 +90,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                           children: [
                             GestureDetector(
                               onTap: () {
-                                selected.selected(1);
+                                selected.colorSelected(1);
                               },
                               child: Container(
                                 height: 30,
@@ -98,7 +99,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                                   shape: BoxShape.circle,
                                   color: Colors.green,
                                   border: Border.all(
-                                    color: selected.selection == 1
+                                    color: selected.colorSelection == 1
                                         ? Colors.amber
                                         : Colors.white,
                                     width: 2,
@@ -108,7 +109,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                             ),
                             GestureDetector(
                               onTap: () {
-                                selected.selected(2);
+                                selected.colorSelected(2);
                               },
                               child: Container(
                                 height: 30,
@@ -117,7 +118,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                                   shape: BoxShape.circle,
                                   color: Colors.deepPurpleAccent,
                                   border: Border.all(
-                                    color: selected.selection == 2
+                                    color: selected.colorSelection == 2
                                         ? Colors.amber
                                         : Colors.white,
                                     width: 2,
@@ -127,7 +128,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                             ),
                             GestureDetector(
                               onTap: () {
-                                selected.selected(3);
+                                selected.colorSelected(3);
                               },
                               child: Container(
                                 height: 30,
@@ -136,7 +137,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                                   shape: BoxShape.circle,
                                   color: Colors.brown,
                                   border: Border.all(
-                                    color: selected.selection == 3
+                                    color: selected.colorSelection == 3
                                         ? Colors.amber
                                         : Colors.white,
                                     width: 2,
@@ -156,6 +157,11 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                           final appBar = Provider.of<PrimaryScreenState>(context,
                               listen: false);
                           appBar.setPrimaryState(true);
+                          final selection = Provider.of<ProductDetailController>(context,
+                              listen: false);
+                          selection.sizeSelected(0);
+                          selection.colorSelected(0);
+
                           //Navigator.pop(context);
                         },
                         child: Container(
@@ -213,7 +219,10 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                       children: [
                         GestureDetector(
                           onTap: () {
-                            //item.count = (item.count! + 1)!;
+                            setState(() {
+
+                              item = item+1;
+                            });
                           },
                           child: Container(
                             height: 20,
@@ -234,12 +243,14 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                             child: Center(child: Text("+")),
                           ),
                         ),
-                        Text("1"
-                            //item.count.toString(),
-                            ),
+                        Text(item.toString()),
                         GestureDetector(
                           onTap: () {
-                            //item.count = (item.count! - 1)!;
+                            setState(() {
+                              if(item>1){
+                                item = item-1;
+                              }
+                            });
                           },
                           child: Container(
                             height: 20,
@@ -271,9 +282,10 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
               Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Sizes"),
+                    SizedBox(width: 20,),
                     Column(
                       children: [
                         Row(
@@ -282,63 +294,63 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                               buttonHeight: 25,
                               buttonWidth: 25,
                               title: "S",
-                              color: Colors.white,
+                              size: 1,
                             ),
                             SizeButton(
                               buttonHeight: 25,
                               buttonWidth: 25,
                               title: "M",
-                              color: Colors.white,
+                              size: 2,
                             ),
                             SizeButton(
                               buttonHeight: 25,
                               buttonWidth: 25,
                               title: "L",
-                              color: Colors.white,
+                              size: 3,
                             ),
                             SizeButton(
                               buttonHeight: 25,
                               buttonWidth: 25,
                               title: "XL",
-                              color: Colors.white,
+                              size: 4,
                             ),
                           ],
                         ),
                       ],
                     ),
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text("Color "),
-                            ColorButton(
-                              buttonHeight: 25,
-                              buttonWidth: 25,
-                              icon: Icons.check,
-                              color: Colors.deepPurpleAccent,
-                            ),
-                            ColorButton(
-                              buttonHeight: 25,
-                              buttonWidth: 25,
-                              icon: Icons.check,
-                              color: Colors.green,
-                            ),
-                            ColorButton(
-                              buttonHeight: 25,
-                              buttonWidth: 25,
-                              icon: Icons.check,
-                              color: Colors.greenAccent,
-                            ),
-                            ColorButton(
-                              buttonHeight: 25,
-                              buttonWidth: 25,
-                              icon: Icons.check,
-                              color: Colors.greenAccent,
-                            ),
-                          ],
-                        ),
-                      ],
-                    )
+                    // Column(
+                    //   children: [
+                    //     Row(
+                    //       children: [
+                    //         Text("Color "),
+                    //         ColorButton(
+                    //           buttonHeight: 25,
+                    //           buttonWidth: 25,
+                    //           icon: Icons.check,
+                    //           color: Colors.deepPurpleAccent,
+                    //         ),
+                    //         ColorButton(
+                    //           buttonHeight: 25,
+                    //           buttonWidth: 25,
+                    //           icon: Icons.check,
+                    //           color: Colors.green,
+                    //         ),
+                    //         ColorButton(
+                    //           buttonHeight: 25,
+                    //           buttonWidth: 25,
+                    //           icon: Icons.check,
+                    //           color: Colors.greenAccent,
+                    //         ),
+                    //         ColorButton(
+                    //           buttonHeight: 25,
+                    //           buttonWidth: 25,
+                    //           icon: Icons.check,
+                    //           color: Colors.greenAccent,
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // )
                   ],
                 ),
               ),
@@ -615,7 +627,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
               ),
 
               SizedBox(
-                height: 30,
+                height: 10,
               ),
 
               Align(

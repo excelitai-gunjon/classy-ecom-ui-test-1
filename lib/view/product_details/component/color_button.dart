@@ -22,7 +22,7 @@ class ColorButton extends StatelessWidget {
     final selected = Provider.of<ProductDetailController>(context);
     return GestureDetector(
       onTap: () {
-        selected.selected(2);
+        selected.colorSelected(2);
       },
       child: Container(
         height: buttonHeight,
@@ -31,7 +31,7 @@ class ColorButton extends StatelessWidget {
           shape: BoxShape.circle,
           color: color,//Colors.deepPurpleAccent,
           border: Border.all(
-            color: selected.selection == 2 ? Colors.amber : Colors.white,
+            color: selected.colorSelection == 2 ? Colors.amber : Colors.white,
             width: 2,
           ),
         ),

@@ -24,7 +24,7 @@ class _CartListState extends State<CartList> {
         children: [
           SizedBox(height: 10,),
           SizedBox(
-            height: MediaQuery.of(context).size.height * .6,
+            height: MediaQuery.of(context).size.height * .55,
             child: ListView.separated(
               separatorBuilder: (context, index) {
                 return SizedBox(
@@ -236,7 +236,7 @@ class _CartListState extends State<CartList> {
             ),
           ),
 
-          SizedBox(height: 30,),
+          SizedBox(height: 40,),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: SizedBox(

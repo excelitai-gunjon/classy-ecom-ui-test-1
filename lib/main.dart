@@ -141,7 +141,7 @@ class MyApp extends StatelessWidget {
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
         ],
-          home: SignInScreen2(),//AttendanceScreen(),
+          home: HomePage(),//AttendanceScreen(),
       ),
     );
   }

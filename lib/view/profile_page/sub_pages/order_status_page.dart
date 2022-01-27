@@ -51,7 +51,7 @@ class OrderStatus extends StatelessWidget {
           children: [
             const Center(
                 child: Text(
-                  'Invoice: 25AK367',
+                  'Invoice: 25AK367',//
                   style: TextStyle(
                       color: Colors.orange
                   ),

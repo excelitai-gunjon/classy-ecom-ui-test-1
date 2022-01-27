@@ -71,7 +71,7 @@ class _OrderAcceptedState extends State<OrderAccepted> {
                         ),
                       ),
                       SizedBox(height: 5),
-                      Image(image: AssetImage("images/Vector.png",)),
+                      Image(image: AssetImage("images/Vector 6.png",)),
                     ],
                   ),
                 ),

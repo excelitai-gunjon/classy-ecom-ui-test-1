@@ -22,6 +22,7 @@ class _CartListState extends State<CartList> {
     return SingleChildScrollView(
       child: Column(
         children: [
+          SizedBox(height: 10,),
           SizedBox(
             height: MediaQuery.of(context).size.height * .6,
             child: ListView.separated(
@@ -174,6 +175,8 @@ class _CartListState extends State<CartList> {
               },
             ),
           ),
+
+          SizedBox(height: 20,),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: SizedBox(
@@ -196,6 +199,7 @@ class _CartListState extends State<CartList> {
                       ),
                     ),
                   ),
+                  SizedBox(width: 10,),
                   Expanded(
                     flex: 1,
                     child: Container(

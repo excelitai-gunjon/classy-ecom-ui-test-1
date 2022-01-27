@@ -39,6 +39,7 @@ class SignInScreen2 extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 50,vertical: 50),
         child: SingleChildScrollView(
+
           child: Column(
             //mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -180,7 +181,7 @@ class SignInScreen2 extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 30),
+              SizedBox(height: 20),
 
               Center(
                 child: Text("OR LOGIN WITH",
@@ -194,7 +195,7 @@ class SignInScreen2 extends StatelessWidget {
               Center(
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width *.4,
-                  height: 70,
+                  height: 50,
                   child: Row(
                     children: [
                       Expanded(
@@ -246,35 +247,32 @@ class SignInScreen2 extends StatelessWidget {
 
 
               SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Row(
-                  children: [
-                    Container(
-                      alignment: Alignment.bottomRight,
-                      child: Text("Already have an account ?",
-                        style: TextStyle(color: Colors.grey,fontSize: 15),
-
-                      ),
+              Row(
+                children: [
+                  Container(
+                    alignment: Alignment.bottomRight,
+                    child: Text("Already have an account ?",
+                      style: TextStyle(color: Colors.grey,fontSize: 15),
 
                     ),
-                    Container(
-                      alignment: Alignment.bottomRight,
-                        child: InkWell(
-                          onTap: (){
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (Context) => RegistationScreen()));
-                          },
-                          child: Text("SIGN UP",
-                            style: TextStyle(color: Colors.red,fontSize: 15),
 
+                  ),
+                  Container(
+                    alignment: Alignment.topRight,
+                      child: InkWell(
+                        onTap: (){
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (Context) => RegistationScreen()));
+                        },
+                        child: Text("SIGN UP",
+                          style: TextStyle(color: Colors.red,fontSize: 15),
 
-                      ),
-                        ),
 
                     ),
-                  ],
-                ),
+                      ),
+
+                  ),
+                ],
               ),
 
 

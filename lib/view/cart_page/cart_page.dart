@@ -38,135 +38,195 @@ class _CartListState extends State<CartList> {
                 CartModel item = CartModel.list[index];
                 int itemCount = item.count!;
 
-                return Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10),
-                  height: 100,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 1,
-                        blurRadius: 3,
-                        offset: Offset(0, 1), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: ListTile(
-                        leading: SizedBox(
-                          height: MediaQuery.of(context).size.height,
-                          width: 100,
-                          child: Image.asset(
-                            item.imageUrl.toString(),
-                          ),
-                        ),
-                        title: Text(
-                          item.productName.toString(),
-                          style: TextStyle(fontSize: 15),
-                        ),
-                        subtitle: Text(
-                          item.productPrice.toString(),
-                          style: TextStyle(fontSize: 15),
-                        ),
-                        trailing: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(
-                              height: 20,
-                              width: 20,
-                              child: IconButton(
-                                iconSize: 15,
-                                onPressed: () {
-                                  cartControll.deleteList(index);
-                                  print("Closed>>>>>>>>>>>");
+                return Dismissible(
+                  key: ValueKey(cartControll.productName),
+                  direction: DismissDirection.endToStart,
+                  onDismissed: (direction){
+
+                    cartControll.deleteList(index);
+
+                  },
+                  confirmDismiss: (direction){
+                    return showDialog(
+                        context: context,
+                        builder: (ctx)=> AlertDialog(
+                          title: const Text('Are you sure?'),
+                          content: const Text('Dou tou wnt to delete item from the cart? '),
+                          actions: [
+                            TextButton(
+                                onPressed: (){
+                                  Navigator.of(ctx).pop(false);
                                 },
-                                icon: Icon(
-                                  FontAwesomeIcons.timesCircle,
+                                child: const Text('No', style: TextStyle(color: Colors.deepOrange),)
+                            ),
+                            TextButton(
+                                onPressed: (){
+                                  Navigator.of(ctx).pop(true);
+
+                                  cartControll.deleteList(index);
+                                },
+                                child: const Text('Yes', style: TextStyle(color: Colors.deepOrange))
+                            )
+                          ],
+                        )
+                    );
+                  },
+                  background: Container(
+                    color: Theme.of(context).errorColor,
+                    child: const Icon(Icons.delete, color: Colors.white, size: 40,),
+                    alignment: Alignment.centerRight,
+                    padding: const EdgeInsets.only(right: 20),
+                    margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                  ),
+
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10),
+                    height: 100,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 1,
+                          blurRadius: 3,
+                          offset: Offset(0, 1), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: ListTile(
+                          leading: SizedBox(
+                            height: MediaQuery.of(context).size.height,
+                            width: 100,
+                            child: Image.asset(
+                              item.imageUrl.toString(),
+                            ),
+                          ),
+                          title: Text(
+                            item.productName.toString(),
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          subtitle: Text(
+                            item.productPrice.toString(),
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          trailing: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              // SizedBox(
+                              //   height: 20,
+                              //   width: 20,
+                              //   child: IconButton(
+                              //     iconSize: 15,
+                              //     onPressed: () {
+                              //       cartControll.deleteList(index);
+                              //       print("Closed>>>>>>>>>>>");
+                              //     },
+                              //     icon: Icon(
+                              //       FontAwesomeIcons.timesCircle,
+                              //     ),
+                              //   ),
+                              // ),
+                              SizedBox(
+                                height: 20,
+                                width: 100,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          cartControll.addCount(index);
+                                        });
+                                      },
+                                      child: Container(
+                                        height: 20,
+                                        width: 20,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(5),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(0.5),
+                                              spreadRadius: 1,
+                                              blurRadius: 3,
+                                              offset: Offset(0,
+                                                  1), // changes position of shadow
+                                            ),
+                                          ],
+                                        ),
+                                        child: Center(child: Text("+")),
+                                      ),
+                                    ),
+                                    Text(
+                                      //itemCount.toString(),
+                                      cartControll.getcount(index).toString()
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        if(itemCount>1){
+                                          setState(() {
+                                            cartControll.subCount(index);
+                                          });
+                                        }
+                                        if(itemCount<=1){
+                                          setState(() {
+                                            showDialog(
+                                                context: context,
+                                                builder: (ctx)=> AlertDialog(
+                                                  title: const Text('Are you sure?'),
+                                                  content: const Text('Dou tou wnt to delete item from the cart? '),
+                                                  actions: [
+                                                    TextButton(
+                                                        onPressed: (){
+                                                          Navigator.of(ctx).pop(false);
+                                                        },
+                                                        child: const Text('No', style: TextStyle(color: Colors.deepOrange),)
+                                                    ),
+                                                    TextButton(
+                                                        onPressed: (){
+                                                          Navigator.of(ctx).pop(true);
+
+                                                          cartControll.deleteList(index);
+                                                        },
+                                                        child: const Text('Yes', style: TextStyle(color: Colors.deepOrange))
+                                                    )
+                                                  ],
+                                                )
+                                            );
+
+                                          });
+                                        }
+                                      },
+                                      child: Container(
+                                        height: 20,
+                                        width: 20,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(5),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(0.5),
+                                              spreadRadius: 1,
+                                              blurRadius: 3,
+                                              offset:
+                                              Offset(0, 1), // changes position of shadow
+                                            ),
+                                          ],
+                                        ),
+                                        child: Center(child: Text("-")),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                              width: 100,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        //count.updateCount(index, countSet++);
-                                        cartControll.addCount(index);
-                                        //itemCount= itemCount+1;
-                                        print(cartControll.getcount(index));
-                                      });
-                                    },
-                                    child: Container(
-                                      height: 20,
-                                      width: 20,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(5),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(0.5),
-                                            spreadRadius: 1,
-                                            blurRadius: 3,
-                                            offset: Offset(0,
-                                                1), // changes position of shadow
-                                          ),
-                                        ],
-                                      ),
-                                      child: Center(child: Text("+")),
-                                    ),
-                                  ),
-                                  Text(
-                                    //itemCount.toString(),
-                                    cartControll.getcount(index).toString()
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      if(itemCount>1){
-                                        // int value=count.getcount(index)!.toInt();
-                                        // count.updateCount(index, countSet--);
-                                        // print(count.getcount(index));
-                                        setState(() {
-                                          // int? value=count.getcount(index);
-                                          // count.updateCount(index, value!);
-                                          // print(count.getcount(index));
-                                          //itemCount= itemCount-1;
-                                          cartControll.subCount(index);
-                                        });
-                                      }
-                                    },
-                                    child: Container(
-                                      height: 20,
-                                      width: 20,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(5),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey.withOpacity(0.5),
-                                            spreadRadius: 1,
-                                            blurRadius: 3,
-                                            offset:
-                                            Offset(0, 1), // changes position of shadow
-                                          ),
-                                        ],
-                                      ),
-                                      child: Center(child: Text("-")),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -176,7 +236,7 @@ class _CartListState extends State<CartList> {
             ),
           ),
 
-          SizedBox(height: 20,),
+          SizedBox(height: 30,),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: SizedBox(

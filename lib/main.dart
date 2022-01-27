@@ -17,7 +17,6 @@ import 'package:dcdg/dcdg.dart';
 //from mostofa
 import 'model/cart_model.dart';
 import 'model/woman_category_model.dart';
-
 final List<String> imgList = [
   'images/bike.png',
   'images/headPhone.png',

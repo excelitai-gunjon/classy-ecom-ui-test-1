@@ -1,4 +1,6 @@
+import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SizeButton extends StatelessWidget {
   SizeButton({
@@ -6,33 +8,41 @@ class SizeButton extends StatelessWidget {
     this.buttonHeight,
     this.buttonWidth,
     this.title,
-    this.color,
+    this.size
   }) : super(key: key);
 
   double? buttonWidth;
   double? buttonHeight;
   String? title;
-  Color? color;
+  int? size;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 4),
-      height: buttonHeight,
-      width: buttonWidth,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: color,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 3,
-            offset: Offset(0, 1), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Center(
-        child: Text(title!),
+
+     final sizeSelect = Provider.of<ProductDetailController>(context);
+
+    return GestureDetector(
+      onTap: (){
+        sizeSelect.sizeSelected(size!);
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 4),
+        height: buttonHeight,
+        width: buttonWidth,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: sizeSelect.sizeSelection == size ? Colors.red : Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 3,
+              offset: Offset(0, 1), // changes position of shadow
+            ),
+          ],
+        ),
+        child: Center(
+          child: Text(title!, style: TextStyle(color: sizeSelect.sizeSelection == size ? Colors.white : Colors.black),),
+        ),
       ),
     );
   }

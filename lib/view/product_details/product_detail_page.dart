@@ -1,5 +1,6 @@
 import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/model/best_selling_product.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/product_details/component/add_to_card_button.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/product_details/component/color_button.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/product_details/component/comments_box.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
-class ProductDetail extends StatelessWidget {
+class ProductDetail extends StatefulWidget {
   ProductDetail({
     Key? key,
     this.productImageUrl,
@@ -19,6 +20,29 @@ class ProductDetail extends StatelessWidget {
   String? productImageUrl;
   String? productName;
   String? productPrice;
+
+  @override
+  State<ProductDetail> createState() => _ProductDetailState();
+}
+
+class _ProductDetailState extends State<ProductDetail> with SingleTickerProviderStateMixin{
+  TabController? _controllerTab;
+  var item=1;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _controllerTab = TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _controllerTab!.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final selected = Provider.of<ProductDetailController>(context);
@@ -66,7 +90,7 @@ class ProductDetail extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                selected.selected(1);
+                                selected.colorSelected(1);
                               },
                               child: Container(
                                 height: 30,
@@ -75,7 +99,7 @@ class ProductDetail extends StatelessWidget {
                                   shape: BoxShape.circle,
                                   color: Colors.green,
                                   border: Border.all(
-                                    color: selected.selection == 1
+                                    color: selected.colorSelection == 1
                                         ? Colors.amber
                                         : Colors.white,
                                     width: 2,
@@ -85,7 +109,7 @@ class ProductDetail extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                selected.selected(2);
+                                selected.colorSelected(2);
                               },
                               child: Container(
                                 height: 30,
@@ -94,7 +118,7 @@ class ProductDetail extends StatelessWidget {
                                   shape: BoxShape.circle,
                                   color: Colors.deepPurpleAccent,
                                   border: Border.all(
-                                    color: selected.selection == 2
+                                    color: selected.colorSelection == 2
                                         ? Colors.amber
                                         : Colors.white,
                                     width: 2,
@@ -104,7 +128,7 @@ class ProductDetail extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                selected.selected(3);
+                                selected.colorSelected(3);
                               },
                               child: Container(
                                 height: 30,
@@ -113,7 +137,7 @@ class ProductDetail extends StatelessWidget {
                                   shape: BoxShape.circle,
                                   color: Colors.brown,
                                   border: Border.all(
-                                    color: selected.selection == 3
+                                    color: selected.colorSelection == 3
                                         ? Colors.amber
                                         : Colors.white,
                                     width: 2,
@@ -133,6 +157,11 @@ class ProductDetail extends StatelessWidget {
                           final appBar = Provider.of<PrimaryScreenState>(context,
                               listen: false);
                           appBar.setPrimaryState(true);
+                          final selection = Provider.of<ProductDetailController>(context,
+                              listen: false);
+                          selection.sizeSelected(0);
+                          selection.colorSelected(0);
+
                           //Navigator.pop(context);
                         },
                         child: Container(
@@ -190,7 +219,10 @@ class ProductDetail extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            //item.count = (item.count! + 1)!;
+                            setState(() {
+
+                              item = item+1;
+                            });
                           },
                           child: Container(
                             height: 20,
@@ -211,12 +243,14 @@ class ProductDetail extends StatelessWidget {
                             child: Center(child: Text("+")),
                           ),
                         ),
-                        Text("1"
-                            //item.count.toString(),
-                            ),
+                        Text(item.toString()),
                         GestureDetector(
                           onTap: () {
-                            //item.count = (item.count! - 1)!;
+                            setState(() {
+                              if(item>1){
+                                item = item-1;
+                              }
+                            });
                           },
                           child: Container(
                             height: 20,
@@ -248,9 +282,10 @@ class ProductDetail extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Sizes"),
+                    SizedBox(width: 20,),
                     Column(
                       children: [
                         Row(
@@ -259,63 +294,63 @@ class ProductDetail extends StatelessWidget {
                               buttonHeight: 25,
                               buttonWidth: 25,
                               title: "S",
-                              color: Colors.white,
+                              size: 1,
                             ),
                             SizeButton(
                               buttonHeight: 25,
                               buttonWidth: 25,
                               title: "M",
-                              color: Colors.white,
+                              size: 2,
                             ),
                             SizeButton(
                               buttonHeight: 25,
                               buttonWidth: 25,
                               title: "L",
-                              color: Colors.white,
+                              size: 3,
                             ),
                             SizeButton(
                               buttonHeight: 25,
                               buttonWidth: 25,
                               title: "XL",
-                              color: Colors.white,
+                              size: 4,
                             ),
                           ],
                         ),
                       ],
                     ),
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text("Color "),
-                            ColorButton(
-                              buttonHeight: 25,
-                              buttonWidth: 25,
-                              icon: Icons.check,
-                              color: Colors.deepPurpleAccent,
-                            ),
-                            ColorButton(
-                              buttonHeight: 25,
-                              buttonWidth: 25,
-                              icon: Icons.check,
-                              color: Colors.green,
-                            ),
-                            ColorButton(
-                              buttonHeight: 25,
-                              buttonWidth: 25,
-                              icon: Icons.check,
-                              color: Colors.greenAccent,
-                            ),
-                            ColorButton(
-                              buttonHeight: 25,
-                              buttonWidth: 25,
-                              icon: Icons.check,
-                              color: Colors.greenAccent,
-                            ),
-                          ],
-                        ),
-                      ],
-                    )
+                    // Column(
+                    //   children: [
+                    //     Row(
+                    //       children: [
+                    //         Text("Color "),
+                    //         ColorButton(
+                    //           buttonHeight: 25,
+                    //           buttonWidth: 25,
+                    //           icon: Icons.check,
+                    //           color: Colors.deepPurpleAccent,
+                    //         ),
+                    //         ColorButton(
+                    //           buttonHeight: 25,
+                    //           buttonWidth: 25,
+                    //           icon: Icons.check,
+                    //           color: Colors.green,
+                    //         ),
+                    //         ColorButton(
+                    //           buttonHeight: 25,
+                    //           buttonWidth: 25,
+                    //           icon: Icons.check,
+                    //           color: Colors.greenAccent,
+                    //         ),
+                    //         ColorButton(
+                    //           buttonHeight: 25,
+                    //           buttonWidth: 25,
+                    //           icon: Icons.check,
+                    //           color: Colors.greenAccent,
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // )
                   ],
                 ),
               ),
@@ -350,9 +385,37 @@ class ProductDetail extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              Text(
-                "Description",
-                style: TextStyle(fontSize: 20),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      "Description",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: ElevatedButton(
+                      onPressed: (){},
+                      child: Row(
+                        children: [
+                          Text('Watch'),
+                          SizedBox(width: 5,),
+                          Icon(Icons.play_arrow)
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          onPrimary: Colors.deepOrange,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          side: BorderSide(width: 1, color: Colors.orange)
+                      ),
+                    ),
+                  )
+                ],
               ),
               SizedBox(
                 height: 10,
@@ -369,43 +432,568 @@ class ProductDetail extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 30,
               ),
-              Text(
-                "Reviews",
-                style: TextStyle(fontSize: 20),
+
+              Center(child: Text('Size Chart',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  fontSize: 16
+                ),
+              )),
+
+              Container(
+                margin: EdgeInsets.all(20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+
+                    Expanded(
+                        child: Column(
+                          children: [
+                            Container(
+                              height: 32,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                  color: Colors.deepOrange,
+                                  border: Border.all(
+                                    width: .5,
+                                    color: Colors.grey,
+                                  )
+                              ),
+                              child: Center(
+                                child: Text('Mid length Kameez',
+                                  style: TextStyle(
+                                      fontSize: 11,
+                                      color: Colors.white60
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 32,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    width: 1,
+                                    color: Colors.grey,
+                                  )
+                              ),
+                              child: Center(
+                                child: Text('Chest',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 31,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    width: 1,
+                                    color: Colors.grey,
+                                  )
+                              ),
+                              child: Center(
+                                child: Text('Length',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: 32,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    width: 1,
+                                    color: Colors.grey,
+                                  )
+                              ),
+                              child: Center(
+                                child: Text('(In Inch)',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        )
+                    ),
+
+
+                    Expanded(
+                      flex: 2,
+                      child: Table(
+                        //defaultColumnWidth: FixedColumnWidth(120.0),
+                        border: TableBorder.all(
+                            color: Colors.grey,
+                            style: BorderStyle.solid,
+                            width: 1
+                        ),
+                        children: [
+                          TableRow( children: [
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('34'),
+                            )),
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('36'),
+                            )),
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('38'),
+                            )),
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('40'),
+                            )),
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('42'),
+                            )),
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('44'),
+                            )),
+                          ]),
+
+
+                          TableRow( children: [
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('34'),
+                            )),
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('36'),
+                            )),
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('38'),
+                            )),
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('40'),
+                            )),
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('42'),
+                            )),
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('44'),
+                            )),
+                          ]),
+
+
+                          TableRow( children: [
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('34'),
+                            )),
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('36'),
+                            )),
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('38'),
+                            )),
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('40'),
+                            )),
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('42'),
+                            )),
+                            Center(child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('44'),
+                            )),
+                          ]),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
+
               SizedBox(
                 height: 10,
               ),
-              CommentsBox(
-                userImageUrl: "images/profile111.jpg",
-                userName: "User 1",
-                comments: "As usual, there might be better examples on how to"
-                    " achieve this result. Here's a fast attempt to recreate it."
-                    " achieve this result. Here's a fast attempt to recreate it."
-                    " achieve this result. Here's a fast attempt to recreate it.",
-              ),
-              CommentsBox(
-                userImageUrl: "images/profile111.jpg",
-                userName: "User 1",
-                comments: "As usual, there might be better examples on how to"
-                    " achieve this result. Here's a fast attempt to recreate it."
-                    " achieve this result. Here's a fast attempt to recreate it."
-                    " achieve this result. Here's a fast attempt to recreate it.",
-              ),
-              CommentsBox(
-                userImageUrl: "images/profile111.jpg",
-                userName: "User 1",
-                comments: "As usual, there might be better examples on how to"
-                    " achieve this result. Here's a fast attempt to recreate it."
-                    " achieve this result. Here's a fast attempt to recreate it."
-                    " achieve this result. Here's a fast attempt to recreate it.",
-              ),
+
               Align(
                 alignment: Alignment.center,
                 child: AddToCardButton(),
               ),
+
+
+              SizedBox(
+                height: 30,
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: Container(
+                  height: 70,
+                  width: MediaQuery.of(context).size.width,
+                  child: AppBar(
+                    elevation: 0,
+                    backgroundColor: Colors.white,
+                    bottom: TabBar(
+                        labelColor: Colors.red,
+                        unselectedLabelColor: Colors.grey,
+                        indicatorColor: Colors.red,
+                        controller: _controllerTab,
+                        indicatorWeight: 5,
+                        indicatorPadding: EdgeInsets.symmetric(horizontal: 70),
+                        tabs: [
+                          Tab(
+                            //icon: Icon(Icons.directions_bike),
+                            child: Text(
+                              "Write review",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
+                          Tab(
+                            // icon: Icon(
+                            //   Icons.directions_car,
+                            // ),
+                            child: Text(
+                              "See all review",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
+                        ]
+                    ),
+                  ),
+                ),
+              ),
+
+
+              Container(
+                height: 650,
+                width: MediaQuery.of(context).size.width,
+                child: TabBarView(
+                  controller: _controllerTab,
+                    children: [
+                      Container(
+                        //height: 400,
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 20,),
+                            Text('Rate your Experience'),
+                            SizedBox(height: 20,),
+
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.star,
+                                  color: Color(0xffFF6000),
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Color(0xffFF6000),
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Color(0xffFF6000),
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Color(0xffFF6000),
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.grey,
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(height: 20,),
+
+                            Text("Review Title",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  fontFamily: 'Roboto-Regular.ttf'
+                              ),
+                            ),
+                            SizedBox(height: 10,),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  focusColor: Colors.grey,
+                                  fillColor: Colors.grey,
+                                  hoverColor: Colors.grey,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey, width: 1),
+                                  ),
+                                  hintText: 'Type here..',
+                                  hintStyle: TextStyle(fontSize: 12.0, color: Colors.grey, fontFamily: 'Roboto-Regular.ttf'),
+                                ),
+                              ),
+                            ),
+
+                            SizedBox(height: 30,),
+
+                            Text("Name",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  fontFamily: 'Roboto-Regular.ttf'
+                              ),
+                            ),
+                            SizedBox(height: 10,),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  focusColor: Colors.grey,
+                                  fillColor: Colors.grey,
+                                  hoverColor: Colors.grey,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey, width: 1),
+                                  ),
+                                  hintText: 'Type here..',
+                                  hintStyle: TextStyle(fontSize: 12.0, color: Colors.grey, fontFamily: 'Roboto-Regular.ttf'),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 30,),
+
+                            Text("Email",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  fontFamily: 'Roboto-Regular.ttf'
+                              ),
+                            ),
+                            SizedBox(height: 10,),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  focusColor: Colors.grey,
+                                  fillColor: Colors.grey,
+                                  hoverColor: Colors.grey,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey, width: 1),
+                                  ),
+                                  hintText: 'Type here..',
+                                  hintStyle: TextStyle(fontSize: 12.0, color: Colors.grey, fontFamily: 'Roboto-Regular.ttf'),
+                                ),
+                              ),
+                            ),
+
+
+                            SizedBox(height: 30,),
+
+                            Text("Your Review",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  fontFamily: 'Roboto-Regular.ttf'
+                              ),
+                            ),
+                            SizedBox(height: 10,),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: Container(
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    focusColor: Colors.grey,
+                                    fillColor: Colors.grey,
+                                    hoverColor: Colors.grey,
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.grey, width: 1),
+                                    ),
+                                    hintText: 'Type here..',
+                                    hintStyle: TextStyle(fontSize: 12.0, color: Colors.grey, fontFamily: 'Roboto-Regular.ttf'),
+                                  ),
+                                ),
+                              ),
+                            ),
+
+                            SizedBox(height: 20,),
+
+
+                            Container(
+                              width: 170,
+                              height: 40,
+                              child: ElevatedButton(
+                                onPressed: (){},
+                                child: Text('Submit your review'),
+                                style: ElevatedButton.styleFrom(
+                                    primary: Colors.deepOrange,
+                                    onPrimary: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    side: BorderSide(width: 1, color: Colors.orange)
+                                ),
+                              ),
+                            )
+
+
+
+                          ],
+                        ),
+                      ),
+
+
+                      Container(
+                        //height: 400,
+                        width: MediaQuery.of(context).size.width,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            CommentsBox(
+                              userImageUrl: "images/profile111.jpg",
+                              userName: "User 1",
+                              comments: "As usual, there might be better examples on how to"
+                                  " achieve this result. Here's a fast attempt to recreate it."
+                                  " achieve this result. Here's a fast attempt to recreate it."
+                                  " achieve this result. Here's a fast attempt to recreate it.",
+                            ),
+                            CommentsBox(
+                              userImageUrl: "images/profile111.jpg",
+                              userName: "User 1",
+                              comments: "As usual, there might be better examples on how to"
+                                  " achieve this result. Here's a fast attempt to recreate it."
+                                  " achieve this result. Here's a fast attempt to recreate it."
+                                  " achieve this result. Here's a fast attempt to recreate it.",
+                            ),
+                            CommentsBox(
+                              userImageUrl: "images/profile111.jpg",
+                              userName: "User 1",
+                              comments: "As usual, there might be better examples on how to"
+                                  " achieve this result. Here's a fast attempt to recreate it."
+                                  " achieve this result. Here's a fast attempt to recreate it."
+                                  " achieve this result. Here's a fast attempt to recreate it.",
+                            ),
+                            CommentsBox(
+                              userImageUrl: "images/profile111.jpg",
+                              userName: "User 1",
+                              comments: "As usual, there might be better examples on how to"
+                                  " achieve this result. Here's a fast attempt to recreate it."
+                                  " achieve this result. Here's a fast attempt to recreate it."
+                                  " achieve this result. Here's a fast attempt to recreate it.",
+                            ),
+                          ],
+                        ),
+                      ),
+
+                    ]
+                ),
+              ),
+
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 455,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Recommended for you',style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold
+                      ),),
+                      Divider(color: Colors.grey,),
+                      Container(
+                        height: 400,
+                        width: MediaQuery.of(context).size.width,
+                        child: GridView.count(
+                          physics: NeverScrollableScrollPhysics(),
+                            crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 20,
+                          children: List.generate(BestSellingProductModel.list.length, (index){
+
+                            BestSellingProductModel recProduct = BestSellingProductModel.list[index];
+
+                            return Container(
+                              child: Card(
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                        child: Image.asset(recProduct.imageUrl!)
+                                    ),
+                                    Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(left: 8.0),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(recProduct.productName!),
+                                              Text(recProduct.productPrice!),
+                                              Row(
+                                                children: [
+                                                  Icon(
+                                                    Icons.star,
+                                                    color: Color(0xffFF6000),
+                                                    size: 10,
+                                                  ),
+                                                  Icon(
+                                                    Icons.star,
+                                                    color: Color(0xffFF6000),
+                                                    size: 10,
+                                                  ),
+                                                  Icon(
+                                                    Icons.star,
+                                                    color: Color(0xffFF6000),
+                                                    size: 10,
+                                                  ),
+                                                  Icon(
+                                                    Icons.star,
+                                                    color: Color(0xffFF6000),
+                                                    size: 10,
+                                                  ),
+                                                  Icon(
+                                                    Icons.star,
+                                                    color: Colors.grey,
+                                                    size: 10,
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+
+
+
+
               SizedBox(
                 height: 20,
               ),

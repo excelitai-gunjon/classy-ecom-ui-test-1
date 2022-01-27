@@ -18,7 +18,8 @@ class HotDeals extends StatefulWidget {
   State<HotDeals> createState() => _HotDealsState();
 }
 
-class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin {
+class _HotDealsState extends State<HotDeals>
+    with SingleTickerProviderStateMixin {
   final CarouselController _controller = CarouselController();
   //HotDealsModel list=HotDealsModel();
   TabController? _controllerTab;
@@ -36,6 +37,7 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
     _controllerTab!.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -68,8 +70,7 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                          border:
-                          Border.all(color: Colors.grey, width: 1),
+                          border: Border.all(color: Colors.grey, width: 1),
                           color: Colors.white,
                           gradient: LinearGradient(
                             colors: [Colors.white, Colors.white],
@@ -81,14 +82,13 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 4,
                               blurRadius: 2,
-                              offset: Offset(
-                                  2, 3), // changes position of shadow
+                              offset:
+                                  Offset(2, 3), // changes position of shadow
                             ),
                           ],
                         ),
                         child: Column(
-                          mainAxisAlignment:
-                          MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
                               flex: 2,
@@ -111,36 +111,31 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                             Expanded(
                               flex: 10,
                               child: CarouselSlider.builder(
-                                //items: imageSliders,
+                                  //items: imageSliders,
                                   itemCount: HotDealsModel.list.length,
                                   options: CarouselOptions(
                                     enlargeCenterPage: true,
                                     reverse: false,
                                     autoPlay: true,
-                                    autoPlayInterval:
-                                    Duration(seconds: 3),
+                                    autoPlayInterval: Duration(seconds: 3),
                                     autoPlayAnimationDuration:
-                                    Duration(milliseconds: 1000),
-                                    height: MediaQuery.of(context)
-                                        .size
-                                        .height,
+                                        Duration(milliseconds: 1000),
+                                    height: MediaQuery.of(context).size.height,
                                   ),
                                   carouselController: _controller,
                                   itemBuilder: (BuildContext context,
                                       int itemIndex, int pageViewIndex) {
                                     HotDealsModel item =
-                                    HotDealsModel.list[itemIndex];
+                                        HotDealsModel.list[itemIndex];
                                     return Column(
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Padding(
-                                          padding:
-                                          const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Container(
                                                 height: 30,
@@ -158,8 +153,7 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                   boxShadow: [
                                                     BoxShadow(
                                                       color: Colors.grey
-                                                          .withOpacity(
-                                                          0.5),
+                                                          .withOpacity(0.5),
                                                       spreadRadius: 1,
                                                       blurRadius: 3,
                                                       offset: Offset(0,
@@ -184,8 +178,7 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                   boxShadow: [
                                                     BoxShadow(
                                                       color: Colors.grey
-                                                          .withOpacity(
-                                                          0.5),
+                                                          .withOpacity(0.5),
                                                       spreadRadius: 1,
                                                       blurRadius: 3,
                                                       offset: Offset(0,
@@ -210,8 +203,7 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                   boxShadow: [
                                                     BoxShadow(
                                                       color: Colors.grey
-                                                          .withOpacity(
-                                                          0.5),
+                                                          .withOpacity(0.5),
                                                       spreadRadius: 1,
                                                       blurRadius: 3,
                                                       offset: Offset(0,
@@ -227,12 +219,10 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                           item.notification.toString(),
                                           style: TextStyle(
                                               fontSize: 10,
-                                              fontWeight:
-                                              FontWeight.bold),
+                                              fontWeight: FontWeight.bold),
                                         ),
                                         Padding(
-                                          padding:
-                                          const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: SizedBox(
                                             height: 70,
                                             width: 70,
@@ -251,12 +241,10 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                           ),
                                         ),
                                         Padding(
-                                          padding:
-                                          const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Container(
                                                 height: 20,
@@ -264,13 +252,11 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
-                                                  BorderRadius
-                                                      .circular(5),
+                                                      BorderRadius.circular(5),
                                                   boxShadow: [
                                                     BoxShadow(
                                                       color: Colors.grey
-                                                          .withOpacity(
-                                                          0.5),
+                                                          .withOpacity(0.5),
                                                       spreadRadius: 1,
                                                       blurRadius: 3,
                                                       offset: Offset(0,
@@ -281,8 +267,8 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                 child: Center(
                                                   child: Text(
                                                     item.day.toString(),
-                                                    style: TextStyle(
-                                                        fontSize: 8),
+                                                    style:
+                                                        TextStyle(fontSize: 8),
                                                   ),
                                                 ),
                                               ),
@@ -292,13 +278,11 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
-                                                  BorderRadius
-                                                      .circular(5),
+                                                      BorderRadius.circular(5),
                                                   boxShadow: [
                                                     BoxShadow(
                                                       color: Colors.grey
-                                                          .withOpacity(
-                                                          0.5),
+                                                          .withOpacity(0.5),
                                                       spreadRadius: 1,
                                                       blurRadius: 3,
                                                       offset: Offset(0,
@@ -309,8 +293,8 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                 child: Center(
                                                   child: Text(
                                                     item.h.toString(),
-                                                    style: TextStyle(
-                                                        fontSize: 8),
+                                                    style:
+                                                        TextStyle(fontSize: 8),
                                                   ),
                                                 ),
                                               ),
@@ -320,13 +304,11 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
-                                                  BorderRadius
-                                                      .circular(5),
+                                                      BorderRadius.circular(5),
                                                   boxShadow: [
                                                     BoxShadow(
                                                       color: Colors.grey
-                                                          .withOpacity(
-                                                          0.5),
+                                                          .withOpacity(0.5),
                                                       spreadRadius: 1,
                                                       blurRadius: 3,
                                                       offset: Offset(0,
@@ -337,8 +319,8 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                 child: Center(
                                                   child: Text(
                                                     item.m.toString(),
-                                                    style: TextStyle(
-                                                        fontSize: 8),
+                                                    style:
+                                                        TextStyle(fontSize: 8),
                                                   ),
                                                 ),
                                               ),
@@ -348,13 +330,11 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
-                                                  BorderRadius
-                                                      .circular(5),
+                                                      BorderRadius.circular(5),
                                                   boxShadow: [
                                                     BoxShadow(
                                                       color: Colors.grey
-                                                          .withOpacity(
-                                                          0.5),
+                                                          .withOpacity(0.5),
                                                       spreadRadius: 1,
                                                       blurRadius: 3,
                                                       offset: Offset(0,
@@ -365,8 +345,8 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                 child: Center(
                                                   child: Text(
                                                     item.s.toString(),
-                                                    style: TextStyle(
-                                                        fontSize: 8),
+                                                    style:
+                                                        TextStyle(fontSize: 8),
                                                   ),
                                                 ),
                                               ),
@@ -374,12 +354,10 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                           ),
                                         ),
                                         Padding(
-                                          padding:
-                                          const EdgeInsets.all(8.0),
+                                          padding: const EdgeInsets.all(8.0),
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Container(
                                                 height: 20,
@@ -387,13 +365,11 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
-                                                  BorderRadius
-                                                      .circular(5),
+                                                      BorderRadius.circular(5),
                                                   boxShadow: [
                                                     BoxShadow(
                                                       color: Colors.grey
-                                                          .withOpacity(
-                                                          0.5),
+                                                          .withOpacity(0.5),
                                                       spreadRadius: 1,
                                                       blurRadius: 3,
                                                       offset: Offset(0,
@@ -404,8 +380,8 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                 child: Center(
                                                   child: Text(
                                                     "D",
-                                                    style: TextStyle(
-                                                        fontSize: 8),
+                                                    style:
+                                                        TextStyle(fontSize: 8),
                                                   ),
                                                 ),
                                               ),
@@ -415,13 +391,11 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
-                                                  BorderRadius
-                                                      .circular(5),
+                                                      BorderRadius.circular(5),
                                                   boxShadow: [
                                                     BoxShadow(
                                                       color: Colors.grey
-                                                          .withOpacity(
-                                                          0.5),
+                                                          .withOpacity(0.5),
                                                       spreadRadius: 1,
                                                       blurRadius: 3,
                                                       offset: Offset(0,
@@ -432,8 +406,8 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                 child: Center(
                                                   child: Text(
                                                     "H",
-                                                    style: TextStyle(
-                                                        fontSize: 8),
+                                                    style:
+                                                        TextStyle(fontSize: 8),
                                                   ),
                                                 ),
                                               ),
@@ -443,13 +417,11 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
-                                                  BorderRadius
-                                                      .circular(5),
+                                                      BorderRadius.circular(5),
                                                   boxShadow: [
                                                     BoxShadow(
                                                       color: Colors.grey
-                                                          .withOpacity(
-                                                          0.5),
+                                                          .withOpacity(0.5),
                                                       spreadRadius: 1,
                                                       blurRadius: 3,
                                                       offset: Offset(0,
@@ -460,8 +432,8 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                 child: Center(
                                                   child: Text(
                                                     "M",
-                                                    style: TextStyle(
-                                                        fontSize: 8),
+                                                    style:
+                                                        TextStyle(fontSize: 8),
                                                   ),
                                                 ),
                                               ),
@@ -471,13 +443,11 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                 decoration: BoxDecoration(
                                                   color: Colors.white,
                                                   borderRadius:
-                                                  BorderRadius
-                                                      .circular(5),
+                                                      BorderRadius.circular(5),
                                                   boxShadow: [
                                                     BoxShadow(
                                                       color: Colors.grey
-                                                          .withOpacity(
-                                                          0.5),
+                                                          .withOpacity(0.5),
                                                       spreadRadius: 1,
                                                       blurRadius: 3,
                                                       offset: Offset(0,
@@ -488,8 +458,8 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                 child: Center(
                                                   child: Text(
                                                     "S",
-                                                    style: TextStyle(
-                                                        fontSize: 8),
+                                                    style:
+                                                        TextStyle(fontSize: 8),
                                                   ),
                                                 ),
                                               ),
@@ -518,8 +488,7 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                         child: Text(
                                           '<Pre',
                                           style: TextStyle(
-                                              fontSize: 8,
-                                              color: Colors.black),
+                                              fontSize: 8, color: Colors.black),
                                         ),
                                       ),
                                     ),
@@ -529,11 +498,9 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                             primary: Colors.white),
-                                        onPressed: () =>
-                                            _controller.nextPage(),
+                                        onPressed: () => _controller.nextPage(),
                                         child: Align(
-                                            alignment:
-                                            Alignment.centerLeft,
+                                            alignment: Alignment.centerLeft,
                                             child: Text(
                                               'Next>',
                                               style: TextStyle(
@@ -612,31 +579,33 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                   horizontal: 8, vertical: 8),
                               physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: false,
-                              itemCount:
-                              BestSellingProductModel.list.length,
+                              itemCount: BestSellingProductModel.list.length,
                               gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 5,
                                 childAspectRatio: 3 / 2,
                                 mainAxisSpacing: 5,
                                 mainAxisExtent:
-                                MediaQuery.of(context).size.height *
-                                    .15,
+                                    MediaQuery.of(context).size.height * .15,
                               ),
                               itemBuilder: (BuildContext context, i) {
                                 BestSellingProductModel product =
-                                BestSellingProductModel.list[i];
+                                    BestSellingProductModel.list[i];
                                 return GestureDetector(
                                   onTap: () {
                                     final appBar =
-                                    Provider.of<PrimaryScreenState>(context, listen: false);
+                                        Provider.of<PrimaryScreenState>(context,
+                                            listen: false);
                                     appBar.setPrimaryState(false);
-                                    final pageState = Provider.of<SecondaryPage>(context,
-                                        listen: false);
+                                    final pageState =
+                                        Provider.of<SecondaryPage>(context,
+                                            listen: false);
                                     pageState.setSecondaryPage(2);
-                                    final view = Provider.of<ProductDetailController>(context,
-                                        listen: false);
+                                    final view =
+                                        Provider.of<ProductDetailController>(
+                                            context,
+                                            listen: false);
                                     view.setProductData(
                                       product.imageUrl.toString(),
                                       product.productName.toString(),
@@ -646,14 +615,12 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                   child: Container(
                                     //margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
                                     height:
-                                    MediaQuery.of(context).size.height *
-                                        .5,
+                                        MediaQuery.of(context).size.height * .5,
                                     width: double.infinity,
                                     decoration: BoxDecoration(
                                       boxShadow: [
                                         BoxShadow(
-                                          color:
-                                          Colors.grey.withOpacity(0.5),
+                                          color: Colors.grey.withOpacity(0.5),
                                           spreadRadius: 1,
                                           blurRadius: 3,
                                           offset: Offset(0,
@@ -669,56 +636,55 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                     ),
                                     child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Container(
-                                          width: double.infinity,
-                                          height: 70,
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: AssetImage(product
-                                                    .imageUrl
-                                                    .toString()),
-                                                fit: BoxFit.contain),
-                                            color: Colors.transparent,
-                                            //borderRadius: BorderRadius.circular(15),
+                                        Expanded(
+                                          flex: 2,
+                                          child: Container(
+                                            width: double.infinity,
+                                            height: 70,
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: AssetImage(product
+                                                      .imageUrl
+                                                      .toString()),
+                                                  fit: BoxFit.contain),
+                                              color: Colors.transparent,
+                                              //borderRadius: BorderRadius.circular(15),
+                                            ),
                                           ),
                                         ),
                                         //Divider(),
                                         Padding(
-                                          padding:
-                                          const EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               horizontal: 8.0),
                                           child: Column(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(product.productName
                                                   .toString()),
                                               //Text(product.productDetail.toString()),
                                               Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   Row(
                                                     children: [
                                                       Text(
                                                         "\$" +
-                                                            product
-                                                                .productPrice
+                                                            product.productPrice
                                                                 .toString(),
                                                         style: TextStyle(
                                                             color: Color(
                                                                 0xffFF6000),
                                                             fontWeight:
-                                                            FontWeight
-                                                                .bold,
+                                                                FontWeight.bold,
                                                             fontSize: 12),
                                                       ),
                                                     ],
@@ -727,8 +693,8 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                     children: [
                                                       Icon(
                                                         Icons.star,
-                                                        color: Color(
-                                                            0xffFF6000),
+                                                        color:
+                                                            Color(0xffFF6000),
                                                         size: 20,
                                                       ),
                                                       Text(
@@ -737,10 +703,10 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                                                                 .productRating
                                                                 .toString(),
                                                         style: TextStyle(
-                                                          //color: Color(0xffFF6000),
+                                                            //color: Color(0xffFF6000),
                                                             fontWeight:
-                                                            FontWeight
-                                                                .bold),
+                                                                FontWeight
+                                                                    .bold),
                                                       ),
                                                     ],
                                                   ),
@@ -764,137 +730,151 @@ class _HotDealsState extends State<HotDeals> with SingleTickerProviderStateMixin
                               shrinkWrap: false,
                               itemCount: NewArrivalModel.list.length,
                               gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 10,
                                 childAspectRatio: 3 / 2,
                                 mainAxisSpacing: 10,
                                 mainAxisExtent:
-                                MediaQuery.of(context).size.height *
-                                    .15,
+                                    MediaQuery.of(context).size.height * .15,
                               ),
                               itemBuilder: (BuildContext context, i) {
                                 NewArrivalModel product =
-                                NewArrivalModel.list[i];
+                                    NewArrivalModel.list[i];
                                 return GestureDetector(
                                   onTap: () {
                                     final appBar =
-                                    Provider.of<PrimaryScreenState>(context, listen: false);
+                                        Provider.of<PrimaryScreenState>(context,
+                                            listen: false);
                                     appBar.setPrimaryState(false);
-                                    final pageState = Provider.of<SecondaryPage>(context,
-                                        listen: false);
+                                    final pageState =
+                                        Provider.of<SecondaryPage>(context,
+                                            listen: false);
                                     pageState.setSecondaryPage(2);
-                                    final view = Provider.of<ProductDetailController>(context,
-                                        listen: false);
+                                    final view =
+                                        Provider.of<ProductDetailController>(
+                                            context,
+                                            listen: false);
                                     view.setProductData(
                                       product.imageUrl.toString(),
                                       product.productName.toString(),
                                       product.productPrice.toString(),
                                     );
                                   },
-                                  child: Container(
-                                    //margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
-                                    height:
-                                    MediaQuery.of(context).size.height *
-                                        .5,
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color:
-                                          Colors.grey.withOpacity(0.5),
-                                          spreadRadius: 1,
-                                          blurRadius: 3,
-                                          offset: Offset(0,
-                                              1), // changes position of shadow
-                                        ),
-                                      ],
-                                      color: Colors.white,
-                                      //borderRadius: BorderRadius.circular(15),
-                                      // image: DecorationImage(
-                                      //   image: AssetImage(product.imageUrl.toString()),
-                                      //   fit: BoxFit.fill
-                                      // )
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          //margin: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
+                                          height: MediaQuery.of(context)
+                                              .size
+                                              .height,
                                           width: double.infinity,
-                                          height: 70,
                                           decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: AssetImage(product
-                                                    .imageUrl
-                                                    .toString()),
-                                                fit: BoxFit.contain),
-                                            color: Colors.transparent,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey
+                                                    .withOpacity(0.5),
+                                                spreadRadius: 1,
+                                                blurRadius: 3,
+                                                offset: Offset(0,
+                                                    1), // changes position of shadow
+                                              ),
+                                            ],
+                                            color: Colors.white,
                                             //borderRadius: BorderRadius.circular(15),
+                                            // image: DecorationImage(
+                                            //   image: AssetImage(product.imageUrl.toString()),
+                                            //   fit: BoxFit.fill
+                                            // )
                                           ),
-                                        ),
-                                        //Divider(),
-                                        Padding(
-                                          padding:
-                                          const EdgeInsets.symmetric(
-                                              horizontal: 8.0),
                                           child: Column(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text(product.productName
-                                                  .toString()),
-                                              //Text(product.productDetail.toString()),
-                                              Row(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
-                                                children: [
-                                                  Row(
-                                                    children: [
-                                                      Text(
-                                                        "\$" +
-                                                            product
-                                                                .productPrice
-                                                                .toString(),
-                                                        style: TextStyle(
-                                                            color: Color(
-                                                                0xffFF6000),
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .bold,
-                                                            fontSize: 12),
-                                                      ),
-                                                    ],
+                                              Expanded(
+                                                flex: 3,
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  height: MediaQuery.of(context)
+                                                      .size
+                                                      .height,
+                                                  decoration: BoxDecoration(
+                                                    image: DecorationImage(
+                                                        image: AssetImage(
+                                                            product.imageUrl
+                                                                .toString()),
+                                                        fit: BoxFit.contain),
+                                                    color: Colors.transparent,
+                                                    //borderRadius: BorderRadius.circular(15),
                                                   ),
-                                                  Row(
-                                                    children: [
-                                                      Icon(
-                                                        Icons.star,
-                                                        color: Color(
-                                                            0xffFF6000),
-                                                        size: 20,
-                                                      ),
-                                                      // Text(
-                                                      //   " " + product..toString(),
-                                                      //   style: TextStyle(
-                                                      //     //color: Color(0xffFF6000),
-                                                      //       fontWeight: FontWeight.bold),
-                                                      // ),
-                                                    ],
-                                                  ),
-                                                ],
+                                                ),
+                                              ),
+                                              //Divider(),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 8.0),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(product.productName
+                                                        .toString()),
+                                                    //Text(product.productDetail.toString()),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              "\$" +
+                                                                  product
+                                                                      .productPrice
+                                                                      .toString(),
+                                                              style: TextStyle(
+                                                                  color: Color(
+                                                                      0xffFF6000),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 12),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Icon(
+                                                              Icons.star,
+                                                              color: Color(
+                                                                  0xffFF6000),
+                                                              size: 20,
+                                                            ),
+                                                            // Text(
+                                                            //   " " + product..toString(),
+                                                            //   style: TextStyle(
+                                                            //     //color: Color(0xffFF6000),
+                                                            //       fontWeight: FontWeight.bold),
+                                                            // ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 );
                               },

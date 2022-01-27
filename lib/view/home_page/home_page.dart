@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/peimary_page_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/main_home_bottom_app_bar_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/cart_page/cart_page.dart';
@@ -12,6 +13,12 @@ import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/body.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/new_arrival_page/new_arrival_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/product_details/product_detail_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/profile_page/profile_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/edit_address/edit_address_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/help_page/help_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/my_order/my_ordar_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/order_status_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/payment_method_page/payment_methods_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/shipping_address_page/shipping_address_pages.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/sub_category_item/sub_category_item_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/sub_sub_categories_page/sub_sub_categories_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/top_categories_page/top_categories_page.dart';
@@ -39,7 +46,6 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     appBar.setPrimaryState(true);
   }
-
   @override
   void dispose() {
     // TODO: implement dispose
@@ -54,32 +60,36 @@ class _HomePageState extends State<HomePage> {
     return WillPopScope(
       onWillPop: () async {
         //final appBar = Provider.of<AppBarController>(context,listen: false);
-        final appBar =
+        final status =
         Provider.of<PrimaryScreenState>(context, listen: false);
         //appBar.setPrimaryState(false);
 
         final pageState =
         Provider.of<SecondaryPage>(context, listen: false);
         //pageState.setSecondaryPage(5);
-        if (productAppBar.appBar) {
+        if (productAppBar.status) {
           if (Platform.isAndroid) {
             SystemNavigator.pop();
           } else if (Platform.isIOS) {
             exit(0);
           }
         }if(pageState.secondaryPageNo==6){
-          appBar.setPrimaryState(false);
+          status.setPrimaryState(false);
           pageState.setSecondaryPage(5);
         }else {
           productAppBar.setPrimaryState(true);
+          final selection = Provider.of<ProductDetailController>(context,
+              listen: false);
+          selection.sizeSelected(0);
+          selection.colorSelected(0);
         }
         return false;
       },
       child: Scaffold(
         key: scaffoldKey,
-        appBar: productAppBar.appBar
+        appBar: productAppBar.status
             ? AppBar(
-                backgroundColor: Colors.deepOrangeAccent,
+                backgroundColor: Color(0xffFFA800),
                 leading: IconButton(
                   onPressed: () {
                     // Scaffold.of(context).openDrawer();
@@ -101,7 +111,7 @@ class _HomePageState extends State<HomePage> {
               )
             : null,
         drawer: ComplexDrawer(),
-        body: productAppBar.appBar
+        body: productAppBar.status
             ? _getBodyPrimary()
             : _getBodySecondary(), //ProductDetail(),
         bottomNavigationBar: BottomAppBar(
@@ -196,7 +206,19 @@ class _HomePageState extends State<HomePage> {
       case 5:
         return SubSubProductScreen();
       case 6:
-        return FilterScreen();
+        return FilterScreen();//OrderStatus
+      case 7:
+        return OrderStatus();//MyOrder
+      case 8:
+        return MyOrder();//EditAddress
+      case 9:
+        return EditAddress();//ShippingAddress
+      case 10:
+        return ShippingAddress();//PaymentMethod
+      case 11:
+        return PaymentMethod();//HelpPage
+      case 12:
+        return HelpPage();
       default:
         return ProductDetail();
     }

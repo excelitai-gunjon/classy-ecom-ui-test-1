@@ -1,5 +1,9 @@
+import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/peimary_page_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 class CustomButtonByGunjon extends StatelessWidget {
   CustomButtonByGunjon({
@@ -23,11 +27,14 @@ class CustomButtonByGunjon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = Provider.of<PrimaryScreenState>(context, listen: false);
+    final pageState = Provider.of<SecondaryPage>(context, listen: false);
     return Padding(
       padding: EdgeInsets.only(bottom: paddingBottom!),
       child: SizedBox(
         height: buttonHeight, //height of button
-        width: buttonWidth,//MediaQuery.of(context).size.width, //width of button
+        width:
+            buttonWidth, //MediaQuery.of(context).size.width, //width of button
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
               primary: Colors.white, //background color of button
@@ -35,32 +42,53 @@ class CustomButtonByGunjon extends StatelessWidget {
                   width: 1, color: Colors.white), //border width and color
               elevation: 3, //elevation of button
               shape: RoundedRectangleBorder(
-                //to set border radius to button
+                  //to set border radius to button
                   borderRadius: BorderRadius.circular(15)),
               padding: EdgeInsets.all(20) //content padding inside button
-          ),
+              ),
           onPressed: () {
             //code to execute when this button is pressed.
             switch (title) {
               case "My Order":
                 print("My Order");
+                appBar.setPrimaryState(false);
+                pageState.setSecondaryPage(8);
                 return null;
               case "My Wishlist":
                 print("My Wishlist");
+                final status =
+                Provider.of<PrimaryScreenState>(context, listen: false);
+                status.setPrimaryState(true);
+                final primaryPageState = Provider.of<PrimaryPageController>(context,listen: false);
+                primaryPageState.setPrimaryPage(1);
                 return null;
-                //return Wishlist();//TopCategoriesPage();//ProductDetail();//Wishlist();
+              //return Wishlist();//TopCategoriesPage();//ProductDetail();//Wishlist();
               case "Check Out":
-                // CartList();
+              // CartList();
               case "Order Status":
-                //return Profile();
+                appBar.setPrimaryState(false);
+                pageState.setSecondaryPage(7);
+                return null;
               case "Shipping Address":
-                //return Profile();
+                appBar.setPrimaryState(false);
+                pageState.setSecondaryPage(10);
+                return null;
               case "Payment Method":
-                //return Profile();
+                appBar.setPrimaryState(false);
+                pageState.setSecondaryPage(11);
+                return null;
+              case "Help":
+                appBar.setPrimaryState(false);
+                pageState.setSecondaryPage(12);
+                return null;
+              case "Edit Address":
+                appBar.setPrimaryState(false);
+                pageState.setSecondaryPage(9);
+                return null;
               case "Log Out":
-                //return Profile();
+                return null;
               default:
-                //return Home();
+              //return Home();
             }
           },
           child: Row(
@@ -72,7 +100,7 @@ class CustomButtonByGunjon extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Icon(
-                        leadingIcon,//Icons.shopping_bag,
+                        leadingIcon, //Icons.shopping_bag,
                         color: Color(0xffFF6000),
                         size: 20,
                       ),
@@ -80,16 +108,15 @@ class CustomButtonByGunjon extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        title!,//"My Order",
-                        style:
-                        TextStyle(fontSize: 15, color: Colors.black),
+                        title!, //"My Order",
+                        style: TextStyle(fontSize: 15, color: Colors.black),
                       ),
                     ],
                   ),
                 ],
               ),
               Icon(
-                trailingIcon,//Icons.arrow_forward_ios_outlined,
+                trailingIcon, //Icons.arrow_forward_ios_outlined,
                 color: Colors.black,
                 size: 15,
               ),

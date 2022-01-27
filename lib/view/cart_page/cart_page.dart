@@ -4,6 +4,7 @@ import 'package:classy_e_com_demo_test_ui_1/view/signin_and_registration_module_
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class CartList extends StatefulWidget {
   const CartList({Key? key}) : super(key: key);
@@ -13,10 +14,11 @@ class CartList extends StatefulWidget {
 }
 
 class _CartListState extends State<CartList> {
-  int count = 1;
+  int countSet = 1;
 
   @override
   Widget build(BuildContext context) {
+    final cartControll=Provider.of<CartModel>(context);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -31,7 +33,10 @@ class _CartListState extends State<CartList> {
               itemCount: CartModel.list.length,
               //itemExtent: 100,
               itemBuilder: (context, index) {
+
                 CartModel item = CartModel.list[index];
+                int itemCount = item.count!;
+
                 return Container(
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   height: 100,
@@ -75,7 +80,8 @@ class _CartListState extends State<CartList> {
                               child: IconButton(
                                 iconSize: 15,
                                 onPressed: () {
-                                  print("Closed");
+                                  cartControll.deleteList(index);
+                                  print("Closed>>>>>>>>>>>");
                                 },
                                 icon: Icon(
                                   FontAwesomeIcons.timesCircle,
@@ -92,7 +98,12 @@ class _CartListState extends State<CartList> {
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      //item.count = (item.count! + 1)!;
+                                      setState(() {
+                                        //count.updateCount(index, countSet++);
+                                        cartControll.addCount(index);
+                                        //itemCount= itemCount+1;
+                                        print(cartControll.getcount(index));
+                                      });
                                     },
                                     child: Container(
                                       height: 20,
@@ -114,11 +125,23 @@ class _CartListState extends State<CartList> {
                                     ),
                                   ),
                                   Text(
-                                    item.count.toString(),
+                                    //itemCount.toString(),
+                                    cartControll.getcount(index).toString()
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      //item.count = (item.count! - 1)!;
+                                      if(itemCount>1){
+                                        // int value=count.getcount(index)!.toInt();
+                                        // count.updateCount(index, countSet--);
+                                        // print(count.getcount(index));
+                                        setState(() {
+                                          // int? value=count.getcount(index);
+                                          // count.updateCount(index, value!);
+                                          // print(count.getcount(index));
+                                          //itemCount= itemCount-1;
+                                          cartControll.subCount(index);
+                                        });
+                                      }
                                     },
                                     child: Container(
                                       height: 20,
@@ -216,8 +239,9 @@ class _CartListState extends State<CartList> {
                   primary: Color(0xffFF6000),
                 ),
                 onPressed: () {//SplashScreen
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (Context) => SplashScreen()));
+                  cartControll.addCartList();
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (Context) => SplashScreen()));
                 },
                 child: Text(
                   "Check Out",

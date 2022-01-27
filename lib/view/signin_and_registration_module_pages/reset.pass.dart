@@ -137,7 +137,6 @@ class ResetScreen extends StatelessWidget {
 
                     ),
                   ),)
-
                 ],
               ),
             ),

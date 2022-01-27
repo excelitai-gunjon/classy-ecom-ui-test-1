@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
 class PrimaryScreenState with ChangeNotifier{
-  bool appBar=true;
+  bool status=true;
   void setPrimaryState(bool bool){
-    appBar=bool;
+    status=bool;
     notifyListeners();
   }
 }

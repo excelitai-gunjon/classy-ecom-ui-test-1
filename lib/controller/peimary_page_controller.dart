@@ -5,5 +5,6 @@ class PrimaryPageController with ChangeNotifier{
 
   setPrimaryPage(int value){
     this.currentIndex=value;
+    notifyListeners();
   }
 }

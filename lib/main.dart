@@ -1,22 +1,18 @@
-import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
-import 'package:classy_e_com_demo_test_ui_1/controller/peimary_page_controller.dart';
-import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
-import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
-import 'package:classy_e_com_demo_test_ui_1/controller/sub_category_controller.dart';
-import 'package:classy_e_com_demo_test_ui_1/model/sub_category_model.dart';
-import 'package:classy_e_com_demo_test_ui_1/model/sub_sub_categories_product_model.dart';
-import 'package:classy_e_com_demo_test_ui_1/test/country%20code%20search.dart';
-import 'package:classy_e_com_demo_test_ui_1/timer.dart';
-import 'package:classy_e_com_demo_test_ui_1/view/home_page/home_page.dart';
+import 'package:classy_e_com_demo_test_ui_1/core/screen_controller_page/app_bar_controler.dart';
+import 'package:classy_e_com_demo_test_ui_1/core/screen_controller_page/peimary_page_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/core/screen_controller_page/product_detail_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/core/screen_controller_page/secondary_page_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/core/screen_controller_page/sub_category_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/core/model/sub_category_model.dart';
+import 'package:classy_e_com_demo_test_ui_1/core/model/sub_sub_categories_product_model.dart';
+import 'package:classy_e_com_demo_test_ui_1/ui/home_page/home_page.dart';
 import 'package:country_code_picker/country_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:dcdg/dcdg.dart';
+import 'core/model/cart_model.dart';
+import 'core/model/woman_category_model.dart';
 
-import 'model/cart_model.dart';
-import 'model/woman_category_model.dart';
 
 final List<String> imgList = [
   'images/bike.png',
@@ -26,9 +22,12 @@ final List<String> imgList = [
   'images/bike.png',
 ];
 
+
 void main() {
   runApp( MyApp());
 }
+
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -52,15 +51,6 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
-            // This is the theme of your application.
-            //
-            // Try running your application with "flutter run". You'll see the
-            // application has a blue toolbar. Then, without quitting the app, try
-            // changing the primarySwatch below to Colors.green and then invoke
-            // "hot reload" (press "r" in the console where you ran "flutter run",
-            // or simply save your changes to "hot reload" in a Flutter IDE).
-            // Notice that the counter didn't reset back to zero; the application
-            // is not restarted.
             primarySwatch: Colors.blue,
           ),
         supportedLocales: [
@@ -135,6 +125,7 @@ class MyApp extends StatelessWidget {
           Locale("vi"),
           Locale("zh")
         ],
+
         localizationsDelegates: [
           CountryLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
@@ -144,6 +135,7 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+
 }
 
 class MyHomePage extends StatefulWidget {

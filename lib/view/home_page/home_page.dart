@@ -4,7 +4,10 @@ import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/peimary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/model/best_selling_product.dart';
+import 'package:classy_e_com_demo_test_ui_1/model/cart_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/main_home_bottom_app_bar_model.dart';
+import 'package:classy_e_com_demo_test_ui_1/model/sub_sub_categories_product_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/cart_page/cart_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/drawer_page/drawer_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/filter_page/filter_page.dart';
@@ -231,35 +234,49 @@ class _HomePageState extends State<HomePage> {
 
 class Search extends SearchDelegate{
 
-  final cities = [
-    'Berlin',
-    'Paris',
-    'Munich',
-    'Hamburg',
-    'London',
-  ];
 
-  final recentCities = [
-    'Berlin',
-    'Munich',
-    'London',
-  ];
+
+ final product=BestSellingProductModel();
+
+ @override
+  ThemeData appBarTheme(BuildContext context) {
+   assert(context != null);
+   final ThemeData theme = Theme.of(context);
+   final ColorScheme colorScheme = theme.colorScheme;
+   assert(theme != null);
+   return theme.copyWith(
+     appBarTheme: AppBarTheme(
+       brightness: colorScheme.brightness,
+       backgroundColor: colorScheme.brightness == Brightness.dark ? Colors.grey[900] : Colors.amber,
+       iconTheme: theme.primaryIconTheme.copyWith(color: Colors.black),
+       textTheme: theme.textTheme,
+     ),
+     inputDecorationTheme: searchFieldDecorationTheme ??
+         InputDecorationTheme(
+           hintStyle: searchFieldStyle ?? theme.inputDecorationTheme.hintStyle,
+           border: InputBorder.none,
+         ),
+   );
+  }
 
 
   @override
-  List<Widget>? buildActions(BuildContext context) {
+  List<Widget>? buildActions(BuildContext context)=> [
     IconButton(
       icon: Icon(Icons.clear),
       onPressed: () {
         if (query.isEmpty) {
           close(context, '');
-        } else {
+        }
+        else {
           query = '';
           showSuggestions(context);
         }
-      },
-    );
-  }
+        },
+    )
+  ];
+
+
 
   @override
   Widget? buildLeading(BuildContext context) {
@@ -269,63 +286,53 @@ class Search extends SearchDelegate{
     );
   }
 
+
+
   @override
-  Widget buildResults(BuildContext context) => Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.location_city, size: 120),
-          const SizedBox(height: 48),
-          Text(
-            query,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 64,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    );
+  Widget buildResults(BuildContext context) {
+    return ProductDetail();
+  }
+
+
 
   @override
   Widget buildSuggestions(BuildContext context) {
+    final list=product.getList;
     final suggestions = query.isEmpty
-        ? recentCities
-        : cities.where((city) {
-      final cityLower = city.toLowerCase();
+        ? product.getList
+        : list.where((product) {
+      final prodLower = product.productName!.toString().toLowerCase();
       final queryLower = query.toLowerCase();
 
-      return cityLower.startsWith(queryLower);
+      return prodLower.startsWith(queryLower);
     }).toList();
 
     return buildSuggestionsSuccess(suggestions);
   }
 
-  Widget buildSuggestionsSuccess(List<String> suggestions) => ListView.builder(
+
+
+
+
+  Widget buildSuggestionsSuccess(List<BestSellingProductModel> suggestions) => ListView.builder(
     itemCount: suggestions.length,
     itemBuilder: (context, index) {
-      final suggestion = suggestions[index];
+      final suggestion = suggestions[index].productName.toString();
       final queryText = suggestion.substring(0, query.length);
       final remainingText = suggestion.substring(query.length);
 
       return ListTile(
         onTap: () {
           query = suggestion;
-
-          // 1. Show Results
+          final view = Provider.of<ProductDetailController>(context, listen: false);
+          view.setProductData(
+            suggestions[index].imageUrl.toString(),
+            suggestions[index].productName.toString(),
+            suggestions[index].productPrice.toString(),
+          );
           showResults(context);
 
-          // 2. Close Search & Return Result
-          // close(context, suggestion);
 
-          // 3. Navigate to Result Page
-          //  Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (BuildContext context) => ResultPage(suggestion),
-          //   ),
-          // );
         },
         leading: Icon(Icons.location_city),
         // title: Text(suggestion),

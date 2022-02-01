@@ -68,7 +68,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                             color: Colors.green,
                             image: DecorationImage(
                                 image: AssetImage(selected.productImageUrl.toString()),
-                                fit: BoxFit.cover),
+                                fit: BoxFit.contain),
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(20),
                               bottomLeft: Radius.circular(20),
@@ -643,7 +643,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
               Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: Container(
-                  height: 70,
+                  height: 60,
                   width: MediaQuery.of(context).size.width,
                   child: AppBar(
                     elevation: 0,

@@ -43,4 +43,7 @@ class BestSellingProductModel {
       productRating: "4.5",
     ),
   ];
+  List<BestSellingProductModel> get getList{
+    return [...list];
+  }
 }

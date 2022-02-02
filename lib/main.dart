@@ -12,6 +12,7 @@ import 'package:country_code_picker/country_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:dcdg/dcdg.dart';
 //from mostofa
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
             // Notice that the counter didn't reset back to zero; the application
             // is not restarted.
             primarySwatch: Colors.blue,
+            fontFamily: GoogleFonts.robotoSlab().fontFamily
           ),
         supportedLocales: [
           Locale("af"),

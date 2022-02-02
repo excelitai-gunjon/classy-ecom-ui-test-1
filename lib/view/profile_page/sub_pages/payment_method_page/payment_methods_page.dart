@@ -74,14 +74,13 @@ class _PaymentMethodState extends State<PaymentMethod> {
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 18,
-                fontFamily: 'Roboto-Regular.ttf'
             ),
           ),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 25),
@@ -93,7 +92,6 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
-                        fontFamily: 'Roboto-Regular.ttf'
                     ),
                   ),
                   IconButton(
@@ -147,7 +145,6 @@ class _PaymentMethodState extends State<PaymentMethod> {
                           color: Colors.grey,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          fontFamily: 'Roboto-Regular.ttf'
                       ),
                     ),
                     SizedBox(height: 20,),
@@ -156,7 +153,6 @@ class _PaymentMethodState extends State<PaymentMethod> {
                           color: Colors.grey,
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
-                          fontFamily: 'Roboto-Regular.ttf'
                       ),
                     ),
                   ],
@@ -177,7 +173,6 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         color: Colors.black38,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
-                        fontFamily: 'Roboto-Regular.ttf'
                     ),
                   ),
                   SizedBox(width: 20),
@@ -197,7 +192,6 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         color: Colors.grey,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'Roboto-Regular.ttf'
                     ),
                   ),
                 ],
@@ -286,7 +280,6 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
-                        fontFamily: 'Roboto-Regular.ttf'
                     ),
                   ),
                   Text("\$45000.0",
@@ -294,40 +287,32 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
-                        fontFamily: 'Roboto-Regular.ttf'
                     ),
                   ),
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 50),
-              child: SizedBox(
-                width: 200,
-                child: Column(
+            SizedBox(height: 30,),
+            SizedBox(
+              width: 200,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.orange,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) =>OrderAccepted()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.orange,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) =>OrderAccepted()));
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Place Order",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22,
-                                fontFamily: 'Roboto-Regular.ttf'
-                            ),
-                          ),
-                        ],
+                    Text("Place Order",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
                       ),
                     ),
                   ],

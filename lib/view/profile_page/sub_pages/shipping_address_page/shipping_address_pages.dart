@@ -42,14 +42,13 @@ class _ShippingAddressState extends State<ShippingAddress> {
           style: TextStyle(
               color: Colors.black,
               fontSize: 18,
-              fontFamily: 'Roboto-Regular.ttf'
           ),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: SingleChildScrollView(
-          physics: NeverScrollableScrollPhysics(),
+          //physics: NeverScrollableScrollPhysics(),
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -58,7 +57,6 @@ class _ShippingAddressState extends State<ShippingAddress> {
                       fontSize: 18,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'Roboto-Regular.ttf'
                   ),
                 ),
                 SizedBox(height: 10,),
@@ -66,7 +64,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
                   children: [
                     Icon(Icons.radio_button_checked, color: Colors.orange,),
                     SizedBox(
-                      width: 280,
+                      width: 305,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -80,8 +78,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
                         child: Text("17/A, Ranking street, Wari, Dahaka-1203",
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 12,
-                              fontFamily: 'Roboto-Regular.ttf'
+                              fontSize: 14,
                           ),
                         ),
                       ),
@@ -93,7 +90,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
                   children: [
                     Icon(Icons.radio_button_off, color: Colors.black,),
                     SizedBox(
-                      width: 280,
+                      width: 305,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -107,8 +104,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
                         child: Text("12/DHA, Hisbullah road, Mirpur, Dahaka-1216",
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 12,
-                              fontFamily: 'Roboto-Regular.ttf'
+                              fontSize: 14,
                           ),
                         ),
                       ),
@@ -160,13 +156,12 @@ class _ShippingAddressState extends State<ShippingAddress> {
                         text: TextSpan(children: <TextSpan>[
                           TextSpan(
                               text: "Order No: ",
-                              style: TextStyle(color: Colors.black, fontFamily: 'Roboto-Regular.ttf')),
+                              style: TextStyle(color: Colors.black)),
                           TextSpan(
                             text: "7597",
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontWeight: FontWeight.bold,
-                                fontFamily: 'Roboto-Regular.ttf'
                             ),
                           ),
                         ],
@@ -177,13 +172,12 @@ class _ShippingAddressState extends State<ShippingAddress> {
                         text: TextSpan(children: <TextSpan>[
                           TextSpan(
                               text: "Price: ",
-                              style: TextStyle(color: Colors.black, fontFamily: 'Roboto-Regular.ttf')),
+                              style: TextStyle(color: Colors.black)),
                           TextSpan(
                             text: "TK2103",
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontWeight: FontWeight.bold,
-                                fontFamily: 'Roboto-Regular.ttf'
                             ),
                           ),
                         ],
@@ -218,10 +212,10 @@ class _ShippingAddressState extends State<ShippingAddress> {
                                   text: TextSpan(children: <TextSpan>[
                                     TextSpan(
                                         text: "Your delivery time \n",
-                                        style: TextStyle(color: Colors.grey, fontFamily: 'Roboto-Regular.ttf')),
+                                        style: TextStyle(color: Colors.grey)),
                                     TextSpan(
                                         text: "30 Minutes ",
-                                        style: TextStyle(color: Colors.black, fontFamily: 'Roboto-Regular.ttf')),
+                                        style: TextStyle(color: Colors.black)),
                                   ],
                                   ),
                                 ),

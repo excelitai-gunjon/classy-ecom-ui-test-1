@@ -49,34 +49,62 @@ class OrderStatus extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const Center(
-                child: Text(
-                  'Invoice: 25AK367',
-                  style: TextStyle(
-                      color: Colors.orange
+
+            SizedBox(height: 20,),
+
+
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      Center(
+                        child: Text(
+                          'Estimated time'
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          '40 minutes',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                )
+                ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Center(
+                        child: Text(
+                            'Order number'
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          '#4563127',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
+
 
             const SizedBox(height: 20,),
-
-            SizedBox(
-              height: MediaQuery.of(context).size.height*.3,
-              width: MediaQuery.of(context).size.width*.6,
-              // decoration: BoxDecoration(
-              //   border: Border.all(
-              //     color: Colors.black,
-              //     width: .5
-              //   )
-              // ),
-              child: Image.asset('assets/images/order_status.png'),
-            ),
+            Divider(thickness: 2,),
 
             const SizedBox(height: 10,),
 
-            SizedBox(
-              height: MediaQuery.of(context).size.height*.4,
-              width: MediaQuery.of(context).size.width*.75,
+            Container(
+              height: MediaQuery.of(context).size.height*.6,
+              width: MediaQuery.of(context).size.width*.95,
               // decoration: BoxDecoration(
               //     border: Border.all(
               //         color: Colors.black,
@@ -86,12 +114,14 @@ class OrderStatus extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
+                    flex: 1,
                       child: Column(
                         //crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Icon(Icons.watch_later_outlined, color: Color(0xFFFF6000),),
+                          SizedBox(height: 10,),
+                          const Icon(Icons.circle, color: Colors.green, size: 13,),
                           DottedBorder(
-                              color: const Color(0xFFFF6000),
+                              color: Colors.black,
                               customPath: (size)=> customPath,
                               strokeWidth: 1,
                               strokeCap: StrokeCap.round,
@@ -99,12 +129,12 @@ class OrderStatus extends StatelessWidget {
                               dashPattern: const [2,2],
                               child: const SizedBox(
                                 width: 0,
-                                height: 70,
+                                height: 60,
                               )
                           ),
-                          const Icon(Icons.car_rental_outlined, color: Color(0xFFFF6000)),
+                          const Icon(Icons.circle, color: Colors.green, size: 13,),
                           DottedBorder(
-                              color: const Color(0xFFFF6000),
+                              color: Colors.black,
                               customPath: (size)=> customPath,
                               strokeWidth: 1,
                               strokeCap: StrokeCap.round,
@@ -112,73 +142,226 @@ class OrderStatus extends StatelessWidget {
                               dashPattern: const [2,2],
                               child: const SizedBox(
                                 width: 0,
-                                height: 70,
+                                height: 60,
                               )
                           ),
-                          const Icon(Icons.card_giftcard_outlined, color: Color(0xFFFF6000))
+                          const Icon(Icons.circle, color: Color(0xFFFF6000), size: 13,),
+                          DottedBorder(
+                              color: Colors.black,
+                              customPath: (size)=> customPath,
+                              strokeWidth: 1,
+                              strokeCap: StrokeCap.round,
+                              borderType: BorderType.Rect,
+                              dashPattern: const [2,2],
+                              child: const SizedBox(
+                                width: 0,
+                                height: 60,
+                              )
+                          ),
+                          const Icon(Icons.circle, color: Color(0xFFFF6000), size: 13,),
+                          DottedBorder(
+                              color: Colors.black,
+                              customPath: (size)=> customPath,
+                              strokeWidth: 1,
+                              strokeCap: StrokeCap.round,
+                              borderType: BorderType.Rect,
+                              dashPattern: const [2,2],
+                              child: const SizedBox(
+                                width: 0,
+                                height: 60,
+                              )
+                          ),
+                          const Icon(Icons.circle, color: Color(0xFFFF6000), size: 13,),
+                          DottedBorder(
+                              color: Colors.black,
+                              customPath: (size)=> customPath,
+                              strokeWidth: 1,
+                              strokeCap: StrokeCap.round,
+                              borderType: BorderType.Rect,
+                              dashPattern: const [2,2],
+                              child: const SizedBox(
+                                width: 0,
+                                height: 60,
+                              )
+                          ),
+                          const Icon(Icons.circle, color: Color(0xFFFF6000), size: 13,)
                         ],
                       )
                   ),
                   Expanded(
-                      flex: 3,
+                      flex: 7,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text('Order received'),
-                          const Text('2.05 pm, 11 may 2021', style: TextStyle(color: Colors.grey),),
-                          const SizedBox(height: 55,),
-                          const Text('On the way'),
-                          const Text('2.05 pm, 11 may 2021', style: TextStyle(color: Colors.grey),),
-                          const SizedBox(height: 10,),
-                          SizedBox(
-                            height: 20,
-                            width: 105,
-                            child: ElevatedButton(
-                              onPressed: (){
-                                //OrderTrackPage
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => OrderTrackPage()));
-                              },
-                              child: Row(
-                                children: const [
-                                  Text('Tracking', style: TextStyle(color: Colors.white70),),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 5),
-                                    child: Icon(
-                                      Icons.circle,
-                                      size: 10,
-                                      color: Colors.white,
-                                    ),
-                                  )
-                                ],
+
+
+                          Row(
+                            children: [
+                              Expanded(child: Icon(Icons.file_copy_outlined)),
+                              Expanded(
+                                flex: 4,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text('Order Placed'),
+                                    const Text('We have received your order', style: TextStyle(color: Colors.grey),),
+                                  ],
+                                ),
                               ),
-                              style: ElevatedButton.styleFrom(
-                                  primary: const Color(0xFFFF6000),
-                                  onPrimary: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  side: const BorderSide(width: 1, color: Color(0xFFFF6000))
+                              Expanded(
+                                  flex: 1,
+                                  child: Text('2.30 PM')
                               ),
-                            ),
+                            ],
+                          ),
+
+                          const SizedBox(height: 40,),
+                          Row(
+                            children: [
+                              Expanded(child: Icon(Icons.check)),
+                              Expanded(
+                                flex: 4,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text('Order Confirmed'),
+                                    const Text('Your order has been confirmed', style: TextStyle(color: Colors.grey),),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                  flex: 1,
+                                  child: Text('2.30 PM')
+                              ),
+                            ],
+                          ),
+                          // SizedBox(
+                          //   height: 20,
+                          //   width: 110,
+                          //   child: ElevatedButton(
+                          //     onPressed: (){
+                          //       //OrderTrackPage
+                          //       Navigator.push(context, MaterialPageRoute(builder: (context) => OrderTrackPage()));
+                          //     },
+                          //     child: Row(
+                          //       children: const [
+                          //         Text('Tracking', style: TextStyle(color: Colors.white70),),
+                          //         Padding(
+                          //           padding: EdgeInsets.only(left: 5),
+                          //           child: Icon(
+                          //             Icons.circle,
+                          //             size: 10,
+                          //             color: Colors.white,
+                          //           ),
+                          //         )
+                          //       ],
+                          //     ),
+                          //     style: ElevatedButton.styleFrom(
+                          //         primary: const Color(0xFFFF6000),
+                          //         onPrimary: Colors.white,
+                          //         shape: RoundedRectangleBorder(
+                          //           borderRadius: BorderRadius.circular(5),
+                          //         ),
+                          //         side: const BorderSide(width: 1, color: Color(0xFFFF6000))
+                          //     ),
+                          //   ),
+                          // ),
+                          const SizedBox(height: 40,),
+                          Row(
+                            children: [
+                              Expanded(child: Icon(Icons.settings_backup_restore)),
+                              Expanded(
+                                flex: 4,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text('Order processed'),
+                                    const Text('We are preparing your order', style: TextStyle(color: Colors.grey),),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                  flex: 1,
+                                  child: Text('2.30 PM')
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 40,),
-                          const Text('Deliverd'),
-                          const Text('Finish time in 10 mins', style: TextStyle(color: Colors.grey),),
+                          Row(
+                            children: [
+                              Expanded(child: Icon(Icons.car_rental)),
+                              Expanded(
+                                flex: 4,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text('Ready to pickup'),
+                                    const Text('Your order is ready to pickup', style: TextStyle(color: Colors.grey),),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                  flex: 1,
+                                  child: Text('2.30 PM')
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 40,),
+                          Row(
+                            children: [
+                              Expanded(child: Icon(Icons.attach_money)),
+                              Expanded(
+                                flex: 4,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text('Payment confirmed'),
+                                    const Text('Awaiting confirmation', style: TextStyle(color: Colors.grey),),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                  flex: 1,
+                                  child: Text('2.30 PM')
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 40,),
+                          Row(
+                            children: [
+                              Expanded(child: Icon(Icons.check_box)),
+                              Expanded(
+                                flex: 4,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text('Delivered'),
+                                    const Text('Successfully delivered', style: TextStyle(color: Colors.grey),),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                  flex: 1,
+                                  child: Text('2.30 PM')
+                              ),
+                            ],
+                          ),
                         ],
                       )
                   ),
+
                 ],
               ),
             ),
 
             SizedBox(
-              height: 25,
+              height: 35,
               width: 170,
               child: ElevatedButton(
                 onPressed: (){
                   //Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
-                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                      HomePage()), (Route<dynamic> route) => false);
+                  // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                  //     HomePage()), (Route<dynamic> route) => false);
                 },
                 child: const Text('Back to Shopping', style: TextStyle(color: Colors.white70),),
                 style: ElevatedButton.styleFrom(

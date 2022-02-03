@@ -907,7 +907,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
 
               Container(
                 width: MediaQuery.of(context).size.width,
-                height: 455,
+                height: 460,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(

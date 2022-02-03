@@ -103,7 +103,7 @@ class OrderStatus extends StatelessWidget {
             const SizedBox(height: 10,),
 
             Container(
-              height: MediaQuery.of(context).size.height*.6,
+              height: 500,
               width: MediaQuery.of(context).size.width*.95,
               // decoration: BoxDecoration(
               //     border: Border.all(

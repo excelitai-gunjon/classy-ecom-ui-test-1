@@ -4,6 +4,7 @@ import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButtonByGunjon extends StatelessWidget {
   CustomButtonByGunjon({
@@ -102,14 +103,14 @@ class CustomButtonByGunjon extends StatelessWidget {
                       Icon(
                         leadingIcon, //Icons.shopping_bag,
                         color: Color(0xffFF6000),
-                        size: 20,
+                        size: 20.h,
                       ),
                       SizedBox(
-                        width: 5,
+                        width: 10.w,
                       ),
                       Text(
                         title!, //"My Order",
-                        style: TextStyle(fontSize: 15, color: Colors.black),
+                        style: TextStyle(fontSize: 15.sp, color: Colors.black),
                       ),
                     ],
                   ),

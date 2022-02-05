@@ -2,6 +2,7 @@ import 'package:classy_e_com_demo_test_ui_1/view/profile_page/component/profile_
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
@@ -33,7 +34,9 @@ class Profile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Excel IT AI"),
+                      Text("Excel IT AI",
+                        style: TextStyle(fontSize: 16.sp),
+                      ),
                       Row(
                         //crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -41,14 +44,20 @@ class Profile extends StatelessWidget {
                           Icon(
                             Icons.phone_android_outlined,
                           ),
-                          Text("+88018234521323"),
+                          SizedBox(width: 3.w,),
+                          Text("+88018234521323",
+                            style: TextStyle(fontSize: 14.sp),
+                          ),
                         ],
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Icon(Icons.email),
-                          Text("info@excelitai.com"),
+                          SizedBox(width: 3.w,),
+                          Text("info@excelitai.com",
+                            style: TextStyle(fontSize: 14.sp),
+                          ),
                         ],
                       )
                     ],
@@ -61,7 +70,7 @@ class Profile extends StatelessWidget {
               ),
             ),
             CustomButtonByGunjon(
-              buttonHeight: 60,
+              buttonHeight: 70,
               buttonWidth: MediaQuery.of(context).size.width,
               leadingIcon: Icons.shopping_bag_outlined,
               trailingIcon: Icons.arrow_forward_ios_outlined,
@@ -70,7 +79,7 @@ class Profile extends StatelessWidget {
               paddingBottom: 10,
             ),
             CustomButtonByGunjon(
-              buttonHeight: 60,
+              buttonHeight: 70,
               buttonWidth: MediaQuery.of(context).size.width,
               leadingIcon: Icons.favorite_border_outlined,
               trailingIcon: Icons.arrow_forward_ios_outlined,
@@ -79,7 +88,7 @@ class Profile extends StatelessWidget {
               paddingBottom: 10,
             ),
             CustomButtonByGunjon(
-              buttonHeight: 60,
+              buttonHeight: 70,
               buttonWidth: MediaQuery.of(context).size.width,
               leadingIcon: Icons.check_box_outlined,
               trailingIcon: Icons.arrow_forward_ios_outlined,
@@ -88,7 +97,7 @@ class Profile extends StatelessWidget {
               paddingBottom: 10,
             ),
             CustomButtonByGunjon(
-              buttonHeight: 60,
+              buttonHeight: 70,
               buttonWidth: MediaQuery.of(context).size.width,
               leadingIcon: FontAwesomeIcons.fileInvoice,
               trailingIcon: Icons.arrow_forward_ios_outlined,
@@ -97,7 +106,7 @@ class Profile extends StatelessWidget {
               paddingBottom: 10,
             ),
             CustomButtonByGunjon(
-              buttonHeight: 60,
+              buttonHeight: 70,
               buttonWidth: MediaQuery.of(context).size.width,
               leadingIcon: Icons.local_shipping_outlined,
               trailingIcon: Icons.arrow_forward_ios_outlined,
@@ -106,7 +115,7 @@ class Profile extends StatelessWidget {
               paddingBottom: 10,
             ),
             CustomButtonByGunjon(
-              buttonHeight: 60,
+              buttonHeight: 70,
               buttonWidth: MediaQuery.of(context).size.width,
               leadingIcon: Icons.payments_outlined,
               trailingIcon: Icons.arrow_forward_ios_outlined,
@@ -115,7 +124,7 @@ class Profile extends StatelessWidget {
               paddingBottom: 10,
             ),
             CustomButtonByGunjon(
-              buttonHeight: 60,
+              buttonHeight: 70,
               buttonWidth: MediaQuery.of(context).size.width,
               leadingIcon: Icons.live_help_outlined,
               trailingIcon: Icons.arrow_forward_ios_outlined,
@@ -124,7 +133,7 @@ class Profile extends StatelessWidget {
               paddingBottom: 10,
             ),
             CustomButtonByGunjon(
-              buttonHeight: 60,
+              buttonHeight: 70,
               buttonWidth: MediaQuery.of(context).size.width,
               leadingIcon: FontAwesomeIcons.addressCard,
               trailingIcon: Icons.arrow_forward_ios_outlined,
@@ -133,7 +142,7 @@ class Profile extends StatelessWidget {
               paddingBottom: 10,
             ),
             CustomButtonByGunjon(
-              buttonHeight: 60,
+              buttonHeight: 70,
               buttonWidth: MediaQuery.of(context).size.width,
               leadingIcon: Icons.account_circle_outlined,
               trailingIcon: Icons.logout,

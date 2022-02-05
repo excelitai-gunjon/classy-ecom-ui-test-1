@@ -5,6 +5,7 @@ import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/edit_add
 import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/payment_method_page/payment_methods_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 //import '../main.dart';
 
@@ -38,15 +39,17 @@ class _ShippingAddressState extends State<ShippingAddress> {
             color: Colors.black,
           ),
         ),
-        title: Text("Shipping Address",
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
+        title: Center(
+          child: Text("Shipping Address",
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 17.sp,
+            ),
           ),
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: SingleChildScrollView(
           //physics: NeverScrollableScrollPhysics(),
           child: Column(
@@ -54,17 +57,18 @@ class _ShippingAddressState extends State<ShippingAddress> {
               children: [
                 Text("Choose Location",
                   style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 16.sp,
                       color: Colors.black,
-                      fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height: 10.h,),
                 Row(
                   children: [
                     Icon(Icons.radio_button_checked, color: Colors.orange,),
+                    SizedBox(width: 5.w,),
                     SizedBox(
-                      width: 305,
+                      width: MediaQuery.of(context).size.width*.8,
+                      height: 55,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -78,7 +82,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
                         child: Text("17/A, Ranking street, Wari, Dahaka-1203",
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 14,
+                              fontSize: 15.sp,
                           ),
                         ),
                       ),
@@ -88,9 +92,11 @@ class _ShippingAddressState extends State<ShippingAddress> {
                 SizedBox(height: 10,),
                 Row(
                   children: [
-                    Icon(Icons.radio_button_off, color: Colors.black,),
+                    Icon(Icons.radio_button_checked, color: Colors.orange,),
+                    SizedBox(width: 5.w,),
                     SizedBox(
-                      width: 305,
+                      width: MediaQuery.of(context).size.width*.8,
+                      height: 55,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -99,12 +105,12 @@ class _ShippingAddressState extends State<ShippingAddress> {
                           ),
                         ),
                         onPressed: (){
-                          //Navigator.push(context, MaterialPageRoute(builder: (context) =>MapSample()));
+                          //Navigator.push(context, MaterialPageRoute(builder: (context) =>PaymentMethod()));
                         },
-                        child: Text("12/DHA, Hisbullah road, Mirpur, Dahaka-1216",
+                        child: Text("17/A, Ranking street, Wari, Dahaka-1203",
                           style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 14,
+                            color: Colors.black,
+                            fontSize: 15.sp,
                           ),
                         ),
                       ),
@@ -143,7 +149,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
                 SizedBox(height: 10,),
                 Container(
                   height: 50,
-                  width: 300,
+                  width: MediaQuery.of(context).size.width*.8,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: new BorderRadius.circular(15.0),
@@ -156,12 +162,14 @@ class _ShippingAddressState extends State<ShippingAddress> {
                         text: TextSpan(children: <TextSpan>[
                           TextSpan(
                               text: "Order No: ",
-                              style: TextStyle(color: Colors.black)),
+                              style: TextStyle(color: Colors.black, fontSize: 15.sp)
+                          ),
                           TextSpan(
                             text: "7597",
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontWeight: FontWeight.bold,
+                                fontSize: 14.sp
                             ),
                           ),
                         ],
@@ -172,12 +180,12 @@ class _ShippingAddressState extends State<ShippingAddress> {
                         text: TextSpan(children: <TextSpan>[
                           TextSpan(
                               text: "Price: ",
-                              style: TextStyle(color: Colors.black)),
+                              style: TextStyle(color: Colors.black,fontSize: 15.sp)),
                           TextSpan(
                             text: "TK2103",
                             style: TextStyle(
                                 color: Colors.grey,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.bold,fontSize: 14.sp
                             ),
                           ),
                         ],
@@ -191,7 +199,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
                   children: [
                     SizedBox(
                       height: 80,
-                      width: 300,
+                      width: MediaQuery.of(context).size.width*.85,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -212,10 +220,10 @@ class _ShippingAddressState extends State<ShippingAddress> {
                                   text: TextSpan(children: <TextSpan>[
                                     TextSpan(
                                         text: "Your delivery time \n",
-                                        style: TextStyle(color: Colors.grey)),
+                                        style: TextStyle(color: Colors.grey,fontSize: 16.sp)),
                                     TextSpan(
                                         text: "30 Minutes ",
-                                        style: TextStyle(color: Colors.black)),
+                                        style: TextStyle(color: Colors.black,fontSize: 14.sp)),
                                   ],
                                   ),
                                 ),
@@ -232,7 +240,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
                   children: [
                     SizedBox(
                       height: 80,
-                      width: 300,
+                      width: MediaQuery.of(context).size.width*.85,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
@@ -255,10 +263,10 @@ class _ShippingAddressState extends State<ShippingAddress> {
                                   text: TextSpan(children: <TextSpan>[
                                     TextSpan(
                                         text: "Your delivery Address \n",
-                                        style: TextStyle(color: Colors.grey)),
+                                        style: TextStyle(color: Colors.grey,fontSize: 16.sp)),
                                     TextSpan(
                                         text: "30 Minutes ",
-                                        style: TextStyle(color: Colors.black)),
+                                        style: TextStyle(color: Colors.black,fontSize: 14.sp)),
                                   ],
                                   ),
                                 ),
@@ -271,47 +279,42 @@ class _ShippingAddressState extends State<ShippingAddress> {
                   ],
                 ),
                 SizedBox(height: 30,),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        height: 50,
-                        width: 250,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.orange,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                          ),
-                          onPressed: (){
-                            //Navigator.push(context, MaterialPageRoute(builder: (context) =>Payment()));
-                            Navigator.push(context, MaterialPageRoute(builder: (context) =>PaymentMethod()));
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("Complete Order",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 22,
-                                ),
-                              )
-                            ],
-                          ),
+                Center(
+                  child: SizedBox(
+                    height: 45,
+                    width: 250.w,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.orange,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
                       ),
-                    ],
+                      onPressed: (){
+                        //Navigator.push(context, MaterialPageRoute(builder: (context) =>Payment()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) =>PaymentMethod()));
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("Complete Order",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.sp,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(height: 20,),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.check_box,
                       color: Colors.orange,
-                      size: 14,
+                      size: 18,
                     ),
                     SizedBox(width: 5,),
                     Text("Please pay your bill at cash on delivery",
@@ -321,6 +324,8 @@ class _ShippingAddressState extends State<ShippingAddress> {
                     ),
                   ],
                 ),
+
+                SizedBox(height: 20,),
               ]
           ),
         ),

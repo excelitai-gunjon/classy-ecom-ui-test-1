@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'component/colors.dart';
 import 'component/txt.dart';
 import 'component/url.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ComplexDrawer extends StatefulWidget {
   const ComplexDrawer({Key? key}) : super(key: key);
@@ -89,6 +90,7 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
                       title: Txt(
                         text: cdm.title,
                         color: Colors.black,
+                        fontSize: 15.sp,
                       ),
                       trailing: cdm.submenus!.isEmpty
                           ? null
@@ -121,7 +123,7 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
         title: Center(
           child: Txt(
             text: "Fashion",
-            fontSize: 18,
+            fontSize: 18.sp,
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
@@ -147,6 +149,9 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
               children: [
                 Text(
                   "Coupons",
+                  style: TextStyle(
+                    fontSize: 16.sp
+                  ),
                 ),
                 Container(
                   height: 20,
@@ -176,6 +181,9 @@ class _ComplexDrawerState extends State<ComplexDrawer> {
               children: [
                 Text(
                   "Others",
+                style: TextStyle(
+                fontSize: 16.sp
+            ),
                 ),
                 Container(
                   height: 20,

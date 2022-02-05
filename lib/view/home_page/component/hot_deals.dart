@@ -10,6 +10,7 @@ import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/hot_deal_di
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HotDeals extends StatefulWidget {
   const HotDeals({Key? key}) : super(key: key);
@@ -550,7 +551,7 @@ class _HotDealsState extends State<HotDeals>
                                 //icon: Icon(Icons.directions_bike),
                                 child: Text(
                                   "Latest Products",
-                                  style: TextStyle(fontSize: 10),
+                                  style: TextStyle(fontSize: 10.sp),
                                 ),
                               ),
                               Tab(
@@ -559,7 +560,7 @@ class _HotDealsState extends State<HotDeals>
                                 // ),
                                 child: Text(
                                   "Top Rated",
-                                  style: TextStyle(fontSize: 10),
+                                  style: TextStyle(fontSize: 10.sp),
                                 ),
                               ),
                             ],

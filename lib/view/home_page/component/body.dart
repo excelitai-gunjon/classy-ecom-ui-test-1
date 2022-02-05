@@ -23,6 +23,7 @@ import 'package:provider/provider.dart';
 import '../../../main.dart';
 import 'hot_deals.dart';
 import 'best_selling_banner.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -56,14 +57,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       child: Column(
         children: [
           SizedBox(
-            height: 20,
+            height: 20.h,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Top Categories"),
+                Text("Top Categories", style: TextStyle(fontSize: 16.sp),),
                 GestureDetector(
                   onTap: (){
                     final appBar =
@@ -73,13 +74,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         listen: false);
                     view.setSecondaryPage(1);
                   },
-                  child: Text("View All"),
+                  child: Text("View All", style: TextStyle(fontSize: 13.sp)),
                 ),
               ],
             ),
           ),
           SizedBox(
-            height: 10,
+            height: 10.h,
           ),
           TopCategoryListviewBuilder(),
           ImageSlideShowCustom(),
@@ -98,7 +99,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ///
           ///
           SizedBox(
-            height: 20,
+            height: 20.h,
           ),
 
           ///
@@ -115,7 +116,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ///
           ///
           SizedBox(
-            height: 50,
+            height: 40.h,
           ),
 
           ///
@@ -133,7 +134,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     image: AssetImage("images/offers.png"), fit: BoxFit.fill)),
           ),
           SizedBox(
-            height: 20,
+            height: 30.h,
           ),
 
           ///
@@ -145,7 +146,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ///
           BestSellingBanner(),
           SizedBox(
-            height: 30,
+            height: 20.h,
           ),
 
           ///
@@ -164,7 +165,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ///
           ///
           SizedBox(
-            height: 20,
+            height: 20.h,
           ),
           HotDeals(),
 

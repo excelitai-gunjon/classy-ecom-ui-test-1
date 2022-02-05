@@ -5,6 +5,7 @@ import 'package:classy_e_com_demo_test_ui_1/model/most_popular_product_model.dar
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MostPopullerListViewBuilder extends StatelessWidget {
   const MostPopullerListViewBuilder({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class MostPopullerListViewBuilder extends StatelessWidget {
       child: ListView.separated(
         separatorBuilder: (context, index) {
           return SizedBox(
-            width: 3,
+            width: 5.w,
           );
         },
         shrinkWrap: true,
@@ -113,11 +114,15 @@ class MostPopullerListViewBuilder extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Text(product.productName.toString()),
+                            Text(product.productName.toString(),
+                              style: TextStyle(fontSize: 14.sp),
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("\$" + product.productPrice.toString()),
+                                Text("\$" + product.productPrice.toString(),
+                                    style: TextStyle(fontSize: 13.sp)
+                                ),
                                 Container(
                                   height: 20,
                                   width: 20,

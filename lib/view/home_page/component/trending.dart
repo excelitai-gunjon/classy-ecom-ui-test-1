@@ -4,6 +4,7 @@ import 'package:classy_e_com_demo_test_ui_1/model/trending_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Trending extends StatelessWidget {
   const Trending({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class Trending extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8.0),
+      padding: EdgeInsets.only(left: 8.w),
       child: Column(
         children: [
           Row(
@@ -20,7 +21,7 @@ class Trending extends StatelessWidget {
               Text(
                 "Trending",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 20.sp,
                 ),
               ),
               TextButton(
@@ -42,7 +43,7 @@ class Trending extends StatelessWidget {
               shrinkWrap: false,
               separatorBuilder: (context, index) {
                 return SizedBox(
-                  height: 10,
+                  height: 10.h,
                 );
               },
               itemCount: TrendingModel.list.length,
@@ -116,8 +117,12 @@ class Trending extends StatelessWidget {
                                 mainAxisAlignment:
                                 MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(item.productName.toString()),
-                                  Text(item.productDetail.toString()),
+                                  Text(item.productName.toString(),
+                                    style: TextStyle(fontSize: 16.sp),
+                                  ),
+                                  Text(item.productDetail.toString(),
+                                    style: TextStyle(fontSize: 13.sp),
+                                  ),
                                   Row(
                                     children: [
                                       Text("\$ ",style: TextStyle(color: Color(0xffFF6000)),),

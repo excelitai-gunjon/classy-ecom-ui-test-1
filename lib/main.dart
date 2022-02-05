@@ -46,7 +46,9 @@ class MyApp extends StatelessWidget {
         //SubSubProductsModel
       ],
       child: ScreenUtilInit(
-        designSize: const Size(1080, 2160),
+        designSize: const Size(360, 640),
+        minTextAdapt: true,
+        splitScreenMode: true,
         builder: ()=> MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
@@ -61,7 +63,7 @@ class MyApp extends StatelessWidget {
               // Notice that the counter didn't reset back to zero; the application
               // is not restarted.
               primarySwatch: Colors.blue,
-              fontFamily: GoogleFonts.robotoSlab().fontFamily
+              fontFamily: GoogleFonts.robotoSlab().fontFamily,
             ),
           supportedLocales: [
             Locale("af"),

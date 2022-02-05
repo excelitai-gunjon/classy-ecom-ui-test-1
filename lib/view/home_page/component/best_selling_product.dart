@@ -6,6 +6,7 @@ import 'package:classy_e_com_demo_test_ui_1/view/product_details/pop_up_product_
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BestSellingProduct extends StatelessWidget {
   const BestSellingProduct({Key? key}) : super(key: key);
@@ -17,15 +18,15 @@ class BestSellingProduct extends StatelessWidget {
       height: 470,
       width: double.infinity,
       child: GridView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: false,
         itemCount: BestSellingProductModel.list.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 10,
+          crossAxisSpacing: 15,
           childAspectRatio: 3 / 2,
-          mainAxisSpacing: 10,
+          mainAxisSpacing: 15,
           mainAxisExtent: 220,
         ),
         itemBuilder: (BuildContext context, i) {
@@ -75,7 +76,7 @@ class BestSellingProduct extends StatelessWidget {
                     children: [
                       Container(
                         width: double.infinity,
-                        height: 100,
+                        height: 110.h,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                               image: AssetImage(product.imageUrl.toString()),
@@ -173,8 +174,12 @@ class BestSellingProduct extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(product.productName.toString()),
-                            Text(product.productDetail.toString()),
+                            Text(product.productName.toString(),
+                              style: TextStyle(fontSize: 15.sp),
+                            ),
+                            Text(product.productDetail.toString(),
+                              style: TextStyle(fontSize: 12.sp),
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -183,8 +188,10 @@ class BestSellingProduct extends StatelessWidget {
                                     Text(
                                       "\$" + product.productPrice.toString(),
                                       style: TextStyle(
-                                          color: Color(0xffFF6000),
-                                          fontWeight: FontWeight.bold),
+                                        color: Color(0xffFF6000),
+                                        fontWeight: FontWeight.bold,
+                                          fontSize: 12.sp
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -214,7 +221,7 @@ class BestSellingProduct extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: SizedBox(
                       width: double.infinity,
-                      height: 100,
+                      height: 100.h,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MostPopullerHeadLine extends StatelessWidget {
   const MostPopullerHeadLine({Key? key}) : super(key: key);
@@ -9,11 +10,11 @@ class MostPopullerHeadLine extends StatelessWidget {
     return Align(
       alignment: Alignment.centerLeft,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
+        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 18.h),
         child: Text(
           "Most Popular",
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 20.sp,
             //fontWeight: FontWeight.bold,
             //color: Colors.black87,
           ),

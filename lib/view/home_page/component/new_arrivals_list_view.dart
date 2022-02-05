@@ -5,6 +5,7 @@ import 'package:classy_e_com_demo_test_ui_1/model/new_arrival_madel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NewArrivalsListView extends StatelessWidget {
   const NewArrivalsListView({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class NewArrivalsListView extends StatelessWidget {
       child: ListView.separated(
         separatorBuilder: (context, index) {
           return SizedBox(
-            width: 3,
+            width: 5.w,
           );
         },
         shrinkWrap: true,
@@ -88,8 +89,11 @@ class NewArrivalsListView extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(15),
                               ),
                             ),
-                            Text(product.productName.toString()),
-                            Text(product.productDetail.toString()),
+                            Text(product.productName.toString(),
+                              style: TextStyle(fontSize: 17.sp),
+                            ),
+                            Text(product.productDetail.toString(),
+                              style: TextStyle(fontSize: 14.sp),),
                             Row(
                               mainAxisAlignment:
                               MainAxisAlignment.spaceBetween,

@@ -1,6 +1,7 @@
 import 'package:classy_e_com_demo_test_ui_1/model/top_categories_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TopCategoryListviewBuilder extends StatelessWidget {
   const TopCategoryListviewBuilder({Key? key}) : super(key: key);
@@ -8,14 +9,14 @@ class TopCategoryListviewBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 90.h,
       width: MediaQuery.of(context).size.width,
       child: Padding(
-        padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
+        padding: EdgeInsets.only(left: 10.w, top: 10.h, bottom: 10.h),
         child: ListView.separated(
           separatorBuilder: (context, index) {
             return SizedBox(
-              width: 20,
+              width: 20.w,
             );
           },
           shrinkWrap: true,
@@ -52,7 +53,9 @@ class TopCategoryListviewBuilder extends StatelessWidget {
                 SizedBox(
                   height: 4,
                 ),
-                Center(child: Text(categoriData.categoriName.toString())),
+                Center(child: Text(categoriData.categoriName.toString(),
+                  style: TextStyle(fontSize: 14.sp),
+                )),
               ],
             );
           },

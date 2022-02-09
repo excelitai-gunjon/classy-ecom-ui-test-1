@@ -44,11 +44,11 @@ class CartModel with ChangeNotifier{
     list.removeAt(index);
     notifyListeners();
   }
-  void addCartList(){
+  void addCartList(String imgUrl, String prodName, String prodPrice){
     list.add(CartModel(
-      imageUrl: "images/ecom/men/jeans/j6.jpg",
-      productName: "Product 1",
-      productPrice: "23523",
+      imageUrl: imgUrl,
+      productName: prodName,
+      productPrice: prodPrice,
       count: 1,
     ),);
     notifyListeners();

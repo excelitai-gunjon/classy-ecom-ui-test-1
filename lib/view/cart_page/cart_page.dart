@@ -303,7 +303,7 @@ class _CartListState extends State<CartList> {
                   primary: Color(0xffFF6000),
                 ),
                 onPressed: () {//SplashScreen
-                  cartControll.addCartList();
+                  //cartControll.addCartList();
                   // Navigator.push(context,
                   //     MaterialPageRoute(builder: (Context) => SplashScreen()));
                 },

@@ -1,4 +1,5 @@
 import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/model/cart_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,7 @@ class AddToCardButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final prodDetails = Provider.of<ProductDetailController>(context);
+    final cartControll=Provider.of<CartModel>(context);
     return Column(
       children: [
         Container(
@@ -55,6 +57,13 @@ class AddToCardButton extends StatelessWidget {
               }
               if(prodDetails.sizeSelection >0){
                 prodDetails.removeError(error: 'Please Select Size');
+              }
+              if(prodDetails.colorSelection >0 && prodDetails.sizeSelection >0){
+                cartControll.addCartList(
+                    prodDetails.productImageUrl.toString(),
+                    prodDetails.productName.toString(),
+                    prodDetails.productPrice.toString()
+                );
               }
             },
             child: Row(

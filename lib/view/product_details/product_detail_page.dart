@@ -816,11 +816,11 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
 
 
                             Container(
-                              width: 200.w,
+                              width: 160.w,
                               height: 40,
                               child: ElevatedButton(
                                 onPressed: (){},
-                                child: Text('Submit your review'),
+                                child: Text('Submit'),
                                 style: ElevatedButton.styleFrom(
                                     primary: Colors.deepOrange,
                                     onPrimary: Colors.white,

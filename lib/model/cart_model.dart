@@ -45,12 +45,14 @@ class CartModel with ChangeNotifier{
     notifyListeners();
   }
   void addCartList(String imgUrl, String prodName, String prodPrice){
-    list.add(CartModel(
-      imageUrl: imgUrl,
-      productName: prodName,
-      productPrice: prodPrice,
-      count: 1,
-    ),);
+    list.add(
+      CartModel(
+        imageUrl: imgUrl,
+        productName: prodName,
+        productPrice: prodPrice,
+        count: 1,
+      ),
+    );
     notifyListeners();
   }
 

@@ -39,7 +39,8 @@ class _ShippingAddressState extends State<ShippingAddress> {
             color: Colors.black,
           ),
         ),
-        title: Center(
+        title: Padding(
+          padding: EdgeInsets.only(left: 35.w),
           child: Text("Shipping Address",
             style: TextStyle(
                 color: Colors.black,
@@ -89,7 +90,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
                     ),
                   ],
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height: 20,),
                 Row(
                   children: [
                     Icon(Icons.radio_button_checked, color: Colors.orange,),
@@ -117,7 +118,7 @@ class _ShippingAddressState extends State<ShippingAddress> {
                     ),
                   ],
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height: 20,),
                 GestureDetector(
                   onTap: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context) =>EditAddress()));
@@ -125,7 +126,12 @@ class _ShippingAddressState extends State<ShippingAddress> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(Icons.radio_button_off, color: Colors.black,),
+                      Column(
+                        children: [
+                          SizedBox(height: 20,),
+                          Icon(Icons.radio_button_checked, color: Colors.orange,),
+                        ],
+                      ),
                       Container(
                         height: 130,
                         width: 280,

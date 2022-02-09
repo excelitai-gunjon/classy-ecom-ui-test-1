@@ -8,6 +8,7 @@ import 'package:classy_e_com_demo_test_ui_1/view/product_details/component/size_
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductDetail extends StatefulWidget {
   ProductDetail({
@@ -48,7 +49,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
     final selected = Provider.of<ProductDetailController>(context);
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.only(left: 20.0),
+        padding: EdgeInsets.symmetric(horizontal: 15),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,12 +61,12 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                   //fit: StackFit.loose,
                   children: [
                     Align(
-                      alignment: Alignment.centerRight,
+                      alignment: Alignment.center,
                       child: Container(
                         height: MediaQuery.of(context).size.height,
-                        width: MediaQuery.of(context).size.width * .9,
+                        width: MediaQuery.of(context).size.width * .7,
                         decoration: BoxDecoration(
-                            color: Colors.green,
+                            //color: Colors.green,
                             image: DecorationImage(
                                 image: AssetImage(selected.productImageUrl.toString()),
                                 fit: BoxFit.contain),
@@ -453,7 +454,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                         child: Column(
                           children: [
                             Container(
-                              height: 32,
+                              height: 34,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                   color: Colors.deepOrange,
@@ -472,7 +473,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                               ),
                             ),
                             Container(
-                              height: 32,
+                              height: 34,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                   border: Border.all(
@@ -489,7 +490,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                               ),
                             ),
                             Container(
-                              height: 31,
+                              height: 34,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                   border: Border.all(
@@ -506,7 +507,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                               ),
                             ),
                             Container(
-                              height: 32,
+                              height: 34,
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                   border: Border.all(
@@ -640,40 +641,37 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                 height: 30,
               ),
 
-              Padding(
-                padding: const EdgeInsets.only(right: 20),
-                child: Container(
-                  height: 60,
-                  width: MediaQuery.of(context).size.width,
-                  child: AppBar(
-                    elevation: 0,
-                    backgroundColor: Colors.white,
-                    bottom: TabBar(
-                        labelColor: Colors.red,
-                        unselectedLabelColor: Colors.grey,
-                        indicatorColor: Colors.red,
-                        controller: _controllerTab,
-                        indicatorWeight: 5,
-                        indicatorPadding: EdgeInsets.symmetric(horizontal: 70),
-                        tabs: [
-                          Tab(
-                            //icon: Icon(Icons.directions_bike),
-                            child: Text(
-                              "Write review",
-                              style: TextStyle(fontSize: 20),
-                            ),
+              Container(
+                height: 60,
+                width: MediaQuery.of(context).size.width,
+                child: AppBar(
+                  elevation: 0,
+                  backgroundColor: Colors.white,
+                  bottom: TabBar(
+                      labelColor: Colors.red,
+                      unselectedLabelColor: Colors.grey,
+                      indicatorColor: Colors.red,
+                      controller: _controllerTab,
+                      indicatorWeight: 5,
+                      indicatorPadding: EdgeInsets.symmetric(horizontal: 70),
+                      tabs: [
+                        Tab(
+                          //icon: Icon(Icons.directions_bike),
+                          child: Text(
+                            "Write review",
+                            style: TextStyle(fontSize: 15.sp),
                           ),
-                          Tab(
-                            // icon: Icon(
-                            //   Icons.directions_car,
-                            // ),
-                            child: Text(
-                              "See all review",
-                              style: TextStyle(fontSize: 20),
-                            ),
+                        ),
+                        Tab(
+                          // icon: Icon(
+                          //   Icons.directions_car,
+                          // ),
+                          child: Text(
+                            "See all review",
+                            style: TextStyle(fontSize: 15.sp),
                           ),
-                        ]
-                    ),
+                        ),
+                      ]
                   ),
                 ),
               ),
@@ -726,24 +724,20 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  fontFamily: 'Roboto-Regular.ttf'
+                                  fontSize: 14.sp,
                               ),
                             ),
                             SizedBox(height: 10,),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  focusColor: Colors.grey,
-                                  fillColor: Colors.grey,
-                                  hoverColor: Colors.grey,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey, width: 1),
-                                  ),
-                                  hintText: 'Type here..',
-                                  hintStyle: TextStyle(fontSize: 12.0, color: Colors.grey, fontFamily: 'Roboto-Regular.ttf'),
+                            TextField(
+                              decoration: InputDecoration(
+                                focusColor: Colors.grey,
+                                fillColor: Colors.grey,
+                                hoverColor: Colors.grey,
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey, width: 1),
                                 ),
+                                hintText: 'Type here..',
+                                hintStyle: TextStyle(fontSize: 12.0, color: Colors.grey),
                               ),
                             ),
 
@@ -753,24 +747,20 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  fontFamily: 'Roboto-Regular.ttf'
+                                  fontSize: 14.sp,
                               ),
                             ),
                             SizedBox(height: 10,),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  focusColor: Colors.grey,
-                                  fillColor: Colors.grey,
-                                  hoverColor: Colors.grey,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey, width: 1),
-                                  ),
-                                  hintText: 'Type here..',
-                                  hintStyle: TextStyle(fontSize: 12.0, color: Colors.grey, fontFamily: 'Roboto-Regular.ttf'),
+                            TextField(
+                              decoration: InputDecoration(
+                                focusColor: Colors.grey,
+                                fillColor: Colors.grey,
+                                hoverColor: Colors.grey,
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey, width: 1),
                                 ),
+                                hintText: 'Type here..',
+                                hintStyle: TextStyle(fontSize: 12.0, color: Colors.grey),
                               ),
                             ),
                             SizedBox(height: 30,),
@@ -779,24 +769,20 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  fontFamily: 'Roboto-Regular.ttf'
+                                  fontSize: 14.sp,
                               ),
                             ),
                             SizedBox(height: 10,),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  focusColor: Colors.grey,
-                                  fillColor: Colors.grey,
-                                  hoverColor: Colors.grey,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey, width: 1),
-                                  ),
-                                  hintText: 'Type here..',
-                                  hintStyle: TextStyle(fontSize: 12.0, color: Colors.grey, fontFamily: 'Roboto-Regular.ttf'),
+                            TextField(
+                              decoration: InputDecoration(
+                                focusColor: Colors.grey,
+                                fillColor: Colors.grey,
+                                hoverColor: Colors.grey,
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.grey, width: 1),
                                 ),
+                                hintText: 'Type here..',
+                                hintStyle: TextStyle(fontSize: 12.0, color: Colors.grey),
                               ),
                             ),
 
@@ -807,25 +793,21 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                  fontFamily: 'Roboto-Regular.ttf'
+                                  fontSize: 14.sp,
                               ),
                             ),
                             SizedBox(height: 10,),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: Container(
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    focusColor: Colors.grey,
-                                    fillColor: Colors.grey,
-                                    hoverColor: Colors.grey,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.grey, width: 1),
-                                    ),
-                                    hintText: 'Type here..',
-                                    hintStyle: TextStyle(fontSize: 12.0, color: Colors.grey, fontFamily: 'Roboto-Regular.ttf'),
+                            Container(
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  focusColor: Colors.grey,
+                                  fillColor: Colors.grey,
+                                  hoverColor: Colors.grey,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey, width: 1),
                                   ),
+                                  hintText: 'Type here..',
+                                  hintStyle: TextStyle(fontSize: 12.0, color: Colors.grey),
                                 ),
                               ),
                             ),
@@ -834,7 +816,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
 
 
                             Container(
-                              width: 170,
+                              width: 200.w,
                               height: 40,
                               child: ElevatedButton(
                                 onPressed: (){},

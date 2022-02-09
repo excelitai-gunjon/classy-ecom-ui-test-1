@@ -34,9 +34,15 @@ class Profile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Excel IT AI",
-                        style: TextStyle(fontSize: 16.sp),
+                      Row(
+                        children: [
+                          SizedBox(width: 5.w,),
+                          Text("Excel IT AI",
+                            style: TextStyle(fontSize: 16.sp),
+                          ),
+                        ],
                       ),
+                      SizedBox(height: 5.h,),
                       Row(
                         //crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,9 +56,11 @@ class Profile extends StatelessWidget {
                           ),
                         ],
                       ),
+                      SizedBox(height: 5.h,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          SizedBox(width: 3.w,),
                           Icon(Icons.email),
                           SizedBox(width: 3.w,),
                           Text("info@excelitai.com",

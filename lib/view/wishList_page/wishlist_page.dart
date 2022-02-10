@@ -1,13 +1,20 @@
+import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
+import 'package:classy_e_com_demo_test_ui_1/model/cart_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/wishlist_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class Wishlist extends StatelessWidget {
   const Wishlist({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+
+    final wishList = Provider.of<WishlistModel>(context);
+
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -68,10 +75,16 @@ class Wishlist extends StatelessWidget {
                               child: IconButton(
                                 iconSize: 15,
                                 onPressed: () {
-                                  print("Closed");
+
+
+                                  wishList.deleteList(index);
+
+
+
                                 },
                                 icon: Icon(
                                   FontAwesomeIcons.timesCircle,
+                                  size: 20,
                                 ),
                               ),
                             ),
@@ -81,11 +94,26 @@ class Wishlist extends StatelessWidget {
                               child: IconButton(
                                 iconSize: 15,
                                 onPressed: () {
-                                  print("add to card");
+
+                                  final prodDetails = Provider.of<ProductDetailController>(context, listen: false);
+                                  prodDetails.setProductData(
+                                    item.imageUrl.toString(),
+                                    item.productName.toString(),
+                                    item.productPrice.toString(),
+                                  );
+                                  final cart = Provider.of<CartModel>(context, listen: false);
+                                  cart.addCartList(
+                                      prodDetails.productImageUrl.toString(),
+                                      prodDetails.productName.toString(),
+                                      prodDetails.productPrice.toString()
+                                  );
+
+
                                 },
                                 icon: Icon(
                                   Icons.add_shopping_cart,
                                   color: Color(0xffFF6000),
+                                  size: 20,
                                 ),
                               ),
                             ),

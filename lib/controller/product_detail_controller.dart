@@ -44,7 +44,7 @@ class ProductDetailController with ChangeNotifier {
   ){
     this.productImageUrl=productImageUrl;
     this.productName=productName;
-    this.productPrice;
+    this.productPrice= productPrice;
     notifyListeners();
   }
 }

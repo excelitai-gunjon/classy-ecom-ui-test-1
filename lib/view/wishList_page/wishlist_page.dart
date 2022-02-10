@@ -11,6 +11,8 @@ class Wishlist extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
+
+          SizedBox(height: 10,),
           SizedBox(
             height: MediaQuery.of(context).size.height * .7,
             child: ListView.separated(

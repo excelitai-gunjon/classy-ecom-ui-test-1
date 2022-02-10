@@ -2,6 +2,8 @@ import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/best_selling_product.dart';
+import 'package:classy_e_com_demo_test_ui_1/model/cart_model.dart';
+import 'package:classy_e_com_demo_test_ui_1/model/wishlist_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/product_details/pop_up_product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -229,6 +231,19 @@ class BestSellingProduct extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
 
+                              final prodDetails = Provider.of<ProductDetailController>(context, listen: false);
+                              prodDetails.setProductData(
+                                product.imageUrl.toString(),
+                                product.productName.toString(),
+                                product.productPrice.toString(),
+                              );
+                              final wishList = Provider.of<WishlistModel>(context, listen: false);
+                              wishList.addWishList(
+                                  prodDetails.productImageUrl.toString(),
+                                  prodDetails.productName.toString(),
+                                  prodDetails.productPrice.toString()
+                              );
+
                             },
                             child: Container(
                               margin: EdgeInsets.symmetric(horizontal: 5),
@@ -272,6 +287,19 @@ class BestSellingProduct extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
+
+                              final prodDetails = Provider.of<ProductDetailController>(context, listen: false);
+                              prodDetails.setProductData(
+                                product.imageUrl.toString(),
+                                product.productName.toString(),
+                                product.productPrice.toString(),
+                              );
+                              final cart = Provider.of<CartModel>(context, listen: false);
+                              cart.addCartList(
+                                  prodDetails.productImageUrl.toString(),
+                                  prodDetails.productName.toString(),
+                                  prodDetails.productPrice.toString()
+                              );
 
                             },
                             child: Container(

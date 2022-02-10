@@ -2,6 +2,7 @@ import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/most_popular_product_model.dart';
+import 'package:classy_e_com_demo_test_ui_1/model/wishlist_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,9 @@ class MostPopullerListViewBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return SizedBox(
       height: 180,
       child: ListView.separated(
@@ -37,14 +41,11 @@ class MostPopullerListViewBuilder extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      final appBar =
-                          Provider.of<PrimaryScreenState>(context, listen: false);
+                      final appBar = Provider.of<PrimaryScreenState>(context, listen: false);
                       appBar.setPrimaryState(false);
-                      final pageState = Provider.of<SecondaryPage>(context,
-                          listen: false);
+                      final pageState = Provider.of<SecondaryPage>(context, listen: false);
                       pageState.setSecondaryPage(2);
-                      final view = Provider.of<ProductDetailController>(context,
-                          listen: false);
+                      final view = Provider.of<ProductDetailController>(context, listen: false);
                       view.setProductData(
                         product.imageUrl.toString(),
                         product.productName.toString(),
@@ -94,19 +95,39 @@ class MostPopullerListViewBuilder extends StatelessWidget {
                                   children: [
                                     Align(
                                       alignment: Alignment.topRight,
-                                      child: Container(
-                                        height: 25,
-                                        width: 25,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            shape: BoxShape.circle,
-                                            border: Border.all(
-                                                color: Colors.redAccent,
-                                                width: 1)),
-                                        child: Icon(
-                                          Icons.favorite_border_outlined,
-                                          color: Colors.deepOrange,
-                                          size: 15,
+                                      child: GestureDetector(
+                                        onTap: (){
+
+
+                                          final prodDetails = Provider.of<ProductDetailController>(context, listen: false);
+                                          prodDetails.setProductData(
+                                            product.imageUrl.toString(),
+                                            product.productName.toString(),
+                                            product.productPrice.toString(),
+                                          );
+                                          final wishList = Provider.of<WishlistModel>(context, listen: false);
+                                          wishList.addWishList(
+                                              prodDetails.productImageUrl.toString(),
+                                              prodDetails.productName.toString(),
+                                              prodDetails.productPrice.toString()
+                                          );
+
+
+                                        },
+                                        child: Container(
+                                          height: 25,
+                                          width: 25,
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                  color: Colors.redAccent,
+                                                  width: 1)),
+                                          child: Icon(
+                                            Icons.favorite_border_outlined,
+                                            color: Colors.deepOrange,
+                                            size: 15,
+                                          ),
                                         ),
                                       ),
                                     )

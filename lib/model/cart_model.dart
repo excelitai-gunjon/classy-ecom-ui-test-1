@@ -8,25 +8,25 @@ class CartModel with ChangeNotifier{
   CartModel({this.imageUrl,this.productName,this.productPrice,this.count});
 
   static List<CartModel> list=[
-    CartModel(
-      imageUrl: "images/ecom/men/jeans/j1.jpg",
-      productName: "Product 1",
-      productPrice: "23523",
-      count: 1,
-    ),
-    CartModel(
-      imageUrl: "images/ecom/men/jeans/j2.jpg",
-      productName: "Product 2",
-      productPrice: "23523",
-      count: 1,
-
-    ),
-    CartModel(
-      imageUrl: "images/ecom/men/jeans/j6.jpg",
-      productName: "Product 1",
-      productPrice: "23523",
-      count: 1,
-    ),
+    // CartModel(
+    //   imageUrl: "images/ecom/men/jeans/j1.jpg",
+    //   productName: "Product 1",
+    //   productPrice: "23523",
+    //   count: 1,
+    // ),
+    // CartModel(
+    //   imageUrl: "images/ecom/men/jeans/j2.jpg",
+    //   productName: "Product 2",
+    //   productPrice: "23523",
+    //   count: 1,
+    //
+    // ),
+    // CartModel(
+    //   imageUrl: "images/ecom/men/jeans/j6.jpg",
+    //   productName: "Product 1",
+    //   productPrice: "23523",
+    //   count: 1,
+    // ),
   ];
   int? getcount(int index){
     return list[index].count;

@@ -5,6 +5,7 @@ import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller
 import 'package:classy_e_com_demo_test_ui_1/controller/sub_category_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/sub_category_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/sub_sub_categories_product_model.dart';
+import 'package:classy_e_com_demo_test_ui_1/model/wishlist_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/home_page/home_page.dart';
 import 'package:country_code_picker/country_localizations.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(value: ProdSubCatModel()),
         ChangeNotifierProvider.value(value: SubSubProductsModel()),//CartModel
         ChangeNotifierProvider.value(value: CartModel()),
+        ChangeNotifierProvider.value(value: WishlistModel()),
         //SubSubProductsModel
       ],
       child: ScreenUtilInit(

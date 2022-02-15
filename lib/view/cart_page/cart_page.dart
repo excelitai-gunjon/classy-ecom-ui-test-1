@@ -22,7 +22,8 @@ class _CartListState extends State<CartList> {
 
 
     return SingleChildScrollView(
-      child: cartControll.cartListDataCheck(false)?Center(
+      child: cartControll.cartListDataCheck(false)?
+      Center(
           child: Column(
             children: [
               SizedBox(height: 100,),

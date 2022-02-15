@@ -51,4 +51,11 @@ class WishlistModel with ChangeNotifier{
     notifyListeners();
   }
 
+  bool listDataCheck(bool data){
+    if(list.isEmpty){
+      data = true;
+    }
+    return data;
+  }
+
 }

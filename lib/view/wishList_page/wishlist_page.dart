@@ -15,8 +15,16 @@ class Wishlist extends StatelessWidget {
 
     final wishList = Provider.of<WishlistModel>(context);
 
+
     return SingleChildScrollView(
-      child: Column(
+      child: wishList.listDataCheck(false)?
+      Center(
+          child: Column(
+            children: [
+              SizedBox(height: 100,),
+              Text('No Item in WishList !'),
+            ],
+      )):Column(
         children: [
 
           SizedBox(height: 10,),

@@ -19,8 +19,16 @@ class _CartListState extends State<CartList> {
   @override
   Widget build(BuildContext context) {
     final cartControll=Provider.of<CartModel>(context);
+
+
     return SingleChildScrollView(
-      child: Column(
+      child: cartControll.cartListDataCheck(false)?Center(
+          child: Column(
+            children: [
+              SizedBox(height: 100,),
+              Text('No Item in Cart !'),
+            ],
+          )):Column(
         children: [
           SizedBox(height: 10,),
           SizedBox(

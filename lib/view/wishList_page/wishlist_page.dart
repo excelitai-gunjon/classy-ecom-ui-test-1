@@ -17,7 +17,7 @@ class Wishlist extends StatelessWidget {
 
 
     return SingleChildScrollView(
-      child: wishList.listDataCheck(false)?
+      child: wishList.wishListDataCheck(false)?
       Center(
           child: Column(
             children: [

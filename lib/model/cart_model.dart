@@ -56,4 +56,12 @@ class CartModel with ChangeNotifier{
     notifyListeners();
   }
 
+
+  bool cartListDataCheck(bool data){
+    if(list.isEmpty){
+      data = true;
+    }
+    return data;
+  }
+
 }

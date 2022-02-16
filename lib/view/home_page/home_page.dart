@@ -148,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
 
-                              SizedBox(height: 10,),
+                              SizedBox(height: 5,),
 
                               customConsumer(context, data.label!, data.icon!, data.index),
 

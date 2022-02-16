@@ -85,7 +85,32 @@ class Wishlist extends StatelessWidget {
                                 onPressed: () {
 
 
-                                  wishList.deleteList(index);
+
+
+
+                                  showDialog(
+                                      context: context,
+                                      builder: (ctx)=> AlertDialog(
+                                        title: const Text('Are you sure?'),
+                                        content: const Text('Dou tou wnt to delete item from the WishList? '),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: (){
+                                                Navigator.of(ctx).pop(false);
+                                              },
+                                              child: const Text('No', style: TextStyle(color: Colors.deepOrange),)
+                                          ),
+                                          TextButton(
+                                              onPressed: (){
+                                                Navigator.of(ctx).pop(true);
+
+                                                wishList.deleteList(index);
+                                              },
+                                              child: const Text('Yes', style: TextStyle(color: Colors.deepOrange))
+                                          )
+                                        ],
+                                      )
+                                  );
 
 
 

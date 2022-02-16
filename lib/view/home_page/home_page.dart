@@ -8,10 +8,12 @@ import 'package:classy_e_com_demo_test_ui_1/model/best_selling_product.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/cart_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/main_home_bottom_app_bar_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/sub_sub_categories_product_model.dart';
+import 'package:classy_e_com_demo_test_ui_1/model/wishlist_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/cart_page/cart_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/drawer_page/drawer_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/filter_page/filter_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/appBar.dart';
+import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/badge.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/body.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/search_bar.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/new_arrival_page/new_arrival_page.dart';
@@ -126,6 +128,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               ...MainHomePageBottomAppBarModel.list
                   .map((MainHomePageBottomAppBarModel data) {
+
                 return data.isBlank
                     ? SizedBox(
                         width: 10,
@@ -144,17 +147,15 @@ class _HomePageState extends State<HomePage> {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              //SizedBox(height: 10,),
-                              Icon(
-                                data.icon,
-                                color: primaryPageState.currentIndex ==
-                                        data.index //currentIndex == data.index
-                                    ? Color(0xffFF6000)
-                                    : Colors.grey,
-                              ),
+
+                              SizedBox(height: 10,),
+
+                              customConsumer(context, data.label!, data.icon!, data.index),
+
                               SizedBox(
                                 height: 12,
                               ),
+
                               Text(
                                 data.label!,
                                 style: Theme.of(context)
@@ -178,6 +179,62 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+
+  Widget customConsumer(BuildContext context, String label,IconData icon,int index){
+    final primaryPageState = Provider.of<PrimaryPageController>(context);
+    if(label=="Wishlist"){
+      return Consumer<WishlistModel>(builder: (_, wishList, ch) {
+        return Badge(
+          child: ch!,
+          value: wishList.itemCount.toString(),
+          color: Colors.red,
+        );
+      },
+        child: Container(
+          width: 50,
+          child: Icon(
+            icon,
+            color: primaryPageState.currentIndex ==
+                index //currentIndex == data.index
+                ? Color(0xffFF6000)
+                : Colors.grey,
+          ),
+        ),
+      );
+    }
+    if(label=="Cart"){
+      return Consumer<CartModel>(builder: (_, cart, ch) {
+        return Badge(
+          child: ch!,
+          value: cart.itemCount.toString(),
+          color: Colors.red,
+        );
+      },
+        child: Container(
+          width: 50,
+          child: Icon(
+            icon,
+            color: primaryPageState.currentIndex ==
+                index //currentIndex == data.index
+                ? Color(0xffFF6000)
+                : Colors.grey,
+          ),
+        ),
+      );
+    }
+    else{
+      return Icon(
+        icon,
+        color: primaryPageState.currentIndex ==
+            index //currentIndex == data.index
+            ? Color(0xffFF6000)
+            : Colors.grey,
+      );
+    }
+  }
+
+
 
   _getBodyPrimary() {
     final primaryPageState = Provider.of<PrimaryPageController>(context);

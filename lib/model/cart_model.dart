@@ -28,6 +28,11 @@ class CartModel with ChangeNotifier{
     //   count: 1,
     // ),
   ];
+
+  int get itemCount{
+    return list.length;
+  }
+
   int? getcount(int index){
     return list[index].count;
   }

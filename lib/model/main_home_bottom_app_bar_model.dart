@@ -1,3 +1,4 @@
+import 'package:classy_e_com_demo_test_ui_1/model/wishlist_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
@@ -20,14 +21,10 @@ class MainHomePageBottomAppBarModel {
       label: 'Wishlist',
       icon: Icons.favorite_border_outlined,
     ),
-    // MainHomePageBottomAppBarModel(
-    //   index: -1,
-    //   isBlank: true,
-    // ),
     MainHomePageBottomAppBarModel(
       index: 2,
       label: 'Cart',
-      icon: FontAwesomeIcons.shoppingCart,
+      icon: Icons.shopping_cart,
     ),
     MainHomePageBottomAppBarModel(
       index: 3,

@@ -35,6 +35,10 @@ class WishlistModel with ChangeNotifier{
     // ),
   ];
 
+  int get itemCount{
+    return list.length;
+  }
+
   void deleteList(int index){
     list.removeAt(index);
     notifyListeners();

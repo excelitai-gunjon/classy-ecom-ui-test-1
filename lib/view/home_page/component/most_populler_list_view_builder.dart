@@ -113,6 +113,23 @@ class MostPopullerListViewBuilder extends StatelessWidget {
                                           );
 
 
+                                          Scaffold.of(context).hideCurrentSnackBar();
+                                          Scaffold.of(context).showSnackBar(
+                                              SnackBar(
+                                                content: const Text('Added item to WishList !', textAlign: TextAlign.center,),
+                                                duration: const Duration(seconds: 2),
+                                                action: SnackBarAction(
+                                                    label: 'UNDO',
+                                                    onPressed: (){
+
+                                                      wishList.deleteList(WishlistModel.list.length-1);
+
+                                                    }
+                                                ),
+                                              )
+                                          );
+
+
                                         },
                                         child: Container(
                                           height: 25,

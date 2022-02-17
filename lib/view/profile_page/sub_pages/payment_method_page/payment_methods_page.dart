@@ -69,7 +69,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
           ),
         ),
         title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50),
+          padding: const EdgeInsets.only(left: 80),
           child: Text("Payment",
             style: TextStyle(
                 color: Colors.black,
@@ -114,8 +114,8 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       boxShadow: [
                         BoxShadow(
                           color: Colors.grey,
-                          blurRadius: 30,
-                          offset: Offset(0, 8), // Shadow position
+                          blurRadius: 5,
+                          offset: Offset(0, 3), // Shadow position
                         ),
                       ],
                     ),
@@ -161,7 +161,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
             ),
             SizedBox(height: 30,),
             Padding(
-              padding: const EdgeInsets.only(right: 30, left: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -215,7 +215,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
             ),
             SizedBox(height: 10,),
             Padding(
-              padding: const EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30,right: 20),
               child: Container(
                 height: 1,
                 color: Colors.grey,
@@ -239,7 +239,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
             ),
             SizedBox(height: 10,),
             Padding(
-              padding: const EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30,right: 20),
               child: Container(
                 height: 1,
                 color: Colors.grey,
@@ -263,7 +263,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
             ),
             SizedBox(height: 10,),
             Padding(
-              padding: const EdgeInsets.only(left: 30),
+              padding: const EdgeInsets.only(left: 30 ,right: 20),
               child: Container(
                 height: 1,
                 color: Colors.grey,
@@ -271,7 +271,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
             ),
             SizedBox(height: 30,),
             Padding(
-              padding: const EdgeInsets.only(left: 28, right: 60),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -295,6 +295,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
             SizedBox(height: 30,),
             SizedBox(
               width: 200,
+              height: 45,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: Colors.orange,
@@ -305,17 +306,12 @@ class _PaymentMethodState extends State<PaymentMethod> {
                 onPressed: (){
                   Navigator.push(context, MaterialPageRoute(builder: (context) =>OrderAccepted()));
                 },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Place Order",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22,
-                      ),
-                    ),
-                  ],
+                child: Text("Place Order",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                  ),
                 ),
               ),
             ),

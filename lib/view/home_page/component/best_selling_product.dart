@@ -244,6 +244,23 @@ class BestSellingProduct extends StatelessWidget {
                                   prodDetails.productPrice.toString()
                               );
 
+
+                              Scaffold.of(context).hideCurrentSnackBar();
+                              Scaffold.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: const Text('Added item to WishList !', textAlign: TextAlign.center,),
+                                    duration: const Duration(seconds: 2),
+                                    action: SnackBarAction(
+                                        label: 'UNDO',
+                                        onPressed: (){
+
+                                          wishList.deleteList(WishlistModel.list.length-1);
+
+                                        }
+                                    ),
+                                  )
+                              );
+
                             },
                             child: Container(
                               margin: EdgeInsets.symmetric(horizontal: 5),
@@ -299,6 +316,23 @@ class BestSellingProduct extends StatelessWidget {
                                   prodDetails.productImageUrl.toString(),
                                   prodDetails.productName.toString(),
                                   prodDetails.productPrice.toString()
+                              );
+
+
+                              Scaffold.of(context).hideCurrentSnackBar();
+                              Scaffold.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: const Text('Added item to the Cart !', textAlign: TextAlign.center,),
+                                    duration: const Duration(seconds: 2),
+                                    action: SnackBarAction(
+                                        label: 'UNDO',
+                                        onPressed: (){
+
+                                          cart.deleteList(CartModel.list.length-1);
+
+                                        }
+                                    ),
+                                  )
                               );
 
                             },

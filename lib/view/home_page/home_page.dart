@@ -34,7 +34,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+
 var scaffoldKey = GlobalKey<ScaffoldState>();
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -52,6 +54,7 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     appBar.setPrimaryState(true);
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -66,12 +69,10 @@ class _HomePageState extends State<HomePage> {
     return WillPopScope(
       onWillPop: () async {
         //final appBar = Provider.of<AppBarController>(context,listen: false);
-        final status =
-        Provider.of<PrimaryScreenState>(context, listen: false);
+        final status = Provider.of<PrimaryScreenState>(context, listen: false);
         //appBar.setPrimaryState(false);
 
-        final pageState =
-        Provider.of<SecondaryPage>(context, listen: false);
+        final pageState = Provider.of<SecondaryPage>(context, listen: false);
         //pageState.setSecondaryPage(5);
         if (productAppBar.status) {
           if (Platform.isAndroid) {
@@ -79,13 +80,14 @@ class _HomePageState extends State<HomePage> {
           } else if (Platform.isIOS) {
             exit(0);
           }
-        }if(pageState.secondaryPageNo==6){
+        }
+        if (pageState.secondaryPageNo == 6) {
           status.setPrimaryState(false);
           pageState.setSecondaryPage(5);
-        }else {
+        } else {
           productAppBar.setPrimaryState(true);
-          final selection = Provider.of<ProductDetailController>(context,
-              listen: false);
+          final selection =
+              Provider.of<ProductDetailController>(context, listen: false);
           selection.sizeSelected(0);
           selection.colorSelected(0);
         }
@@ -128,12 +130,11 @@ class _HomePageState extends State<HomePage> {
             children: [
               ...MainHomePageBottomAppBarModel.list
                   .map((MainHomePageBottomAppBarModel data) {
-
                 return data.isBlank
                     ? SizedBox(
                         width: 10,
                       )
-                    : InkWell(
+                    : GestureDetector(
                         onTap: () {
                           setState(() {
                             primaryPageState.setPrimaryPage(data.index);
@@ -143,30 +144,38 @@ class _HomePageState extends State<HomePage> {
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 10),
+                            horizontal: 0,
+                            vertical: 0,
+                          ),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-
-                              SizedBox(height: 5,),
-
-                              customConsumer(context, data.label!, data.icon!, data.index),
-
-                              SizedBox(
-                                height: 12,
-                              ),
-
-                              Text(
+                              // SizedBox(
+                              //   height: 5,
+                              // ),
+                              buildCustomConsumer(
+                                context,
                                 data.label!,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText1!
-                                    .copyWith(
-                                      color: primaryPageState.currentIndex ==
-                                              data.index //currentIndex == data.index
-                                          ? Color(0xffFF6000)
-                                          : Colors.grey,
-                                    ),
+                                data.icon!,
+                                data.index,
+                              ),
+                              // SizedBox(
+                              //   height: 12,
+                              // ),
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  data.label!,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1!
+                                      .copyWith(
+                                        color: primaryPageState.currentIndex ==
+                                                data.index //currentIndex == data.index
+                                            ? Color(0xffFF6000)
+                                            : Colors.grey,
+                                      ),
+                                ),
                               )
                             ],
                           ),
@@ -180,61 +189,61 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
-  Widget customConsumer(BuildContext context, String label,IconData icon,int index){
+  Widget buildCustomConsumer(
+      BuildContext context, String label, IconData icon, int index) {
+    final size=MediaQuery.of(context).size;
     final primaryPageState = Provider.of<PrimaryPageController>(context);
-    if(label=="Wishlist"){
-      return Consumer<WishlistModel>(builder: (_, wishList, ch) {
-        return Badge(
-          child: ch!,
-          value: wishList.itemCount.toString(),
-          color: Colors.red,
-        );
-      },
+    if (label == "Wishlist") {
+      return Consumer<WishlistModel>(
+        builder: (_, wishList, ch) {
+          return Badge(
+            child: ch!,
+            value: wishList.itemCount.toString(),
+            color: Colors.red,
+          );
+        },
         child: Container(
-          width: 50,
+          width: size.width*.1,//50,
           child: Icon(
             icon,
             color: primaryPageState.currentIndex ==
-                index //currentIndex == data.index
+                    index //currentIndex == data.index
                 ? Color(0xffFF6000)
                 : Colors.grey,
           ),
         ),
       );
     }
-    if(label=="Cart"){
-      return Consumer<CartModel>(builder: (_, cart, ch) {
-        return Badge(
-          child: ch!,
-          value: cart.itemCount.toString(),
-          color: Colors.red,
-        );
-      },
+    if (label == "Cart") {
+      return Consumer<CartModel>(
+        builder: (_, cart, ch) {
+          return Badge(
+            child: ch!,
+            value: cart.itemCount.toString(),
+            color: Colors.red,
+          );
+        },
         child: Container(
-          width: 50,
+          width: size.width*.1,
           child: Icon(
             icon,
             color: primaryPageState.currentIndex ==
-                index //currentIndex == data.index
+                    index //currentIndex == data.index
                 ? Color(0xffFF6000)
                 : Colors.grey,
           ),
         ),
       );
-    }
-    else{
+    } else {
       return Icon(
         icon,
-        color: primaryPageState.currentIndex ==
-            index //currentIndex == data.index
-            ? Color(0xffFF6000)
-            : Colors.grey,
+        color:
+            primaryPageState.currentIndex == index //currentIndex == data.index
+                ? Color(0xffFF6000)
+                : Colors.grey,
       );
     }
   }
-
-
 
   _getBodyPrimary() {
     final primaryPageState = Provider.of<PrimaryPageController>(context);
@@ -263,21 +272,21 @@ class _HomePageState extends State<HomePage> {
       case 3:
         return CategoryScreen();
       case 4:
-        return SubCatScreen();//FilterScreen
+        return SubCatScreen(); //FilterScreen
       case 5:
         return SubSubProductScreen();
       case 6:
-        return FilterScreen();//OrderStatus
+        return FilterScreen(); //OrderStatus
       case 7:
-        return OrderStatus();//MyOrder
+        return OrderStatus(); //MyOrder
       case 8:
-        return MyOrder();//EditAddress
+        return MyOrder(); //EditAddress
       case 9:
-        return EditAddress();//ShippingAddress
+        return EditAddress(); //ShippingAddress
       case 10:
-        return ShippingAddress();//PaymentMethod
+        return ShippingAddress(); //PaymentMethod
       case 11:
-        return PaymentMethod();//HelpPage
+        return PaymentMethod(); //HelpPage
       case 12:
         return HelpPage();
       default:
@@ -285,7 +294,3 @@ class _HomePageState extends State<HomePage> {
     }
   }
 }
-
-
-
-

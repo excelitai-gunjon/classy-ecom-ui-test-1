@@ -125,7 +125,7 @@ class Trending extends StatelessWidget {
                                   ),
                                   Row(
                                     children: [
-                                      Text("\$ ",style: TextStyle(color: Color(0xffFF6000)),),
+                                      Text("\৳ ",style: TextStyle(color: Color(0xffFF6000)),),
                                       Text(item.productPrice.toString(),style: TextStyle(color: Color(0xffFF6000)),)
                                     ],
                                   )
@@ -143,7 +143,7 @@ class Trending extends StatelessWidget {
                                   height: 30,
                                   width: 30,
                                   decoration: BoxDecoration(
-                                      color: Color(0xffFF6000),
+                                      color: Color(0xffFFA800),//Color(0xffFF6000),
                                       borderRadius: BorderRadius.circular(7)),
                                   child: Icon(
                                     Icons.arrow_forward,

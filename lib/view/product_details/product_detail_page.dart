@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/services.dart';
 
 class ProductDetail extends StatefulWidget {
   ProductDetail({
@@ -26,13 +27,18 @@ class ProductDetail extends StatefulWidget {
   State<ProductDetail> createState() => _ProductDetailState();
 }
 
-class _ProductDetailState extends State<ProductDetail> with SingleTickerProviderStateMixin{
+class _ProductDetailState extends State<ProductDetail>
+    with SingleTickerProviderStateMixin {
   TabController? _controllerTab;
-  var item=1;
+  var item = 1;
+  ProductDetailController productDetailController = ProductDetailController();
 
   @override
   void initState() {
     // TODO: implement initState
+    //final selected = Provider.of<ProductDetailController>(context,listen: false);
+    productDetailController.colorSelected(0);
+    ProductDetailController;
     _controllerTab = TabController(length: 2, vsync: this);
     super.initState();
   }
@@ -47,6 +53,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
   @override
   Widget build(BuildContext context) {
     final selected = Provider.of<ProductDetailController>(context);
+    //selected.colorSelected(0);
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 15),
@@ -68,7 +75,8 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                         decoration: BoxDecoration(
                             //color: Colors.green,
                             image: DecorationImage(
-                                image: AssetImage(selected.productImageUrl.toString()),
+                                image: AssetImage(
+                                    selected.productImageUrl.toString()),
                                 fit: BoxFit.contain),
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(20),
@@ -155,11 +163,13 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                       top: 20,
                       child: GestureDetector(
                         onTap: () {
-                          final appBar = Provider.of<PrimaryScreenState>(context,
+                          final appBar = Provider.of<PrimaryScreenState>(
+                              context,
                               listen: false);
                           appBar.setPrimaryState(true);
-                          final selection = Provider.of<ProductDetailController>(context,
-                              listen: false);
+                          final selection =
+                              Provider.of<ProductDetailController>(context,
+                                  listen: false);
                           selection.sizeSelected(0);
                           selection.colorSelected(0);
 
@@ -206,7 +216,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                         style: TextStyle(fontSize: 15),
                       ),
                       Text(
-                        "\$ "+selected.productPrice.toString(),
+                        "\$ " + selected.productPrice.toString(),
                         style: TextStyle(fontSize: 20),
                       ),
                     ],
@@ -221,8 +231,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                         GestureDetector(
                           onTap: () {
                             setState(() {
-
-                              item = item+1;
+                              item = item + 1;
                             });
                           },
                           child: Container(
@@ -248,8 +257,8 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                         GestureDetector(
                           onTap: () {
                             setState(() {
-                              if(item>1){
-                                item = item-1;
+                              if (item > 1) {
+                                item = item - 1;
                               }
                             });
                           },
@@ -286,7 +295,9 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                   //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Sizes"),
-                    SizedBox(width: 20,),
+                    SizedBox(
+                      width: 20,
+                    ),
                     Column(
                       children: [
                         Row(
@@ -398,11 +409,13 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                   Padding(
                     padding: const EdgeInsets.only(right: 20),
                     child: ElevatedButton(
-                      onPressed: (){},
+                      onPressed: () {},
                       child: Row(
                         children: [
                           Text('Watch'),
-                          SizedBox(width: 5,),
+                          SizedBox(
+                            width: 5,
+                          ),
                           Icon(Icons.play_arrow)
                         ],
                       ),
@@ -412,8 +425,7 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15),
                           ),
-                          side: BorderSide(width: 1, color: Colors.orange)
-                      ),
+                          side: BorderSide(width: 1, color: Colors.orange)),
                     ),
                   )
                 ],
@@ -435,99 +447,89 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
               SizedBox(
                 height: 30,
               ),
-
-              Center(child: Text('Size Chart',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  fontSize: 16
-                ),
+              Center(
+                  child: Text(
+                'Size Chart',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               )),
-
               Container(
                 margin: EdgeInsets.all(20),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
-
                     Expanded(
                         child: Column(
-                          children: [
-                            Container(
-                              height: 34,
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                  color: Colors.deepOrange,
-                                  border: Border.all(
-                                    width: .5,
-                                    color: Colors.grey,
-                                  )
-                              ),
-                              child: Center(
-                                child: Text('Mid length Kameez',
-                                  style: TextStyle(
-                                      fontSize: 11,
-                                      color: Colors.white60
-                                  ),
-                                ),
+                      children: [
+                        Container(
+                          height: 34,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                              color: Colors.deepOrange,
+                              border: Border.all(
+                                width: .5,
+                                color: Colors.grey,
+                              )),
+                          child: Center(
+                            child: Text(
+                              'Mid length Kameez',
+                              style: TextStyle(
+                                  fontSize: 11, color: Colors.white60),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          height: 34,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                            width: 1,
+                            color: Colors.grey,
+                          )),
+                          child: Center(
+                            child: Text(
+                              'Chest',
+                              style: TextStyle(
+                                fontSize: 11,
                               ),
                             ),
-                            Container(
-                              height: 34,
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 1,
-                                    color: Colors.grey,
-                                  )
-                              ),
-                              child: Center(
-                                child: Text('Chest',
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              height: 34,
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 1,
-                                    color: Colors.grey,
-                                  )
-                              ),
-                              child: Center(
-                                child: Text('Length',
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                  ),
-                                ),
+                          ),
+                        ),
+                        Container(
+                          height: 34,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                            width: 1,
+                            color: Colors.grey,
+                          )),
+                          child: Center(
+                            child: Text(
+                              'Length',
+                              style: TextStyle(
+                                fontSize: 11,
                               ),
                             ),
-                            Container(
-                              height: 34,
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 1,
-                                    color: Colors.grey,
-                                  )
+                          ),
+                        ),
+                        Container(
+                          height: 34,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                            width: 1,
+                            color: Colors.grey,
+                          )),
+                          child: Center(
+                            child: Text(
+                              '(In Inch)',
+                              style: TextStyle(
+                                fontSize: 11,
                               ),
-                              child: Center(
-                                child: Text('(In Inch)',
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
+                            ),
+                          ),
                         )
-                    ),
-
-
+                      ],
+                    )),
                     Expanded(
                       flex: 2,
                       child: Table(
@@ -535,87 +537,100 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                         border: TableBorder.all(
                             color: Colors.grey,
                             style: BorderStyle.solid,
-                            width: 1
-                        ),
+                            width: 1),
                         children: [
-                          TableRow( children: [
-                            Center(child: Padding(
+                          TableRow(children: [
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('34'),
                             )),
-                            Center(child: Padding(
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('36'),
                             )),
-                            Center(child: Padding(
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('38'),
                             )),
-                            Center(child: Padding(
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('40'),
                             )),
-                            Center(child: Padding(
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('42'),
                             )),
-                            Center(child: Padding(
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('44'),
                             )),
                           ]),
-
-
-                          TableRow( children: [
-                            Center(child: Padding(
+                          TableRow(children: [
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('34'),
                             )),
-                            Center(child: Padding(
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('36'),
                             )),
-                            Center(child: Padding(
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('38'),
                             )),
-                            Center(child: Padding(
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('40'),
                             )),
-                            Center(child: Padding(
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('42'),
                             )),
-                            Center(child: Padding(
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('44'),
                             )),
                           ]),
-
-
-                          TableRow( children: [
-                            Center(child: Padding(
+                          TableRow(children: [
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('34'),
                             )),
-                            Center(child: Padding(
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('36'),
                             )),
-                            Center(child: Padding(
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('38'),
                             )),
-                            Center(child: Padding(
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('40'),
                             )),
-                            Center(child: Padding(
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('42'),
                             )),
-                            Center(child: Padding(
+                            Center(
+                                child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text('44'),
                             )),
@@ -626,21 +641,16 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                   ],
                 ),
               ),
-
               SizedBox(
                 height: 10,
               ),
-
               Align(
                 alignment: Alignment.center,
                 child: AddToCardButton(),
               ),
-
-
               SizedBox(
                 height: 30,
               ),
-
               Container(
                 height: 60,
                 width: MediaQuery.of(context).size.width,
@@ -671,222 +681,236 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                             style: TextStyle(fontSize: 15.sp),
                           ),
                         ),
-                      ]
-                  ),
+                      ]),
                 ),
               ),
-
-
               Container(
                 height: 650,
                 width: MediaQuery.of(context).size.width,
-                child: TabBarView(
-                  controller: _controllerTab,
-                    children: [
-                      Container(
-                        //height: 400,
-                        width: MediaQuery.of(context).size.width,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 20,),
-                            Text('Rate your Experience'),
-                            SizedBox(height: 20,),
-
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.star,
-                                  color: Color(0xffFF6000),
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  color: Color(0xffFF6000),
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  color: Color(0xffFF6000),
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  color: Color(0xffFF6000),
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.grey,
-                                ),
-                              ],
-                            ),
-
-                            SizedBox(height: 20,),
-
-                            Text("Review Title",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14.sp,
-                              ),
-                            ),
-                            SizedBox(height: 10,),
-                            TextField(
-                              decoration: InputDecoration(
-                                focusColor: Colors.grey,
-                                fillColor: Colors.grey,
-                                hoverColor: Colors.grey,
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey, width: 1),
-                                ),
-                                hintText: 'Type here..',
-                                hintStyle: TextStyle(fontSize: 12.0, color: Colors.grey),
-                              ),
-                            ),
-
-                            SizedBox(height: 30,),
-
-                            Text("Name",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14.sp,
-                              ),
-                            ),
-                            SizedBox(height: 10,),
-                            TextField(
-                              decoration: InputDecoration(
-                                focusColor: Colors.grey,
-                                fillColor: Colors.grey,
-                                hoverColor: Colors.grey,
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey, width: 1),
-                                ),
-                                hintText: 'Type here..',
-                                hintStyle: TextStyle(fontSize: 12.0, color: Colors.grey),
-                              ),
-                            ),
-                            SizedBox(height: 30,),
-
-                            Text("Email",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14.sp,
-                              ),
-                            ),
-                            SizedBox(height: 10,),
-                            TextField(
-                              decoration: InputDecoration(
-                                focusColor: Colors.grey,
-                                fillColor: Colors.grey,
-                                hoverColor: Colors.grey,
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.grey, width: 1),
-                                ),
-                                hintText: 'Type here..',
-                                hintStyle: TextStyle(fontSize: 12.0, color: Colors.grey),
-                              ),
-                            ),
-
-
-                            SizedBox(height: 30,),
-
-                            Text("Your Review",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14.sp,
-                              ),
-                            ),
-                            SizedBox(height: 10,),
-                            Container(
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  focusColor: Colors.grey,
-                                  fillColor: Colors.grey,
-                                  hoverColor: Colors.grey,
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.grey, width: 1),
-                                  ),
-                                  hintText: 'Type here..',
-                                  hintStyle: TextStyle(fontSize: 12.0, color: Colors.grey),
-                                ),
-                              ),
-                            ),
-
-                            SizedBox(height: 20,),
-
-
-                            Container(
-                              width: 160.w,
-                              height: 40,
-                              child: ElevatedButton(
-                                onPressed: (){},
-                                child: Text('Submit'),
-                                style: ElevatedButton.styleFrom(
-                                    primary: Colors.deepOrange,
-                                    onPrimary: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    side: BorderSide(width: 1, color: Colors.orange)
-                                ),
-                              ),
-                            )
-
-
-
-                          ],
+                child: TabBarView(controller: _controllerTab, children:[
+                  Container(
+                    //height: 400,
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 20,
                         ),
-                      ),
-
-
-                      Container(
-                        //height: 400,
-                        width: MediaQuery.of(context).size.width,
-                        child: Column(
+                        Text('Rate your Experience'),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
                           children: [
-                            SizedBox(
-                              height: 10,
+                            Icon(
+                              Icons.star,
+                              color: Color(0xffFF6000),
                             ),
-                            CommentsBox(
-                              userImageUrl: "images/profile111.jpg",
-                              userName: "User 1",
-                              comments: "As usual, there might be better examples on how to"
-                                  " achieve this result. Here's a fast attempt to recreate it."
-                                  " achieve this result. Here's a fast attempt to recreate it."
-                                  " achieve this result. Here's a fast attempt to recreate it.",
+                            Icon(
+                              Icons.star,
+                              color: Color(0xffFF6000),
                             ),
-                            CommentsBox(
-                              userImageUrl: "images/profile111.jpg",
-                              userName: "User 1",
-                              comments: "As usual, there might be better examples on how to"
-                                  " achieve this result. Here's a fast attempt to recreate it."
-                                  " achieve this result. Here's a fast attempt to recreate it."
-                                  " achieve this result. Here's a fast attempt to recreate it.",
+                            Icon(
+                              Icons.star,
+                              color: Color(0xffFF6000),
                             ),
-                            CommentsBox(
-                              userImageUrl: "images/profile111.jpg",
-                              userName: "User 1",
-                              comments: "As usual, there might be better examples on how to"
-                                  " achieve this result. Here's a fast attempt to recreate it."
-                                  " achieve this result. Here's a fast attempt to recreate it."
-                                  " achieve this result. Here's a fast attempt to recreate it.",
+                            Icon(
+                              Icons.star,
+                              color: Color(0xffFF6000),
                             ),
-                            CommentsBox(
-                              userImageUrl: "images/profile111.jpg",
-                              userName: "User 1",
-                              comments: "As usual, there might be better examples on how to"
-                                  " achieve this result. Here's a fast attempt to recreate it."
-                                  " achieve this result. Here's a fast attempt to recreate it."
-                                  " achieve this result. Here's a fast attempt to recreate it.",
+                            Icon(
+                              Icons.star,
+                              color: Colors.grey,
                             ),
                           ],
                         ),
-                      ),
-
-                    ]
-                ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          "Review Title",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14.sp,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            focusColor: Colors.grey,
+                            fillColor: Colors.grey,
+                            hoverColor: Colors.grey,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey, width: 1),
+                            ),
+                            hintText: 'Type here..',
+                            hintStyle:
+                                TextStyle(fontSize: 12.0, color: Colors.grey),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          "Name",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14.sp,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            focusColor: Colors.grey,
+                            fillColor: Colors.grey,
+                            hoverColor: Colors.grey,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.grey,
+                                width: 1,
+                              ),
+                            ),
+                            hintText: 'Type here..',
+                            hintStyle:TextStyle(fontSize: 12.0, color: Colors.grey),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          "Email",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14.sp,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            focusColor: Colors.grey,
+                            fillColor: Colors.grey,
+                            hoverColor: Colors.grey,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey, width: 1),
+                            ),
+                            hintText: 'Type here..',
+                            hintStyle:
+                                TextStyle(fontSize: 12.0, color: Colors.grey),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Text(
+                          "Your Review",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14.sp,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          child: TextField(
+                            decoration: InputDecoration(
+                              focusColor: Colors.grey,
+                              fillColor: Colors.grey,
+                              hoverColor: Colors.grey,
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey, width: 1),
+                              ),
+                              hintText: 'Type here..',
+                              hintStyle:
+                                  TextStyle(fontSize: 12.0, color: Colors.grey),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: 160.w,
+                          height: 40,
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Text('Submit'),
+                            style: ElevatedButton.styleFrom(
+                                primary: Colors.deepOrange,
+                                onPrimary: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                side:
+                                    BorderSide(width: 1, color: Colors.orange)),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    //height: 400,
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        CommentsBox(
+                          userImageUrl: "images/profile111.jpg",
+                          userName: "User 1",
+                          comments:
+                              "As usual, there might be better examples on how to"
+                              " achieve this result. Here's a fast attempt to recreate it."
+                              " achieve this result. Here's a fast attempt to recreate it."
+                              " achieve this result. Here's a fast attempt to recreate it.",
+                        ),
+                        CommentsBox(
+                          userImageUrl: "images/profile111.jpg",
+                          userName: "User 1",
+                          comments:
+                              "As usual, there might be better examples on how to"
+                              " achieve this result. Here's a fast attempt to recreate it."
+                              " achieve this result. Here's a fast attempt to recreate it."
+                              " achieve this result. Here's a fast attempt to recreate it.",
+                        ),
+                        CommentsBox(
+                          userImageUrl: "images/profile111.jpg",
+                          userName: "User 1",
+                          comments:
+                              "As usual, there might be better examples on how to"
+                              " achieve this result. Here's a fast attempt to recreate it."
+                              " achieve this result. Here's a fast attempt to recreate it."
+                              " achieve this result. Here's a fast attempt to recreate it.",
+                        ),
+                        CommentsBox(
+                          userImageUrl: "images/profile111.jpg",
+                          userName: "User 1",
+                          comments:
+                              "As usual, there might be better examples on how to"
+                              " achieve this result. Here's a fast attempt to recreate it."
+                              " achieve this result. Here's a fast attempt to recreate it."
+                              " achieve this result. Here's a fast attempt to recreate it.",
+                        ),
+                      ],
+                    ),
+                  ),
+                ]),
               ),
-
               Container(
                 width: MediaQuery.of(context).size.width,
                 height: 460,
@@ -895,71 +919,80 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Recommended for you',style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold
-                      ),),
-                      Divider(color: Colors.grey,),
+                      Text(
+                        'Recommended for you',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Divider(
+                        color: Colors.grey,
+                      ),
                       Container(
                         height: 400,
                         width: MediaQuery.of(context).size.width,
                         child: GridView.count(
                           physics: NeverScrollableScrollPhysics(),
-                            crossAxisCount: 2,
+                          crossAxisCount: 2,
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 20,
-                          children: List.generate(BestSellingProductModel.list.length, (index){
-
-                            BestSellingProductModel recProduct = BestSellingProductModel.list[index];
+                          children: List.generate(
+                              BestSellingProductModel.list.length, (index) {
+                            BestSellingProductModel recProduct =
+                                BestSellingProductModel.list[index];
 
                             return Container(
                               child: Card(
                                 child: Row(
                                   children: [
                                     Expanded(
-                                        child: Image.asset(recProduct.imageUrl!)
+                                      child: Image.asset(recProduct.imageUrl!),
                                     ),
                                     Expanded(
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(left: 8.0),
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Text(recProduct.productName!),
-                                              Text(recProduct.productPrice!),
-                                              Row(
-                                                children: [
-                                                  Icon(
-                                                    Icons.star,
-                                                    color: Color(0xffFF6000),
-                                                    size: 10,
-                                                  ),
-                                                  Icon(
-                                                    Icons.star,
-                                                    color: Color(0xffFF6000),
-                                                    size: 10,
-                                                  ),
-                                                  Icon(
-                                                    Icons.star,
-                                                    color: Color(0xffFF6000),
-                                                    size: 10,
-                                                  ),
-                                                  Icon(
-                                                    Icons.star,
-                                                    color: Color(0xffFF6000),
-                                                    size: 10,
-                                                  ),
-                                                  Icon(
-                                                    Icons.star,
-                                                    color: Colors.grey,
-                                                    size: 10,
-                                                  ),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 8.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(recProduct.productName!),
+                                            Text(recProduct.productPrice!),
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.star,
+                                                  color: Color(0xffFF6000),
+                                                  size: 10,
+                                                ),
+                                                Icon(
+                                                  Icons.star,
+                                                  color: Color(0xffFF6000),
+                                                  size: 10,
+                                                ),
+                                                Icon(
+                                                  Icons.star,
+                                                  color: Color(0xffFF6000),
+                                                  size: 10,
+                                                ),
+                                                Icon(
+                                                  Icons.star,
+                                                  color: Color(0xffFF6000),
+                                                  size: 10,
+                                                ),
+                                                Icon(
+                                                  Icons.star,
+                                                  color: Colors.grey,
+                                                  size: 10,
+                                                ),
+                                              ],
+                                            ),
+                                          ],
                                         ),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -972,10 +1005,6 @@ class _ProductDetailState extends State<ProductDetail> with SingleTickerProvider
                   ),
                 ),
               ),
-
-
-
-
               SizedBox(
                 height: 20,
               ),

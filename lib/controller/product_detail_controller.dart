@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 
 class ProductDetailController with ChangeNotifier {
-  int colorSelection = 0;
+  int colorSelection =0;
   int sizeSelection =0;
 
   String? productImageUrl;
@@ -12,12 +13,15 @@ class ProductDetailController with ChangeNotifier {
 
 
   final List<String?> prodErrors = [];
+
   void addError({String? error}) {
-    if (!prodErrors.contains(error))
+    if (!prodErrors.contains(error)) {
+      //HapticFeedback.lightImpact();
       prodErrors.add(error);
-    notifyListeners();
+      notifyListeners();
+    }
   }
-  void removeError({String? error}) {
+  void removeError({String? error}){
     if (prodErrors.contains(error))
       prodErrors.remove(error);
     notifyListeners();

@@ -20,7 +20,7 @@ class _PopUpProductDetailState extends State<PopUpProductDetail> {
   String? currentImage;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Center(
       child: Material(
         color: Colors.transparent,
@@ -331,13 +331,16 @@ class _PopUpProductDetailState extends State<PopUpProductDetail> {
                                                 children: [
                                                   Icon(Icons.supervisor_account,
                                                       color: Color(0xffFF6000)),
-                                                  Text(
-                                                    "50 Active View This",
-                                                    style: TextStyle(
-                                                      fontSize: 12,
-                                                      color: Colors.grey,
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                  FittedBox(
+                                                    fit: BoxFit.scaleDown,
+                                                    child: Text(
+                                                      "50 Active View This",
+                                                      style: TextStyle(
+                                                        //fontSize: 12,
+                                                        color: Colors.grey,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
                                                     ),
                                                   ),
                                                 ],

@@ -28,7 +28,7 @@ class NewArrivalsHeadLineButton extends StatelessWidget {
             width: 70.w,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Color(0xffFF6000),
+                primary: Color(0xffFFA800),//Color(0xffFF6000),
               ),
               onPressed: () {
 

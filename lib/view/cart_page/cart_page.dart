@@ -313,8 +313,8 @@ class _CartListState extends State<CartList> {
                 ),
                 onPressed: () {//SplashScreen
                   //cartControll.addCartList();
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (Context) => SplashScreen()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (Context) => SplashScreen()));
                 },
                 child: Text(
                   "Check Out",

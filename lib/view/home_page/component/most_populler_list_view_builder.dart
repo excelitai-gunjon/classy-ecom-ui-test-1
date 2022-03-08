@@ -158,14 +158,14 @@ class MostPopullerListViewBuilder extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("\$" + product.productPrice.toString(),
+                                Text("\৳ " + product.productPrice.toString(),
                                     style: TextStyle(fontSize: 13.sp)
                                 ),
                                 Container(
                                   height: 20,
                                   width: 20,
                                   decoration: BoxDecoration(
-                                      color: Color(0xffFF6000),
+                                      color: Color(0xffFFA800),//Color(0xffFF6000),
                                       borderRadius: BorderRadius.circular(5)),
                                   child: Icon(
                                     Icons.arrow_forward,

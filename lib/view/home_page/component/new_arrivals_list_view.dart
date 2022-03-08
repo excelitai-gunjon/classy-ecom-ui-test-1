@@ -101,7 +101,7 @@ class NewArrivalsListView extends StatelessWidget {
                                 Row(
                                   children: [
                                     Text(
-                                      "\$" +
+                                      "\৳ " +
                                           product.productPrice.toString(),
                                       style: TextStyle(
                                           color: Colors.black,
@@ -116,7 +116,7 @@ class NewArrivalsListView extends StatelessWidget {
                                           height: 8,
                                         ),
                                         Text(
-                                          "\$" +
+                                          "\৳ " +
                                               product.productPrice
                                                   .toString(),
                                           style: TextStyle(

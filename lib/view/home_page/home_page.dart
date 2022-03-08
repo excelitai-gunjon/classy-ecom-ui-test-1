@@ -4,19 +4,15 @@ import 'package:classy_e_com_demo_test_ui_1/controller/app_bar_controler.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/peimary_page_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/product_detail_controller.dart';
 import 'package:classy_e_com_demo_test_ui_1/controller/secondary_page_controller.dart';
-import 'package:classy_e_com_demo_test_ui_1/model/best_selling_product.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/cart_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/main_home_bottom_app_bar_model.dart';
-import 'package:classy_e_com_demo_test_ui_1/model/sub_sub_categories_product_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/model/wishlist_model.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/cart_page/cart_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/drawer_page/drawer_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/filter_page/filter_page.dart';
-import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/appBar.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/badge.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/body.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/home_page/component/search_bar.dart';
-import 'package:classy_e_com_demo_test_ui_1/view/new_arrival_page/new_arrival_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/product_details/product_detail_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/profile_page/profile_page.dart';
 import 'package:classy_e_com_demo_test_ui_1/view/profile_page/sub_pages/edit_address/edit_address_page.dart';
@@ -67,27 +63,24 @@ class _HomePageState extends State<HomePage> {
     final productAppBar = Provider.of<PrimaryScreenState>(context);
     final primaryPageState = Provider.of<PrimaryPageController>(context);
     return WillPopScope(
-      onWillPop: () async {
-        //final appBar = Provider.of<AppBarController>(context,listen: false);
+      onWillPop: () async{
         final status = Provider.of<PrimaryScreenState>(context, listen: false);
-        //appBar.setPrimaryState(false);
 
         final pageState = Provider.of<SecondaryPage>(context, listen: false);
         //pageState.setSecondaryPage(5);
-        if (productAppBar.status) {
-          if (Platform.isAndroid) {
+        if (productAppBar.status){
+          if (Platform.isAndroid){
             SystemNavigator.pop();
-          } else if (Platform.isIOS) {
+          }else if (Platform.isIOS){
             exit(0);
           }
         }
-        if (pageState.secondaryPageNo == 6) {
+        if (pageState.secondaryPageNo == 6){
           status.setPrimaryState(false);
           pageState.setSecondaryPage(5);
-        } else {
+        }else{
           productAppBar.setPrimaryState(true);
-          final selection =
-              Provider.of<ProductDetailController>(context, listen: false);
+          final selection = Provider.of<ProductDetailController>(context, listen: false);
           selection.sizeSelected(0);
           selection.colorSelected(0);
         }
@@ -105,7 +98,9 @@ class _HomePageState extends State<HomePage> {
                   },
                   icon: Icon(Icons.menu_open),
                 ),
-                title: Center(child: Text("Fashion")),
+                title: Center(
+                  child: Text("Fashion"),
+                ),
                 actions: [
                   IconButton(
                     onPressed: () {
@@ -136,16 +131,15 @@ class _HomePageState extends State<HomePage> {
                       )
                     : GestureDetector(
                         onTap: () {
-                          setState(() {
-                            primaryPageState.setPrimaryPage(data.index);
-                            productAppBar.setPrimaryState(true);
-                          });
+                          //final primaryPageState = Provider.of<PrimaryPageController>(context);
+                          primaryPageState.setPrimaryPage(data.index);
+                          productAppBar.setPrimaryState(true);
                           print(data.index.toString());
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 0,
-                            vertical: 0,
+                            horizontal: 8,
+                            vertical: 8,
                           ),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -191,7 +185,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget buildCustomConsumer(
       BuildContext context, String label, IconData icon, int index) {
-    final size=MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     final primaryPageState = Provider.of<PrimaryPageController>(context);
     if (label == "Wishlist") {
       return Consumer<WishlistModel>(
@@ -203,7 +197,7 @@ class _HomePageState extends State<HomePage> {
           );
         },
         child: Container(
-          width: size.width*.1,//50,
+          width: size.width * .1, //50,
           child: Icon(
             icon,
             color: primaryPageState.currentIndex ==
@@ -224,7 +218,7 @@ class _HomePageState extends State<HomePage> {
           );
         },
         child: Container(
-          width: size.width*.1,
+          width: size.width * .1,
           child: Icon(
             icon,
             color: primaryPageState.currentIndex ==

@@ -678,7 +678,7 @@ class _HotDealsState extends State<HotDeals>
                                                   Row(
                                                     children: [
                                                       Text(
-                                                        "\$" +
+                                                        "\৳ " +
                                                             product.productPrice
                                                                 .toString(),
                                                         style: TextStyle(
@@ -836,7 +836,7 @@ class _HotDealsState extends State<HotDeals>
                                                         Row(
                                                           children: [
                                                             Text(
-                                                              "\$" +
+                                                              "\৳ " +
                                                                   product
                                                                       .productPrice
                                                                       .toString(),

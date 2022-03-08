@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.classy_e_com_demo_test_ui_1">
+    <uses-permission android:name="android.permission.VIBRATE" />
    <application
-        android:label="classy_e_com_demo_test_ui_1"
+        android:label="Fashion"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

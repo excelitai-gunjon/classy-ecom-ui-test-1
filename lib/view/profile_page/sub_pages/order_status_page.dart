@@ -359,9 +359,13 @@ class OrderStatus extends StatelessWidget {
               width: 170,
               child: ElevatedButton(
                 onPressed: (){
+                  // final primaryPageState = Provider.of<PrimaryPageController>(context,listen: false);
+                  // final productAppBar = Provider.of<PrimaryScreenState>(context,listen: false);
+                  // primaryPageState.setPrimaryPage(0);
+                  // productAppBar.setPrimaryState(true);
                   //Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
-                  // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                  //     HomePage()), (Route<dynamic> route) => false);
+                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                      HomePage()), (route) => false);
                 },
                 child: const Text('Back to Shopping', style: TextStyle(color: Colors.white70),),
                 style: ElevatedButton.styleFrom(

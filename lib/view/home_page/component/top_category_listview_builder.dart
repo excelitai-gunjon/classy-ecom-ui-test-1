@@ -10,13 +10,13 @@ class TopCategoryListviewBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 90.h,
-      width: MediaQuery.of(context).size.width,
+      width: double.infinity,
       child: Padding(
         padding: EdgeInsets.only(left: 10.w, top: 10.h, bottom: 10.h),
         child: ListView.separated(
           separatorBuilder: (context, index) {
             return SizedBox(
-              width: 20.w,
+              width: 8.w,
             );
           },
           shrinkWrap: true,
@@ -28,14 +28,13 @@ class TopCategoryListviewBuilder extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  height: 50,
-                  width: 50,
+                  height: 55.w,
+                  width: 55.w,
                   //color: Colors.deepOrangeAccent,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     image: DecorationImage(
-                      image:
-                      AssetImage(categoriData.imagePath.toString()),
+                      image: AssetImage(categoriData.imagePath.toString()),
                       fit: BoxFit.cover,
                     ),
                     borderRadius: BorderRadius.circular(15),
@@ -44,18 +43,23 @@ class TopCategoryListviewBuilder extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 1,
                         blurRadius: 3,
-                        offset:
-                        Offset(0, 1), // changes position of shadow
+                        offset: Offset(0, 1), // changes position of shadow
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: 4,
+                  height: 8.h,
                 ),
-                Center(child: Text(categoriData.categoriName.toString(),
-                  style: TextStyle(fontSize: 14.sp),
-                )),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                categoriData.categoriName.toString(),
+                style: TextStyle(
+                  fontSize: 12.sp,
+                ),
+                  ),
+                ),
               ],
             );
           },

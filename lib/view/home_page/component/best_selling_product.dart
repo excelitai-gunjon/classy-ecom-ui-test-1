@@ -188,7 +188,7 @@ class BestSellingProduct extends StatelessWidget {
                                 Row(
                                   children: [
                                     Text(
-                                      "\$" + product.productPrice.toString(),
+                                      "\৳ " + product.productPrice.toString(),
                                       style: TextStyle(
                                         color: Color(0xffFF6000),
                                         fontWeight: FontWeight.bold,
